@@ -7,3 +7,6 @@ README.md
 /Proyecto/Sube/.project
 /Proyecto/Sube/src/dao/DAO.java
 /Proyecto/Sube/src/dao/HibernateUtil.java
+/Proyecto/Sube/src/hibernate.cfg.xml
+/Proyecto/Sube/lib/
+/Proyecto/Sube/.settings/
