@@ -6,6 +6,8 @@ import org.hibernate.HibernateException;
 import datos.SeccionRecorrido;
 public class SeccionRecorridoDao extends DAO {
 	
+	
+	
 	public SeccionRecorrido traer(long idSeccionRecorrido)throws HibernateException {
 		SeccionRecorrido objeto = null;
 		try {

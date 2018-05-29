@@ -1,7 +1,8 @@
 package datos;
 
 import java.util.Set;
-
+import negocio.SeccionRecorridoABM;
+import negocio.SeccionABM;
 public class Tren extends TransportePublico {
 	
    private Set<Parada> paradas;
@@ -24,8 +25,15 @@ public class Tren extends TransportePublico {
 		return paradas.add(parada);
 	}
 	
-	public double calcularCostoDeViaje(Viaje viaje) {
+	public double calcularCostoDeViaje(Viaje viaje)throws Exception {
 		double costoViaje=0;
+		if(viaje instanceof ViajeTren) {
+			if(((ViajeTren) viaje).getDestino()==null) {
+				costoViaje = SeccionABM.getInstance().traer((long)3).getCosto();
+			}else {
+				costoViaje = SeccionRecorridoABM.getInstance().traer(viaje.getOrigen(), viaje.getDestino()).getSeccion().getCosto();
+			}
+		}else throw new Exception("El viaje no es viaje tren");
 		return costoViaje;
 	}
 

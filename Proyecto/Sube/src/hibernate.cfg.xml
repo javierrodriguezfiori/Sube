@@ -18,11 +18,16 @@
 		<mapping resource="mapeos/RedSube.hbm.xml"/>
 		<mapping resource="mapeos/Transaccion.hbm.xml"/>
 	
-		<mapping resource="mapeos/TransportePublico.hbm.xml"/>
-	
-		<mapping resource="mapeos/Parada.hbm.xml"/>
-		
 		<mapping resource="mapeos/Tramo.hbm.xml"/>
 
+		<mapping resource="mapeos/TransportePublico.hbm.xml"/>
+	
+		<mapping resource="mapeos/Seccion.hbm.xml"/>
+		<mapping resource="mapeos/Parada.hbm.xml"/>
+
+		<mapping resource="mapeos/SeccionRecorrido.hbm.xml"/>
+
+		<mapping resource="mapeos/CostoSubte.hbm.xml"/>
+	
 	</session-factory>
 </hibernate-configuration>
