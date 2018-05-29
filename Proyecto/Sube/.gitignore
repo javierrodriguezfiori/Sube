@@ -5,3 +5,5 @@ FAQ.txt
 README.md
 /Proyecto/Sube/.classpath
 /Proyecto/Sube/.project
+/Proyecto/Sube/src/dao/DAO.java
+/Proyecto/Sube/src/dao/HibernateUtil.java
