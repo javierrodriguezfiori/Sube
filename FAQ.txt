@@ -1,0 +1,12 @@
+https://www.gba.gob.ar/infraestructura/boleto
+https://www.argentina.gob.ar/solicitar-la-tarifa-social-sube
+
+tipos de usuarios?
+clave primaria de usuario por tipo y dni compuesto o solo id?
+
+Cambios:
+
+Generar el MWB del DER.
+Relación DatosUsuario a Contacto hecha puramente con PK's (quitar FK desde DatosUsuario). (DER)
+TipoDocumento en Usuario ahora es un enum. (Diagrama de clases) (DER)
+Tabla DatosUsuario agregar char 'X' al enum de género. (DER)

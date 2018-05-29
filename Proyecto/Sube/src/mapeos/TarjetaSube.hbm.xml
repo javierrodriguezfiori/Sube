@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.TarjetaSube" table="tarjetasube">
+		<id column="nroTarjeta" name="nroTarjeta">
+			<generator class="identity"/>
+		</id>
+		<property column="saldo" name="saldo" type="float"/>
+		<property column="estado" name="estado" type="int"/>
+		<one-to-one name="redSube" class="datos.RedSube" cascade="delete"></one-to-one>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+

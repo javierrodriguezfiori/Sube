@@ -1,0 +1,22 @@
+IMPORTAR BD (WORKBENCH MySQL)
+
+En la toolbar, los siguientes pasos:
+
+1) Server > Data Import
+2) Import from Self-Contained File > buscan el archivo .sql
+
+3) En la sección Default Schema to be Imported To :
+	* Si es la primera vez que importas la BD apretas 'New...' y le pones de nombre 'sube' al schema.
+	* Si ya la habias importado una vez y solo vas a mergear informacion seleccionas el schema donde ya esta importada.
+	
+4) Start Import
+
+
+EXPORTAR BD (WORKBENCH MySQL)
+
+En la toolbar, los siguientes pasos:
+
+1) Server > Data Export
+2) Seleccionas la BD
+3) Export to Self-Contained File
+4) Seleccionas el directorio donde la quieras exportar.
