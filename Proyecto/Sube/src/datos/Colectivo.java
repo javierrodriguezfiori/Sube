@@ -30,7 +30,7 @@ public class Colectivo extends TransportePublico {
 	public double calcularCostoDeViaje(Viaje viaje)throws Exception  {
 		double costoViaje=0;
 		if(viaje instanceof ViajeColectivo){
-			costoViaje = (ViajeColectivo) viaje.getTramo.getCosto();
+			costoViaje = ((ViajeColectivo) viaje).getTramo().getCosto();
 		}else throw new Exception("El viaje no es viaje colectivo");
 		return costoViaje;
 	}
