@@ -30,7 +30,7 @@ public class testTarjetaSube {
 	
 	public void agregarTarjeta() {
 		float saldo = 50;
-		TarjetaSubeABM abm = new TarjetaSubeABM();
+		TarjetaSubeABM abm = TarjetaSubeABM.getInstance();
 		int idUsuario=1;
 		int estado=0;
 		try{
@@ -41,7 +41,7 @@ public class testTarjetaSube {
 	}
 	
 	public void eliminarTarjeta(long nroTarjeta) {
-		TarjetaSubeABM abm = new TarjetaSubeABM();
+		TarjetaSubeABM abm = TarjetaSubeABM.getInstance();
 		try {
 			abm.eliminar(nroTarjeta);
 		} catch(Exception e) { 

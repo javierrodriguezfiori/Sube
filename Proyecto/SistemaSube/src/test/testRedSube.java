@@ -11,7 +11,7 @@ public class testRedSube {
 
 	public static void main(String[] args) {
 		testRedSube test= new testRedSube();
-		RedSubeABM abm = new RedSubeABM();
+		RedSubeABM abm = RedSubeABM.getInstance();
 		
 //		test.agregarRedSube();
 			
@@ -31,12 +31,12 @@ public class testRedSube {
 	}
 	
 	public void agregarRedSube() {
-		RedSubeABM abmRedSube = new RedSubeABM();
+		RedSubeABM abmRedSube = RedSubeABM.getInstance();
 		GregorianCalendar fechaHora = null;
 		int contador=0; 
 		int nroTarjeta=9;
 		String linea="";
-		TarjetaSubeABM abmTarjeta = new TarjetaSubeABM();
+		TarjetaSubeABM abmTarjeta = TarjetaSubeABM.getInstance();
 		
 		try{
 			TarjetaSube tarjetasube= abmTarjeta.traerTarjetaSube(nroTarjeta);
@@ -47,7 +47,7 @@ public class testRedSube {
 	}
 	
 	public RedSube traerRedSube(long idRedSube) {
-		RedSubeABM abm = new RedSubeABM();
+		RedSubeABM abm = RedSubeABM.getInstance();
 		RedSube rs = null;
 		try {
 			rs=abm.traerRedSube(idRedSube);
@@ -58,7 +58,7 @@ public class testRedSube {
 	}
 	
 	public RedSube modificarRedSube(long idRedSube) {
-		RedSubeABM abm = new RedSubeABM();
+		RedSubeABM abm = RedSubeABM.getInstance();
 		RedSube rs = null;
 		GregorianCalendar fechaHora= null;
 		try {

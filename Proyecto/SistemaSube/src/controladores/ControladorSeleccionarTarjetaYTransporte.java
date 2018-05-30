@@ -19,7 +19,7 @@ import negocio.TransportePublicoABM;
 
 public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 	
-	private TarjetaSubeABM tarjetaSubeABM = new TarjetaSubeABM();
+	private TarjetaSubeABM tarjetaSubeABM = TarjetaSubeABM.getInstance();
 	private TransportePublicoABM transportePublicoABM = TransportePublicoABM.getInstance();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
