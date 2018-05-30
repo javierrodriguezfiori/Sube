@@ -7,27 +7,35 @@ import datos.RedSube;
 import datos.TarjetaSube;
 
 public class RedSubeABM {
-	RedSubeDao dao = new RedSubeDao();
+	public static RedSubeABM instance = null;
+	protected RedSubeABM() {}
+	
+	public static RedSubeABM getInstance() {
+		if(instance==null) {
+			instance = new RedSubeABM();
+		}
+		return instance;
+	}
 	
 	public RedSube traerRedSube(long idRedSube) throws Exception{
-		RedSube rs= dao.traerRedSube(idRedSube);
+		RedSube rs= RedSubeDao.getInstance().traerRedSube(idRedSube);
 		return rs;
 	}
 	
 	public long agregar(GregorianCalendar fechaHora, int contador, String linea, TarjetaSube tarjetasube) throws Exception{
 		RedSube rs= new RedSube(fechaHora, contador, linea, tarjetasube);
-		return dao.agregar(rs);
+		return RedSubeDao.getInstance().agregar(rs);
 	}
 	
 	public void modificar(RedSube rs) throws Exception{
-		dao.actualizar(rs);
+		RedSubeDao.getInstance().actualizar(rs);
 	}
 
 	public double calcularDescuento(long nroTarjetaSube, String lineaTransporte, GregorianCalendar fechaHora) throws Exception{
 		/* IMPORTANTE!: El metodo está pensado para utilizar su salida multiplicandola por el precio. 
 		En caso de no existir descuento devuelve 1. */
 		
-		RedSube redSube = dao.traerRedSube(nroTarjetaSube);
+		RedSube redSube = RedSubeDao.getInstance().traerRedSube(nroTarjetaSube);
 				
 		boolean sinDescuento=false;
 		double descuento=1;
@@ -86,13 +94,13 @@ public class RedSubeABM {
 	}
 	
 	private void resetearRedSube(long nroTarjetaSube, GregorianCalendar fechaHora, String lineaTransporte) {
-		RedSube rs = dao.traerRedSube(nroTarjetaSube);
-		RedSubeABM ABM = new RedSubeABM();
+		RedSube rs = RedSubeDao.getInstance().traerRedSube(nroTarjetaSube);
+		
 		rs.setFechaHora(fechaHora);
 		rs.setContador(1);
 		rs.setLinea(lineaTransporte);
 		try {
-			ABM.modificar(rs);
+			modificar(rs);
 		} catch (Exception e) {
 			System.out.println("Error al resetear la RedSube");
 		}
