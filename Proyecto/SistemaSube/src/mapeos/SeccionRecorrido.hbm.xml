@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://www.hibernate.org/dtd//hibernate-mapping-3.0.dtd" >
+	<hibernate-mapping>
+	<class name="datos.SeccionRecorrido" table="seccionporrecorrido">
+	<id column="idSeccionPorRecorrido" name="idSeccionRecorrido"></id>
+	<many-to-one name="seccion" class="datos.Seccion" column="idSeccion" lazy="false" not-null="true"></many-to-one>
+	<many-to-one name="origen" class="datos.Parada" column="idOrigen" lazy="false" not-null="true"></many-to-one>
+	<many-to-one name="destino" class="datos.Parada" column="idDestino" lazy="false"  not-null="true"></many-to-one>
+	</class>
+	</hibernate-mapping>
