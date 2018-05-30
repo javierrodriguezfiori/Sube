@@ -11,7 +11,8 @@ public class TerminalViaje extends Terminal{
 	
 	public boolean cobrarViaje(TarjetaSube tarjeta, Viaje viaje) throws Exception{
 		boolean cobrado=false;
-		Viaje ultimo=traerUltimoViaje(); 
+		ViajeABM vabm=new ViajeABM();
+		Viaje ultimo=vabm.traerUltimoViaje(tarjeta.getNroTarjeta());
 		float precio=0;
 		float diferencia=0;
 		if( ultimo instanceof ViajeTren && viaje instanceof ViajeTren){
