@@ -53,7 +53,7 @@
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-	    <form method="POST" action="/SistemaSube/ControladorSeleccionarTarjetaYTransporte">
+	    <form method="POST" action="/SistemaSube/SeleccionarTarjetaYTransporte">
 	      <div class="container">
 	        <div class="row">
 	          <div class="col-lg-6" style="padding-top:30px;">
@@ -62,17 +62,17 @@
 	          </div>
 	        </div>
 	        <div class="row" id="responseviaje">
-	          <div class="col-lg-4" style="padding-top:50px;">
+	           <div class="col-lg-4" style="padding-top:50px;">
 	              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
-	              <input type="radio" name="transporte[]" id="radio" value="tren" checked/>
+	              <input type="radio" name="transporte" id="radio" value="tren" checked/>
 	              <label for="radio" class="radio-option">Tren</label>
-	              <input type="radio" name="transporte[]" id="radio" value="subte"/>
+	              <input type="radio" name="transporte" id="radio" value="subte"/>
 	              <label for="radio" class="radio-option">Subte</label>
-	              <input type="radio" name="transporte[]" id="radio" value="colectivo"/>
+	              <input type="radio" name="transporte" id="radio" value="colectivo"/>
 	              <label for="radio" class="radio-option">Colectivo</label>
 	          </div>
 	          <div class="col-lg-4">
-	          	<input type="submit" value="TipoDeTransporte">
+	          	<input type="submit" value="Avanzar">
 	          </div>
 	        </div>
 	      </div>

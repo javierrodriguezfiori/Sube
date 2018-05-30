@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>seleccionartarjetaytransporte.jsp</welcome-file>
+    <welcome-file>seleccionarestacionoparada.jsp</welcome-file>
   </welcome-file-list>
   
   <servlet>
@@ -19,4 +20,14 @@
   	<servlet-name>ControladorSeleccionarTarjetaYTransporte</servlet-name>
   	<url-pattern>/SeleccionarTarjetaYTransporte</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
+  	<servlet-class>controladores.SeleccionarEstacionOParada</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
+  	<url-pattern>/SeleccionarEstacionOParada</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

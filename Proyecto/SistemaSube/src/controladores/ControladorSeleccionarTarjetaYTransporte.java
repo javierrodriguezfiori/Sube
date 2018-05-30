@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datos.Colectivo;
+import datos.Parada;
 import datos.Subte;
 import datos.TarjetaSube;
 import datos.TransportePublico;
@@ -26,8 +27,7 @@ public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		procesarPeticion(request, response);
-	}
-	
+	}	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		procesarPeticion(request, response);
 	}
@@ -48,7 +48,7 @@ public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 			
 			switch (transportePublico) {
 				case "tren":
-					transportePublicoABM.traerTrenYParadas(1l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));;
+					transportePublicoABM.traerTrenYParadas(1l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));
 					break;
 				case "subte":
 					transportePublicoABM.traerSubteYParadas(1l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));
@@ -62,7 +62,7 @@ public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 			
 			request.setAttribute("tarjetaSube", tarjetaSube);
 			request.setAttribute("listaParadasTramos", listaParadasOTramos);
-			request.getRequestDispatcher("seleccionarestacionoparada.jsp").forward(request, response);
+			request.getRequestDispatcher("/seleccionarestacionoparada.jsp").forward(request, response);
 		} catch (Exception ex) {
 			response.sendError(500,"FALLO");
 		}

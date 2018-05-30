@@ -11,7 +11,11 @@ public class TarjetaSubeDao extends DAO{
 		try {
 			iniciaOperacion();
 			objeto = (TarjetaSube)session.get(TarjetaSube.class , nroTarjeta);
-		} finally {
+		}
+		catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		finally {
 			session.close();
 		}
 		return objeto;
