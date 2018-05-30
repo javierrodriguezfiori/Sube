@@ -35,7 +35,7 @@ public class Tren extends TransportePublico {
 				
 				costoViaje = SeccionRecorridoABM.getInstance().traer(((ViajeTren) viaje).getOrigen(), ((ViajeTren) viaje).getDestino()).getSeccion().getCosto();
 			}
-		}else throw new Exception("El viaje no es viaje tren");
+		}else throw new Exception("El viaje no es ViajeTren");
 		return costoViaje;
 	}
 

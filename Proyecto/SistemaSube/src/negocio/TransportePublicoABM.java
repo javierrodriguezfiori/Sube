@@ -6,6 +6,10 @@ import datos.Colectivo;
 import datos.Subte;
 import datos.TransportePublico;
 import datos.Tren;
+import datos.Viaje;
+import datos.ViajeColectivo;
+import datos.ViajeSubte;
+import datos.ViajeTren;
 public class TransportePublicoABM  {
 	
 	private static TransportePublicoABM instancia = null;
@@ -61,32 +65,24 @@ public class TransportePublicoABM  {
     public Tren traerTrenYParadas(long idTren) {
 		return TransportePublicoDao.getInstance().traerTrenYParadas(idTren);
 	}
-	
-	@SuppressWarnings("unchecked")
-	public <T> T traerEstacionOTramoSegunNombre(TransportePublico transportePublico, String nombreEstacionOTramo) {
-    	T response = null;
-    	
-    	if (transportePublico instanceof Tren)
-    		response = (T) TransportePublicoDao.getInstance()
-    				.traerTrenYParadas(transportePublico.getIdTransporte())
-    				.getParadas()
-    				.stream()
-    				.filter(p -> p.getNombre() == nombreEstacionOTramo);
-    	
-    	else if (transportePublico instanceof Colectivo)
-    		response = (T) TransportePublicoDao.getInstance()
-    				.traerColectivoYTramos(transportePublico.getIdTransporte())
-    				.getTramos()
-    				.stream()
-    				.filter(t -> t.getCosto() == Float.parseFloat(nombreEstacionOTramo));
-    	
-    	else if (transportePublico instanceof Subte)
-    		response = (T) TransportePublicoDao.getInstance()
-    				.traerSubteYParadas(transportePublico.getIdTransporte())
-    				.getParadas()
-    				.stream()
-    				.filter(p -> p.getNombre() == nombreEstacionOTramo);
-		
-    	return response;
+    
+    public double calcularCostoDeViaje(Viaje viaje) {
+    	double costoViaje=0;
+    	if(viaje instanceof ViajeColectivo) {
+    		costoViaje = ((ViajeColectivo) viaje).getTramo().getCosto();
+    	}
+    	if(viaje instanceof ViajeTren) {
+    		if(((ViajeTren) viaje).getDestino()==null) {
+				costoViaje = SeccionABM.getInstance().traer((long)3).getCosto();
+			}else {
+				
+				costoViaje = SeccionRecorridoABM.getInstance().traer(((ViajeTren) viaje).getOrigen(), ((ViajeTren) viaje).getDestino()).getSeccion().getCosto();
+			}
+    	}
+    	if(viaje instanceof ViajeSubte) {
+    		costoViaje = CostoSubte.getInstance().traerCostoSubte();
+    	}
+    	return costoViaje;
     }
+
 }

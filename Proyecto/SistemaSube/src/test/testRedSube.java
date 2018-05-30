@@ -22,7 +22,7 @@ public class testRedSube {
 		GregorianCalendar fechaHora = new GregorianCalendar();
 		double precio = 9.25;
 		try {
-			precio=precio*abm.calcularDescuento(9,"12517",fechaHora);
+			precio=precio*abm.calcularDescuento(9,"168",fechaHora);
 			System.out.println(precio);
 		} catch (Exception e) {
 			System.out.println(e);
