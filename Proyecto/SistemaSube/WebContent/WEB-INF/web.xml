@@ -21,13 +21,21 @@
   	<url-pattern>/SeleccionarTarjetaYTransporte</url-pattern>
   </servlet-mapping>
   
-  <servlet>
+  <!-- <servlet>
   	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
-  	<servlet-class>controladores.SeleccionarEstacionOParada</servlet-class>
+  	<servlet-class>controladores.ControladorSeleccionarEstacionOParada</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
   	<url-pattern>/SeleccionarEstacionOParada</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
   
+  <servlet>
+  	<servlet-name>ControladorCobrarViaje</servlet-name>
+  	<servlet-class>controladores.ControladorCobrarViaje</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorCobrarViaje</servlet-name>
+  	<url-pattern>/CobrarViaje</url-pattern>
+  </servlet-mapping>
 </web-app>

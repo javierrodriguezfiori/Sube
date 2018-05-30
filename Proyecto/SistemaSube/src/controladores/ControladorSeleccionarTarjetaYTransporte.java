@@ -10,15 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datos.Colectivo;
-import datos.Parada;
 import datos.Subte;
 import datos.TarjetaSube;
 import datos.TransportePublico;
 import datos.Tren;
 import negocio.TarjetaSubeABM;
 import negocio.TransportePublicoABM;
-
-
 
 public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 	
@@ -34,32 +31,33 @@ public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 	
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		System.out.println("Entro");
-		System.out.println(request.getParameter("transporte"));
 		response.setContentType("text/html;charset=UTF-8");
 		try {
-			System.out.println("Siguio");
 			int nroTarjeta = Integer.parseInt(request.getParameter("nrotarjeta"));
-			System.out.println("Entro");
-			System.out.println(String.valueOf(nroTarjeta));
 			TarjetaSube tarjetaSube = tarjetaSubeABM.traerTarjetaSube((long)nroTarjeta);
 			String transportePublico = request.getParameter("transporte");
 			List<String> listaParadasOTramos = new ArrayList<String>();
+			TransportePublico transporte = null;
 			
 			switch (transportePublico) {
 				case "tren":
+					transporte = transportePublicoABM.traerTrenYParadas(1l);
 					transportePublicoABM.traerTrenYParadas(1l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));
 					break;
 				case "subte":
+					transporte = transportePublicoABM.traerSubteYParadas(1l);
 					transportePublicoABM.traerSubteYParadas(1l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));
 					break;
 				case "colectivo":
+					transporte = transportePublicoABM.traerColectivoYTramos(1l);
 					transportePublicoABM.traerColectivoYTramos(1l).getTramos().stream().forEach(p -> listaParadasOTramos.add(String.valueOf(p.getCosto())));
 					break;
 				default:
 					break;
 			}
 			
+			response.setStatus(200);
+			request.setAttribute("transportePublico", transporte);
 			request.setAttribute("tarjetaSube", tarjetaSube);
 			request.setAttribute("listaParadasTramos", listaParadasOTramos);
 			request.getRequestDispatcher("/seleccionarestacionoparada.jsp").forward(request, response);

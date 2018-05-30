@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="datos.TarjetaSube" %>
+<%@page import="datos.TransportePublico" %>
 <%@ page import="java.util.List" %>
-<%@ page import="datos.Parada" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -37,15 +38,28 @@
 	    </style>
 	</head>
 	<body>
-          <div class="col-lg-8" style="padding-top:50px;">
-            <label class="subtitle">Estacion/Tramo</label> <BR>
-            <select name="estacion" style="width:130px;">
-				<option value="0">Selecciona un tramo/estacion</option>
-				<% List<String> lista = (List)request.getAttribute("listaParadasTramos");
-					for(String atributo : lista) { %>
-				<option value="<%=atributo.toString()%>">
-				<% } %>
-            </select>
-          </div>
+			<%@ include file="/header.jsp" %>
+		<form method="POST" action="/SistemaSube/CobrarViaje">
+	        <div class="col-lg-8" style="padding-top:50px;">
+	            <label class="subtitle">Seleccione la estación o el tramo</label> <BR>
+	            <% List<String> estaciones = (List) request.getAttribute("listaParadasTramos"); %>
+	            <select name="estacion" style="width:200px; align:center;">
+					<option value="0">Selecciona un tramo/estacion</option>
+					<% for(String estacion : estaciones) { %>
+					<option value="<%=estacion%>"><%= estacion %></option>
+					<% } %>
+	            </select>
+	            <% TarjetaSube tarjetaSube = (TarjetaSube) request.getAttribute("tarjetaSube"); %>
+	            <% TransportePublico transportePublico = (TransportePublico) request.getAttribute("transportePublico"); %>
+	            <input type="hidden" name="tarjetaSube" value="<%= tarjetaSube %>">
+	            <input type="hidden" name="transportePublico" value="<%= transportePublico %>">
+	            <% tarjetaSube.getNroTarjeta(); %>
+	            <% transportePublico.getLinea(); %>
+	        </div>
+	       	<div class="col-lg-4" style="align:right;">
+		          	<input type="submit" value="Cobrar">
+		    </div>
+	    </form>
+        <a href="/SistemaSube/seleccionartarjetaytransporte.jsp" style="align:left;">Volver..</a> 
 	</body>
 </html>

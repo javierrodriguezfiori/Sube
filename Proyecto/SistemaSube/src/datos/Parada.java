@@ -41,6 +41,8 @@ public class Parada {
 		return "Parada [idParada=" + idParada + ", nombre=" + nombre + "]";
 	}
 	
-	
+	public String traer() {
+		return "SI";
+	}
 
 }

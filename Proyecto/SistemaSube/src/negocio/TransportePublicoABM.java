@@ -64,4 +64,32 @@ public class TransportePublicoABM  {
     public Tren traerTrenYParadas(long idTren) {
 		return TransportePublicoDao.getInstance().traerTrenYParadas(idTren);
 	}
+    
+    @SuppressWarnings("unchecked")
+	public <T> T traerEstacionOTramoSegunNombre(TransportePublico transportePublico, String nombreEstacionOTramo) {
+    	T response = null;
+    	
+    	if (transportePublico instanceof Tren)
+    		response = (T) TransportePublicoDao.getInstance()
+    				.traerTrenYParadas(transportePublico.getIdTransporte())
+    				.getParadas()
+    				.stream()
+    				.filter(p -> p.getNombre() == nombreEstacionOTramo);
+    	
+    	else if (transportePublico instanceof Colectivo)
+    		response = (T) TransportePublicoDao.getInstance()
+    				.traerColectivoYTramos(transportePublico.getIdTransporte())
+    				.getTramos()
+    				.stream()
+    				.filter(t -> t.getCosto() == Float.parseFloat(nombreEstacionOTramo));
+    	
+    	else if (transportePublico instanceof Subte)
+    		response = (T) TransportePublicoDao.getInstance()
+    				.traerSubteYParadas(transportePublico.getIdTransporte())
+    				.getParadas()
+    				.stream()
+    				.filter(p -> p.getNombre() == nombreEstacionOTramo);
+		
+    	return response;
+    }
 }
