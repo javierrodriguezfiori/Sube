@@ -5,3 +5,14 @@
 /mapeos/
 /negocio/
 /test/
+/bin/
+/Documentacion/
+/Base de Datos/
+FAQ.txt
+README.md
+/Proyecto/SistemaSube/.classpath
+/Proyecto/SistemaSube/.project
+/Proyecto/SistemaSube/src/dao/DAO.java
+/Proyecto/SistemaSube/src/dao/HibernateUtil.java
+/Proyecto/SistemaSube/lib/
+/Proyecto/SistemaSube/.settings/
