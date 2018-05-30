@@ -1,13 +1,25 @@
 package negocio;
 
+
 import dao.TarjetaSubeDao;
 import datos.TarjetaSube;
 
 public class TarjetaSubeABM {
-	TarjetaSubeDao dao = new TarjetaSubeDao();
+	 
+
+		    private static TarjetaSubeABM instancia = null;
+			
+			protected TarjetaSubeABM() {};
+			
+			public static TarjetaSubeABM getInstance() {
+				if(instancia==null) {
+					instancia = new TarjetaSubeABM();
+				}
+				return instancia;
+			}
 	
 	public TarjetaSube traerTarjetaSube(long nroTarjeta) throws Exception{
-		TarjetaSube t= dao.traerTarjetaSube(nroTarjeta);
+		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
 		// Si la tarjeta no existe tirar error
 		if(t==null)
 			throw new Exception("La tarjeta no existe");
@@ -16,19 +28,19 @@ public class TarjetaSubeABM {
 	
 	public long agregar(int idUsuario, float saldo, int estado) throws Exception{
 		TarjetaSube t= new TarjetaSube(idUsuario, saldo, estado);
-		return dao.agregar(t);
+		return TarjetaSubeDao.getInstance().agregar(t);
 	}
 	
 	public void eliminar(long nroTarjeta) throws Exception{ 
-			TarjetaSube t= dao.traerTarjetaSube(nroTarjeta);
+			TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
 			if(t==null)
 				throw new Exception("La tarjeta no existe");  
 			else
-				dao.eliminar(t);
+				TarjetaSubeDao.getInstance().eliminar(t);
 	}
 	
 	public void modificar(TarjetaSube tarjetaSube) throws Exception{
-		dao.actualizar(tarjetaSube);
+		TarjetaSubeDao.getInstance().actualizar(tarjetaSube);
 	}
 	
 	public double calcularDescuento(TarjetaSube tarjeta) {
