@@ -1,17 +1,12 @@
 package negocio;
 
 import datos.TarjetaSube;
+import datos.Recarga;
 
 public class TerminalRecarga extends Terminal{
-	public boolean registrarRecarga(TarjetaSube tarjeta, int recarga) {
-		// Implementar lógica y cambiar atributo int recarga por Recarga recarga
-		//persistir transsaccion de recarga
-		//actualizar saldo
-		
-		boolean resultado=false;
-		
-		
-		
-		return resultado;
+	public boolean registrarRecarga(TarjetaSube tarjeta, Recarga recarga) throws Exception{
+		TransaccionABM.getInstance().agregarRecarga(recarga.getMonto(),recarga.getFechaHora(),tarjeta);
+		tarjeta.setSaldo((float)(tarjeta.getSaldo()+recarga.getMonto()));
+		return actualizarSaldo(tarjeta);
 	}
 }
