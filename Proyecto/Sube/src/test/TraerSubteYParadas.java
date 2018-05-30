@@ -12,7 +12,7 @@ public class TraerSubteYParadas {
 		Subte s = (Subte)TransportePublicoABM.getInstance().traerSubteYParadas(4);
 		
         System.out.println(s);
-//        System.out.println(Funciones.imprimirLista(s.getParadas()));
+    //  System.out.println(Funciones.imprimirLista(s.getParadas()));
 		
   }
 }
