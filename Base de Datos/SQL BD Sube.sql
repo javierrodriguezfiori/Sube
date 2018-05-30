@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `sube` /*!40100 DEFAULT CHARACTER SET utf8 */;
+﻿CREATE DATABASE  IF NOT EXISTS `sube` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `sube`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
@@ -417,7 +417,7 @@ DROP TABLE IF EXISTS `transaccion`;
 CREATE TABLE `transaccion` (
   `idTransaccion` int(11) NOT NULL AUTO_INCREMENT,
   `monto` float NOT NULL,
-  `fechaHora` date NOT NULL,
+  `fechaHora` datetime NOT NULL,
   `nroTarjeta` int(11) NOT NULL,
   PRIMARY KEY (`idTransaccion`),
   KEY `fk_tarjetasube_transaccion_idx` (`nroTarjeta`),
