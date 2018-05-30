@@ -6,6 +6,10 @@ import datos.Colectivo;
 import datos.Subte;
 import datos.TransportePublico;
 import datos.Tren;
+import datos.ViajeTren;
+import datos.ViajeColectivo;
+import datos.ViajeSubte;
+import datos.Viaje;;
 public class TransportePublicoABM  {
 	
 	private static TransportePublicoABM instancia = null;
@@ -61,5 +65,24 @@ public class TransportePublicoABM  {
     public Tren traerTrenYParadas(long idTren) {
 		return TransportePublicoDao.getInstance().traerTrenYParadas(idTren);
 	}
+    
+    public double calcularCostoDeViaje(Viaje viaje) {
+    	double costoViaje=0;
+    	if(viaje instanceof ViajeColectivo) {
+    		costoViaje = ((ViajeColectivo) viaje).getTramo().getCosto();
+    	}
+    	if(viaje instanceof ViajeTren) {
+    		if(((ViajeTren) viaje).getDestino()==null) {
+				costoViaje = SeccionABM.getInstance().traer((long)3).getCosto();
+			}else {
+				
+				costoViaje = SeccionRecorridoABM.getInstance().traer(((ViajeTren) viaje).getOrigen(), ((ViajeTren) viaje).getDestino()).getSeccion().getCosto();
+			}
+    	}
+    	if(viaje instanceof ViajeSubte) {
+    		costoViaje = CostoSubte.getInstance().traerCostoSubte();
+    	}
+    	return costoViaje;
+    }
 
 }
