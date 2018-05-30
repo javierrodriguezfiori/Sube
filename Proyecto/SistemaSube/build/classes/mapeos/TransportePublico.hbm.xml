@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://www.hibernate.org/dtd//hibernate-mapping-3.0.dtd" >
+	
+	<hibernate-mapping>
+	<class name="datos.TransportePublico" table="transportepublico">
+	 <id column="idTransportePublico" name="idTransporte">
+	 
+	 </id>
+	 
+	 <property column="linea" name="linea" type="string" />
+	 
+	 <joined-subclass name="datos.Colectivo" table="colectivo">
+	 <key column="idColectivo"/>
+	 <set table="tramoporcolectivo" name="tramos" order-by="idTramo" outer-join="true">
+	     <key column="idColectivo"/>
+	     <many-to-many column="idTramo" class="datos.Tramo"/>
+	 </set>
+	 
+	 
+	 </joined-subclass>
+	 
+	 <joined-subclass name="datos.Subte" table="subte">
+	 <key column="idSubte"/>
+	 <set table="paradaporsubte" name="paradas" order-by="idParada" outer-join="true">
+	    <key column="idSubte"/>
+	    <many-to-many column="idParada" class="datos.Parada"/> 
+	 </set>
+	 
+	 </joined-subclass>
+	 
+	 <joined-subclass name="datos.Tren" table="tren">
+	 <key column="idTren"/>
+	 <set table="paradaportren" name="paradas" order-by="idParada" outer-join="true">
+	    <key column="idTren"/>
+	    <many-to-many column="idParada" class="datos.Parada"/> 
+	 </set>
+	 
+	 </joined-subclass>
+	
+	
+	
+	</class>
+	
+	</hibernate-mapping>

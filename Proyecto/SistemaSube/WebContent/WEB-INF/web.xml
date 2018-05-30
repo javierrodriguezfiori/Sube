@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>SistemaSube</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>seleccionartarjetaytransporte.jsp</welcome-file>
+    <welcome-file>seleccionarestacionoparada.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>ControladorSeleccionarTarjetaYTransporte</servlet-name>
+  	<servlet-class>controladores.ControladorSeleccionarTarjetaYTransporte</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorSeleccionarTarjetaYTransporte</servlet-name>
+  	<url-pattern>/SeleccionarTarjetaYTransporte</url-pattern>
+  </servlet-mapping>
+  
+  <!-- <servlet>
+  	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
+  	<servlet-class>controladores.ControladorSeleccionarEstacionOParada</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
+  	<url-pattern>/SeleccionarEstacionOParada</url-pattern>
+  </servlet-mapping> -->
+  
+  <servlet>
+  	<servlet-name>ControladorCobrarViaje</servlet-name>
+  	<servlet-class>controladores.ControladorCobrarViaje</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorCobrarViaje</servlet-name>
+  	<url-pattern>/CobrarViaje</url-pattern>
+  </servlet-mapping>
+</web-app>
