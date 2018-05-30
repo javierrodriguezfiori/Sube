@@ -1,8 +1,9 @@
 package test;
+
 import dao.SeccionRecorridoDao;
 import negocio.ParadaABM;
-import funciones.Funciones;
 import datos.Parada;
+
 public class TestTraerSeccionesPorRecorrido {
 
 	public static void main(String[] args) {

@@ -2,7 +2,6 @@ package test;
 
 import negocio.*;
 import datos.*;
-import funciones.Funciones;
 
 public class TestTransacciones {
 
