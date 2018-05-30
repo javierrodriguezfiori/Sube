@@ -9,7 +9,7 @@
 		</id>
 		<property column="monto" name="monto" type="float"/>
 		<property column="fechaHora" name="fechaHora" type="calendar"/>
-		<many-to-one column="nroTarjeta" class="datos.TarjetaSube" name="tarjetaSube" cascade="all" not-null="true"/>
+		<many-to-one column="nroTarjeta" class="datos.TarjetaSube" name="tarjetaSube" lazy="false"  not-null="true"/>
 		
 	<joined-subclass table="recarga" name="datos.Recarga">
 		<key column="idRecarga"/>
@@ -17,22 +17,22 @@
 	
 	<joined-subclass table="viaje" name="datos.Viaje">
 		<key column="idViaje"/>
-		<many-to-one column="idTransportePublico" class="datos.TransportePublico" name="transporte" cascade="all" not-null="true"/>
+		<many-to-one column="idTransportePublico" class="datos.TransportePublico" name="transporte" lazy="false"  not-null="true"/>
 		
 		<joined-subclass table="viajecolectivo" name="datos.ViajeColectivo">
 			<key column="idViajeColectivo"/>
-			<many-to-one column="idTramo" class="datos.Tramo" name="tramo" cascade="all" not-null="true"/>
+			<many-to-one column="idTramo" class="datos.Tramo" name="tramo" lazy="false"   not-null="true"/>
 		</joined-subclass>
 		
 		<joined-subclass table="viajesubte" name="datos.ViajeSubte">
 			<key column="idViajeSubte"/>
-			<many-to-one column="idParada" class="datos.Parada" name="origen" cascade="all" not-null="true"/>
+			<many-to-one column="idParada" class="datos.Parada" name="origen" lazy="false"  not-null="true"/>
 		</joined-subclass>
 		
 		<joined-subclass table="viajetren" name="datos.ViajeTren">
 			<key column="idViajeTren"/>
-			<many-to-one column="idParadaOrigen" class="datos.Parada" name="origen" cascade="all" not-null="true"/>
-			<many-to-one column="idParadaDestino" class="datos.Parada" name="destino" cascade="all" not-null="false"/>
+			<many-to-one column="idParadaOrigen" class="datos.Parada" name="origen"  lazy="false" not-null="true"/>
+			<many-to-one column="idParadaDestino" class="datos.Parada" name="destino" lazy="false"  not-null="true"/>
 		</joined-subclass>
 	</joined-subclass>
 		
