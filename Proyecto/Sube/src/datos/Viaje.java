@@ -20,12 +20,16 @@ public abstract class Viaje extends Transaccion{
 	public void setTransporte(TransportePublico transporte) {
 		this.transporte = transporte;
 	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "Viaje [transporte=" + transporte + ", idTransaccion=" + idTransaccion + ", monto=" + monto
 				+ ", fechaHora=" + fechaHora + ", tarjetaSube=" + tarjetaSube + "]";
 	}
+
+	
 
 	
 	
