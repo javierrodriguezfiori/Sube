@@ -21,10 +21,9 @@ public class TerminalViaje extends Terminal{
 			if(ultimoT.getDestino() == null) {
 				ultimoT.setDestino(viajeT.getOrigen());
 			     precio=(float)ultimoT.getTransporte().calcularCostoDeViaje(ultimoT);
-			     TarjetaSubeABM abm=new TarjetaSubeABM();
-			     RedSubeABM rs=new RedSubeABM();
-			     precio=(float)(precio*abm.calcularDescuento(tarjeta)*rs.calcularDescuento(tarjeta.getNroTarjeta(),viaje.getTransporte().getLinea(), viaje.getFechaHora()));
+			     precio=(float)(precio*TarjetaSubeABM.getInstance().calcularDescuento(tarjeta)*RedSubeABM.getInstance().calcularDescuento(tarjeta.getNroTarjeta(),viaje.getTransporte().getLinea(), viaje.getFechaHora()));
 				 diferencia=ultimoT.getMonto()-precio;
+				 viaje.setMonto(precio);
 			     Recarga recarga=new Recarga(diferencia,viaje.getFechaHora(),tarjeta);
 			     TerminalRecarga tr=new TerminalRecarga();
 			     TransaccionABM.getInstance().modificarViajeTren(ultimoT);
@@ -33,10 +32,11 @@ public class TerminalViaje extends Terminal{
 	    }
 		else{
 			precio  = (float)viaje.getTransporte().calcularCostoDeViaje(viaje);
-			TarjetaSubeABM abm=new TarjetaSubeABM();
-			RedSubeABM rs=new RedSubeABM();
-			precio=(float)(precio*abm.calcularDescuento(tarjeta)*rs.calcularDescuento(tarjeta.getNroTarjeta(),viaje.getTransporte().getLinea(), viaje.getFechaHora()));
-			if(tarjeta.getSaldo()-precio>-20) throw new Exception ("ERROR: Saldo insuficiente.");
+			System.out.println(RedSubeABM.getInstance().calcularDescuento(tarjeta.getNroTarjeta(),"160", viaje.getFechaHora()));
+			System.out.println(TarjetaSubeABM.getInstance().calcularDescuento(tarjeta));
+			precio=(float)(precio*TarjetaSubeABM.getInstance().calcularDescuento(tarjeta)*RedSubeABM.getInstance().calcularDescuento(tarjeta.getNroTarjeta(),viaje.getTransporte().getLinea(), viaje.getFechaHora()));
+			viaje.setMonto(precio);
+			if((tarjeta.getSaldo()-precio)<(-20)) throw new Exception ("ERROR: Saldo insuficiente.");
 			cobrado=registrarViaje(tarjeta,viaje);
 		}
 		return cobrado;
