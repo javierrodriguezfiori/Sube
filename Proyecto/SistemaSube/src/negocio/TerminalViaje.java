@@ -4,6 +4,7 @@ import datos.Viaje;
 import datos.TarjetaSube;
 import datos.Recarga;
 import datos.ViajeTren;
+import utils.SaldoInsuficienteException;
 import datos.ViajeSubte;
 import datos.ViajeColectivo;
 import datos.RedSube;
@@ -56,7 +57,7 @@ public class TerminalViaje extends Terminal{
 			precio=(float)(precio*descuentoTarjetaSube*descuentoRedSube);
 			viaje.setMonto(precio);
 			// Evaluar si el saldo es insuficiente y tirar excepcion
-			if((tarjeta.getSaldo()-precio)<(-20)) throw new Exception ("ERROR: Saldo insuficiente.");
+			if((tarjeta.getSaldo()-precio)<(-20)) throw new SaldoInsuficienteException ("Saldo insuficiente.");
 			// Cobrar viaje
 			cobrado=registrarViaje(tarjeta,viaje);
 			// Resetear RedSube si no hubo descuento

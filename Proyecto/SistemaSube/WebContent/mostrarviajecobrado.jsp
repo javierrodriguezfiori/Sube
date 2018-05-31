@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@page import="datos.Viaje" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,9 +33,9 @@
 	      .radio-option {
 	        padding-right: 10px;
 	      }
-	      
-      		.button {
-		   	background-color: #008CBA;
+			
+		.button {
+		    background-color: #008CBA;
 		    border: none;
 		    color: white;
 		    padding: 15px 32px;
@@ -47,34 +49,30 @@
 		}
 		
 		.button:hover {opacity: 1}
-	
+			
 	    </style>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-	    <form method="POST" action="/SistemaSube/SeleccionarTarjetaYTransporte">
-	      <div class="container">
-	        <div class="row">
-	          <div class="col-lg-6" style="padding-top:30px;">
-	            <label class="subtitle" style="margin-top:20px; padding-right:20px;">Numero de tarjeta sube</label>
-	            <input name="nrotarjeta" style="margin-top:22px; width:300px;">
-	          </div>
-	        </div>
-	        <div class="row" id="responseviaje">
-	           <div class="col-lg-4" style="padding-top:50px;">
-	              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
-	              <input type="radio" name="transporte" id="radio" value="tren" checked/>
-	              <label for="radio" class="radio-option">Tren</label>
-	              <input type="radio" name="transporte" id="radio" value="subte"/>
-	              <label for="radio" class="radio-option">Subte</label>
-	              <input type="radio" name="transporte" id="radio" value="colectivo"/>
-	              <label for="radio" class="radio-option">Colectivo</label>
-	          </div>
-	          <div class="col-lg-4" style="padding:50px; align:right;">
-	          	<input type="submit" value="Avanzar" class="button">
-	          </div>
-	        </div>
-	      </div>
-	    </form>
+		<div class="container" style="padding-top:30px; margin-top:60px; border:1px solid black; width:700px; height:150px; background-color:Gainsboro;">
+			<div class="row">
+				<h4 style="margin:10px;">Viaje realizado - Boleto</h4>
+				<div class="col-lg-6" ">
+					Monto: ${monto} <br>
+					Transporte: ${transporte} <br>
+				</div>
+				<div class="col-lg-6" ">
+					Fecha y hora: ${fechaYHora} <br>
+					Nuevo saldo de la tarjeta: ${saldo} <br>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div style="align:right">
+				<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
+					<button type="submit" name="boton-volver" value="Volver" class="button">Realizar otro viaje</button>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>

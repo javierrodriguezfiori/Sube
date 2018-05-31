@@ -34,15 +34,70 @@
 	      .radio-option {
 	        padding-right: 10px;
 	      }
+	      
+     		.button {
+		    background-color: #f44336;
+		    border: none;
+		    color: white;
+		    padding: 15px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 12px;
+		    border-radius: 8px;
+		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		    opacity: 0.6;
+		}
+		
+		     		.button-avanzar {
+		    background-color: #008CBA;
+		    border: none;
+		    color: white;
+		    padding: 15px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 12px;
+		    border-radius: 8px;
+		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		    opacity: 0.6;
+		}
+		
+		.button:hover {opacity: 1}
+		.button-avanzar:hover {opacity: 1}
+			
 	
 	    </style>
 	</head>
 	<body>
-			<%@ include file="/header.jsp" %>
+		<%@ include file="/header.jsp" %>
+		<%
+			List<String> paradasTramos = (List) request.getAttribute("listaParadasTramos");
+			TarjetaSube tarjetaSube = (TarjetaSube) request.getAttribute("tarjetaSube");
+			TransportePublico transportePublico = (TransportePublico) request.getAttribute("transportePublico");
+		%>
 		<form method="POST" action="/SistemaSube/CobrarViaje">
-			<input type="text" name="prueba" value="probando"/>
-			<input type="submit" value="Avanzar"/>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8" style="padding-top:50px;">
+						<label class="subtitle">Seleccione la estación o el tramo</label> <BR>
+						<select name="tramoOParada" style="width:200px; align:center;">
+							<option values="0">Selecciona una parada o tramo</option>
+							<% for (String tramoOParada : paradasTramos) { %>
+							<option value="<%=tramoOParada%>"><%=tramoOParada%></option>
+							<% } %>
+						</select>
+					</div>
+				</div>
+			</div>
+	       	<div class="col-lg-4" style="align:right; padding:20px;">
+	          	<input type="submit" value="Cobrar viaje" class="button-avanzar">
+		    </div>
+            <input type="hidden" name="tarjetaSubeNro" value="<%= Long.valueOf(tarjetaSube.getNroTarjeta()) %>">
+            <input type="hidden" name="transportePublicoId" value="<%= Long.valueOf(transportePublico.getIdTransporte()) %>">
 	    </form>
-        <a href="/SistemaSube/seleccionartarjetaytransporte.jsp" style="align:left;">Volver..</a> 
+		<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
+			<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
+		</form>
 	</body>
 </html>

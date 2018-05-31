@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.Colectivo;
-import datos.Subte;
 import datos.TarjetaSube;
 import datos.TransportePublico;
-import datos.Tren;
 import negocio.TarjetaSubeABM;
 import negocio.TransportePublicoABM;
+import utils.TarjetaSubeInexistenteException;
 
 public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 	
@@ -35,6 +33,10 @@ public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 		try {
 			int nroTarjeta = Integer.parseInt(request.getParameter("nrotarjeta"));
 			TarjetaSube tarjetaSube = tarjetaSubeABM.traerTarjetaSube((long)nroTarjeta);
+			
+			if (tarjetaSube == null) 
+				throw new TarjetaSubeInexistenteException("No se encontró una tarjeta sube con el numero " + nroTarjeta);
+			
 			String transportePublico = request.getParameter("transporte");
 			List<String> listaParadasOTramos = new ArrayList<String>();
 			TransportePublico transporte = null;
@@ -45,12 +47,12 @@ public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 					transportePublicoABM.traerTrenYParadas(1l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));
 					break;
 				case "subte":
-					transporte = transportePublicoABM.traerSubteYParadas(1l);
-					transportePublicoABM.traerSubteYParadas(1l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));
+					transporte = transportePublicoABM.traerSubteYParadas(2l);
+					transportePublicoABM.traerSubteYParadas(2l).getParadas().stream().forEach(p -> listaParadasOTramos.add(p.getNombre()));
 					break;
 				case "colectivo":
-					transporte = transportePublicoABM.traerColectivoYTramos(1l);
-					transportePublicoABM.traerColectivoYTramos(1l).getTramos().stream().forEach(p -> listaParadasOTramos.add(String.valueOf(p.getCosto())));
+					transporte = transportePublicoABM.traerColectivoYTramos(3l);
+					transportePublicoABM.traerColectivoYTramos(3l).getTramos().stream().forEach(p -> listaParadasOTramos.add(String.valueOf(p.getCosto())));
 					break;
 				default:
 					break;
@@ -60,9 +62,16 @@ public class ControladorSeleccionarTarjetaYTransporte extends HttpServlet {
 			request.setAttribute("transportePublico", transporte);
 			request.setAttribute("tarjetaSube", tarjetaSube);
 			request.setAttribute("listaParadasTramos", listaParadasOTramos);
-			request.getRequestDispatcher("/seleccionarestacionoparada.jsp").forward(request, response);
-		} catch (Exception ex) {
-			response.sendError(500,"FALLO");
+			request.getServletContext().getRequestDispatcher("/seleccionarestacionoparada.jsp").forward(request, response);
+		} catch (TarjetaSubeInexistenteException ex) {
+			response.setStatus(404);
+			request.setAttribute("error", ex.getMessage());
+			request.getRequestDispatcher("/peticionerronea.jsp").forward(request, response);
+		}
+		catch (Exception ex) {
+			response.setStatus(500);
+			request.setAttribute("error", "Ocurrió un error interno en el sistema, por favor vuelva a intentarlo.");
+			request.getRequestDispatcher("/peticionerronea.jsp").forward(request, response);
 		}
 	}
 }

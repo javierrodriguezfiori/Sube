@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -32,8 +31,20 @@
 	        padding-right: 10px;
 	      }
 	      
-      		.button {
-		   	background-color: #008CBA;
+	      .btn-link{
+			  border:none;
+			  outline:none;
+			  background:none;
+			  cursor:pointer;
+			  color:#0000EE;
+			  padding:0;
+			  text-decoration:underline;
+			  font-family:inherit;
+			  font-size:inherit;
+			}
+			
+		.button {
+		    background-color: #008CBA;
 		    border: none;
 		    color: white;
 		    padding: 15px 32px;
@@ -47,34 +58,25 @@
 		}
 		
 		.button:hover {opacity: 1}
+			
 	
 	    </style>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-	    <form method="POST" action="/SistemaSube/SeleccionarTarjetaYTransporte">
-	      <div class="container">
-	        <div class="row">
-	          <div class="col-lg-6" style="padding-top:30px;">
-	            <label class="subtitle" style="margin-top:20px; padding-right:20px;">Numero de tarjeta sube</label>
-	            <input name="nrotarjeta" style="margin-top:22px; width:300px;">
-	          </div>
-	        </div>
-	        <div class="row" id="responseviaje">
-	           <div class="col-lg-4" style="padding-top:50px;">
-	              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
-	              <input type="radio" name="transporte" id="radio" value="tren" checked/>
-	              <label for="radio" class="radio-option">Tren</label>
-	              <input type="radio" name="transporte" id="radio" value="subte"/>
-	              <label for="radio" class="radio-option">Subte</label>
-	              <input type="radio" name="transporte" id="radio" value="colectivo"/>
-	              <label for="radio" class="radio-option">Colectivo</label>
-	          </div>
-	          <div class="col-lg-4" style="padding:50px; align:right;">
-	          	<input type="submit" value="Avanzar" class="button">
-	          </div>
-	        </div>
-	      </div>
-	    </form>
+		<% String motivoDeError = (String) request.getAttribute("error"); %>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 style="text-align:justify;">Petición errónea</h2>
+					<p>No se pudo procesar la petición, vuelva a intentarlo.</p> <br>
+					<p>Motivo: <%=motivoDeError%></p> <br>
+					
+					<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
+						<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
