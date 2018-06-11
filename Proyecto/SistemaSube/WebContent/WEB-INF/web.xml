@@ -37,4 +37,23 @@
   	<servlet-name>ControladorCobrarViaje</servlet-name>
   	<url-pattern>/CobrarViaje</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>ControladorConsultarSaldo</servlet-name>
+   <servlet-class>controladores.ControladorConsultarSaldo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorConsultarSaldo</servlet-name>
+   <url-pattern>/ConsultarSaldo</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+   <servlet-name>ControladorMostrarReportes</servlet-name>
+   <servlet-class>controladores.ControladorMostrarReportes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorMostrarReportes</servlet-name>
+   <url-pattern>/MostrarReportes</url-pattern>
+  </servlet-mapping>
 </web-app>
