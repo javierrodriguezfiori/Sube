@@ -18,11 +18,11 @@ public class testTarjetaSube {
 //			}
 		
 		// Test eliminar 
-//			try {
-//				TarjetaSubeABM.getInstance().eliminar(14);
-//			} catch (Exception e) {
-//				System.out.println(e);
-//			}
+			try {
+				TarjetaSubeABM.getInstance().eliminar(21);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
 		
 //		// Test modificar
 //			try {
