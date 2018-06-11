@@ -3,8 +3,6 @@ package negocio;
 
 import dao.TarjetaSubeDao;
 import datos.TarjetaSube;
-import datos.Usuario;
-import datos.RedSube;
 
 public class TarjetaSubeABM {
 	 
@@ -28,8 +26,8 @@ public class TarjetaSubeABM {
 		return t;
 	}
 	
-	public long agregar(float saldo, int estado, RedSube redSube, Usuario usuario) throws Exception{
-		TarjetaSube t= new TarjetaSube(saldo, estado, redSube, usuario);
+	public long agregar(float saldo, int estado) throws Exception{
+		TarjetaSube t= new TarjetaSube(saldo, estado);
 		return TarjetaSubeDao.getInstance().agregar(t);
 	}
 	

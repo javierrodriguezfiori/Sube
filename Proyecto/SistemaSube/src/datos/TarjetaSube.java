@@ -8,15 +8,11 @@ public class TarjetaSube {
 	private Usuario usuario;
 	
 	public TarjetaSube() {
-		super();
 	}
 
-	public TarjetaSube(float saldo, int estado, RedSube redSube, Usuario usuario) {
-		super();
+	public TarjetaSube(float saldo, int estado) {
 		this.saldo = saldo;
 		this.estado = estado;
-		this.redSube = null;
-		this.usuario = null;
 	}
 
 	public long getNroTarjeta() {

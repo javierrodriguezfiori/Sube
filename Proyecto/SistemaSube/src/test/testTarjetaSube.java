@@ -1,41 +1,43 @@
 package test;
 
 import negocio.TarjetaSubeABM;
-import negocio.UsuarioABM;
-import dao.UsuarioDAO;
-import datos.*;
+import datos.TarjetaSube;;
 
 public class testTarjetaSube {
 
 	public static void main(String[] args) {
 		
 		
-//		// Test agregar 
+		// Test agregar 
+			try {
+				TarjetaSubeABM.getInstance().agregar(500, 0);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		
+		// Test eliminar 
 //			try {
-//				TarjetaSubeABM.getInstance().agregar(500, 0, null, null);
+//				TarjetaSubeABM.getInstance().eliminar(14);
 //			} catch (Exception e) {
 //				System.out.println(e);
 //			}
 		
-		// Test eliminar 
-			
 //		// Test modificar
 //			try {
 //				Usuario user=UsuarioDAO.getInstance().traerUsuario(6);
-//				TarjetaSube tarjeta=TarjetaSubeABM.getInstance().traerTarjetaSube(13);
-//				tarjeta.setUsuario(user);
-//				System.out.println(user+""+tarjeta);
+//				TarjetaSube tarjeta=TarjetaSubeABM.getInstance().traerTarjetaSube(16);
+//				tarjeta.setEstado(1);
 //				TarjetaSubeABM.getInstance().modificar(tarjeta);
 //				
 //			} catch (Exception e) {
 //				System.out.println(e);
 //			}
 			
-		// Test traer por nroTarjeta
-			try {
-				System.out.println(TarjetaSubeABM.getInstance().traerTarjetaSube(13));
-			} catch (Exception e) {
-				System.out.println(e);
-			}
+//		// Test traer por nroTarjeta
+//			try {
+//				System.out.println(TarjetaSubeABM.getInstance().traerTarjetaSube(14));
+//			} catch (Exception e) {
+//				System.out.println(e);
+//			}
 	}
 }

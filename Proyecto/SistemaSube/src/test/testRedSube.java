@@ -9,44 +9,35 @@ import negocio.TarjetaSubeABM;
 
 public class testRedSube {
 
-	public static void main(String[] args) {
-		testRedSube test= new testRedSube();
-		RedSubeABM abm = RedSubeABM.getInstance();
-		
-//		test.agregarRedSube();
+	public static void main(String[] args) {	
+
+		agregarRedSube(16);
 			
 //		System.out.println(test.modificarRedSube(9));
 //
 //		System.out.println(test.traerRedSube(9).toString());
 		
-		GregorianCalendar fechaHora = new GregorianCalendar();
-		double precio = 9.25;
-		try {
-			precio=precio*abm.calcularDescuento(9,"168",fechaHora);
-			System.out.println(precio);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+//		GregorianCalendar fechaHora = new GregorianCalendar();
+//		double precio = 9.25;
+//		try {
+//			precio=precio*RedSubeABM.getInstance().calcularDescuento(9,"168",fechaHora);
+//			System.out.println(precio);
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		}
 		
 	}
 	
-	public void agregarRedSube() {
-		RedSubeABM abmRedSube = RedSubeABM.getInstance();
-		GregorianCalendar fechaHora = null;
-		int contador=0; 
-		int nroTarjeta=9;
-		String linea="";
-		TarjetaSubeABM abmTarjeta = TarjetaSubeABM.getInstance();
-		
+	public static void agregarRedSube(int nroTarjeta) {
 		try{
-			TarjetaSube tarjetasube= abmTarjeta.traerTarjetaSube(nroTarjeta);
-			abmRedSube.agregar(fechaHora, contador, linea, tarjetasube);	
+			TarjetaSube tarjetasube= TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
+			RedSubeABM.getInstance().agregar(new GregorianCalendar(), 0, "", tarjetasube);	
 		} catch(Exception e) {
 			System.out.println(e);
 		}
 	}
 	
-	public RedSube traerRedSube(long idRedSube) {
+	public static RedSube traerRedSube(long idRedSube) {
 		RedSubeABM abm = RedSubeABM.getInstance();
 		RedSube rs = null;
 		try {
@@ -57,7 +48,7 @@ public class testRedSube {
 		return rs;
 	}
 	
-	public RedSube modificarRedSube(long idRedSube) {
+	public static RedSube modificarRedSube(long idRedSube) {
 		RedSubeABM abm = RedSubeABM.getInstance();
 		RedSube rs = null;
 		GregorianCalendar fechaHora= null;
