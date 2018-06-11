@@ -29,6 +29,14 @@ public class UsuarioABM {
 		return user;
 	}
 	
+	public Usuario traerUsuario(String documento) throws Exception{
+		Usuario user= UsuarioDAO.getInstance().traerUsuario(documento);
+		// Si el usuario no existe tirar error
+		if(user==null)
+			throw new Exception("El usuario no existe");
+		return user;
+	}
+	
 	public long agregar(String tipoDocumento, String documento, String clave, GregorianCalendar fechaAlta, DatosUsuario datosUsuario) throws Exception{
 		Usuario user = new Usuario(tipoDocumento, documento, clave, fechaAlta, datosUsuario);
 		return TarjetaSubeDao.getInstance().agregar(user);

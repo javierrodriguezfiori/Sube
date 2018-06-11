@@ -20,12 +20,19 @@ public class TestUsuario {
 //		}
 		
 		
-		// Test traer por idUsuario
-		try {
-			System.out.println(UsuarioABM.getInstance().traerUsuario(6));
-		} catch (Exception e){
-			System.out.println(e);
-		}
+//		// Test traer por idUsuario
+//		try {
+//			System.out.println(UsuarioABM.getInstance().traerUsuario(6));
+//		} catch (Exception e){
+//			System.out.println(e);
+//		}
+		
+//		// Test traer por documento
+//				try {
+//					System.out.println(UsuarioABM.getInstance().traerUsuario("34180781"));
+//				} catch (Exception e){
+//					System.out.println(e);
+//				}
 		
 //		// Test eliminar
 //		try {

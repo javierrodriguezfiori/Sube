@@ -37,6 +37,21 @@ public class UsuarioDAO extends DAO {
 		return usuario;
 	}
 	
+	public Usuario traerUsuario(String documento) throws HibernateException {
+		Usuario usuario = null;
+		
+		try {
+			iniciaOperacion();
+			usuario = (Usuario) session.createQuery("from Usuario u where u.documento like '"+documento+"'").uniqueResult();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+		} finally {
+			session.close();
+		}
+		
+		return usuario;
+	}
+	
 	public Usuario traerUsuarioConDatos(long idUsuario) throws HibernateException {
 		Usuario usuario = null;
 		
