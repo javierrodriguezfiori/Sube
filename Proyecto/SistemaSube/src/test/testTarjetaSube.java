@@ -1,7 +1,9 @@
 package test;
 
 import negocio.TarjetaSubeABM;
-import datos.TarjetaSube;;
+import negocio.UsuarioABM;
+import datos.TarjetaSube;
+import datos.Usuario;
 
 public class testTarjetaSube {
 
@@ -9,11 +11,11 @@ public class testTarjetaSube {
 		
 		
 		// Test agregar 
-			try {
-				TarjetaSubeABM.getInstance().agregar(500, 0);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
+//			try {
+//				TarjetaSubeABM.getInstance().agregar(1500, 0, null);
+//			} catch (Exception e) {
+//				System.out.println(e);
+//			}
 		
 		// Test eliminar 
 //			try {
@@ -24,9 +26,9 @@ public class testTarjetaSube {
 		
 //		// Test modificar
 //			try {
-//				Usuario user=UsuarioDAO.getInstance().traerUsuario(6);
-//				TarjetaSube tarjeta=TarjetaSubeABM.getInstance().traerTarjetaSube(16);
-//				tarjeta.setEstado(1);
+//				Usuario user=UsuarioABM.getInstance().traerUsuario(6);
+//				TarjetaSube tarjeta=TarjetaSubeABM.getInstance().traerTarjetaSube(23);
+//				tarjeta.setUsuario(null);
 //				TarjetaSubeABM.getInstance().modificar(tarjeta);
 //				
 //			} catch (Exception e) {
@@ -35,7 +37,7 @@ public class testTarjetaSube {
 			
 //		// Test traer por nroTarjeta
 //			try {
-//				System.out.println(TarjetaSubeABM.getInstance().traerTarjetaSube(14));
+//				System.out.println(TarjetaSubeABM.getInstance().traerTarjetaSube(20));
 //			} catch (Exception e) {
 //				System.out.println(e);
 //			}

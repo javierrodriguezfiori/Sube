@@ -9,8 +9,8 @@
 		</id>
 		<property column="saldo" name="saldo" type="float"/>
 		<property column="estado" name="estado" type="int"/>
-		<one-to-one name="redSube" class="datos.RedSube" cascade="delete"></one-to-one>
-		<one-to-one name="usuario" class="datos.Usuario"></one-to-one>
+		<one-to-one name="redSube" class="datos.RedSube" cascade="delete"/>
+		<many-to-one name="usuario" class = "datos.Usuario" column = "usuario" not-null="false"  unique="true" lazy="false" cascade="all"/>
 	</class>
 </hibernate-mapping>
 

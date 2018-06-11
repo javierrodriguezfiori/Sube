@@ -10,9 +10,10 @@ public class TarjetaSube {
 	public TarjetaSube() {
 	}
 
-	public TarjetaSube(float saldo, int estado) {
+	public TarjetaSube(float saldo, int estado, Usuario usuario) {
 		this.saldo = saldo;
 		this.estado = estado;
+		this.usuario = usuario;
 	}
 
 	public long getNroTarjeta() {
@@ -57,8 +58,10 @@ public class TarjetaSube {
 
 	@Override
 	public String toString() {
-		return "TarjetaSube [nroTarjeta=" + nroTarjeta + ", Usuario=" + usuario + ", saldo=" + saldo
-				+ ", estado=" + estado + "]";
+		return "TarjetaSube [nroTarjeta=" + nroTarjeta + ", saldo=" + saldo + ", estado=" + estado + ", redSube="
+				+ redSube + ", usuario=" + usuario + "]";
 	}
+
+	
 	
 }

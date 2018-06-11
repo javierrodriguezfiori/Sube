@@ -3,6 +3,9 @@ package negocio;
 
 import dao.TarjetaSubeDao;
 import datos.TarjetaSube;
+import datos.Usuario;
+import datos.RedSube;
+import java.util.GregorianCalendar;
 
 public class TarjetaSubeABM {
 	 
@@ -26,9 +29,11 @@ public class TarjetaSubeABM {
 		return t;
 	}
 	
-	public long agregar(float saldo, int estado) throws Exception{
-		TarjetaSube t= new TarjetaSube(saldo, estado);
-		return TarjetaSubeDao.getInstance().agregar(t);
+	public long agregar(float saldo, int estado, Usuario usuario) throws Exception{
+		TarjetaSube t= new TarjetaSube(saldo, estado, usuario);
+		long id=TarjetaSubeDao.getInstance().agregar(t);
+		RedSubeABM.getInstance().agregar(new GregorianCalendar(), 0, "", TarjetaSubeABM.getInstance().traerTarjetaSube(id));
+		return id;
 	}
 	
 	public void eliminar(long nroTarjeta) throws Exception{ 

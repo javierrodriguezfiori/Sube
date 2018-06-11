@@ -21,11 +21,11 @@ public class TestUsuario {
 		
 		
 		// Test traer por idUsuario
-//		try {
-//			System.out.println(UsuarioABM.getInstance().traerUsuario(5));
-//		} catch (Exception e){
-//			System.out.println(e);
-//		}
+		try {
+			System.out.println(UsuarioABM.getInstance().traerUsuario(6));
+		} catch (Exception e){
+			System.out.println(e);
+		}
 		
 //		// Test eliminar
 //		try {
