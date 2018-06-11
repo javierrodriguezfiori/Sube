@@ -2,20 +2,21 @@ package datos;
 
 public class TarjetaSube {
 	private long nroTarjeta;
-	private int idUsuario;
 	private float saldo;
 	private int estado;
 	private RedSube redSube;
+	private Usuario usuario;
 	
 	public TarjetaSube() {
 		super();
 	}
 
-	public TarjetaSube(int idUsuario, float saldo, int estado) {
+	public TarjetaSube(float saldo, int estado, RedSube redSube, Usuario usuario) {
 		super();
-		this.idUsuario = idUsuario;
 		this.saldo = saldo;
 		this.estado = estado;
+		this.redSube = null;
+		this.usuario = null;
 	}
 
 	public long getNroTarjeta() {
@@ -26,12 +27,12 @@ public class TarjetaSube {
 		this.nroTarjeta = nroTarjeta;
 	}
 
-	public int getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public float getSaldo() {
@@ -60,7 +61,7 @@ public class TarjetaSube {
 
 	@Override
 	public String toString() {
-		return "TarjetaSube [nroTarjeta=" + nroTarjeta + ", idUsuario=" + idUsuario + ", saldo=" + saldo
+		return "TarjetaSube [nroTarjeta=" + nroTarjeta + ", Usuario=" + usuario + ", saldo=" + saldo
 				+ ", estado=" + estado + "]";
 	}
 	

@@ -2,6 +2,8 @@ package datos;
 
 import java.util.GregorianCalendar;
 
+import modelo.Funciones;
+
 public class Usuario {
 	private long idUsuario;
 	private String tipoDocumento;
@@ -73,6 +75,6 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", tipoDocumento=" + tipoDocumento + ", documento=" + documento
-				+ ", clave=" + clave + ", fechaAlta=" + fechaAlta + ", datosUsuario=" + datosUsuario + "]";
+				+ ", clave=" + clave + ", fechaAlta=" + Funciones.traerFechaCorta(fechaAlta) + ", datosUsuario=" + datosUsuario + "]";
 	}
 }

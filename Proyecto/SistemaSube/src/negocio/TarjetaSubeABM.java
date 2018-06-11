@@ -3,21 +3,23 @@ package negocio;
 
 import dao.TarjetaSubeDao;
 import datos.TarjetaSube;
+import datos.Usuario;
+import datos.RedSube;
 
 public class TarjetaSubeABM {
 	 
-
-		    private static TarjetaSubeABM instancia = null;
-			
-			protected TarjetaSubeABM() {};
-			
-			public static TarjetaSubeABM getInstance() {
-				if(instancia==null) {
-					instancia = new TarjetaSubeABM();
-				}
-				return instancia;
-			}
+	// Singleton
+    private static TarjetaSubeABM instancia = null;
 	
+	protected TarjetaSubeABM() {};
+	
+	public static TarjetaSubeABM getInstance() {
+		if(instancia==null) {
+			instancia = new TarjetaSubeABM();
+		}
+		return instancia;
+	}
+
 	public TarjetaSube traerTarjetaSube(long nroTarjeta) throws Exception{
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
 		// Si la tarjeta no existe tirar error
@@ -26,8 +28,8 @@ public class TarjetaSubeABM {
 		return t;
 	}
 	
-	public long agregar(int idUsuario, float saldo, int estado) throws Exception{
-		TarjetaSube t= new TarjetaSube(idUsuario, saldo, estado);
+	public long agregar(float saldo, int estado, RedSube redSube, Usuario usuario) throws Exception{
+		TarjetaSube t= new TarjetaSube(saldo, estado, redSube, usuario);
 		return TarjetaSubeDao.getInstance().agregar(t);
 	}
 	

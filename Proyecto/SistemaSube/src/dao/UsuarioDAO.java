@@ -6,8 +6,21 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 
 import datos.Usuario;
+import negocio.TarjetaSubeABM;
 
 public class UsuarioDAO extends DAO {
+	
+	// Singleton
+    private static UsuarioDAO instancia = null;
+	
+	protected UsuarioDAO() {};
+	
+	public static UsuarioDAO getInstance() {
+		if(instancia==null) {
+			instancia = new UsuarioDAO();
+		}
+		return instancia;
+	}
 	
 	public Usuario traerUsuario(long idUsuario) throws HibernateException {
 		Usuario usuario = null;
