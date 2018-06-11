@@ -6,10 +6,10 @@ import datos.Colectivo;
 import datos.Subte;
 import datos.TransportePublico;
 import datos.Tren;
-import datos.ViajeTren;
+import datos.Viaje;
 import datos.ViajeColectivo;
 import datos.ViajeSubte;
-import datos.Viaje;;
+import datos.ViajeTren;
 public class TransportePublicoABM  {
 	
 	private static TransportePublicoABM instancia = null;
