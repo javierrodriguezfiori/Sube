@@ -22,7 +22,7 @@ import datos.Viaje;
 import datos.ViajeColectivo;
 import datos.ViajeSubte;
 import datos.ViajeTren;
-import modelo.Funciones;
+import funciones.Funciones;
 import negocio.TarjetaSubeABM;
 import negocio.TerminalViaje;
 import negocio.TransportePublicoABM;

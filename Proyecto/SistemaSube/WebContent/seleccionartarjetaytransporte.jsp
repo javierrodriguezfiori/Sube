@@ -76,5 +76,12 @@
 	        </div>
 	      </div>
 	    </form>
+	    <form action="/SistemaSube/consultarsaldo.jsp" method="POST">
+			<button type="submit" name="boton-consultarsaldo" value="ConsultarSaldo" class="button" style="padding:20px; maring:30px;">ConsultarSaldo</button>
+		</form> 
+		
+		<form action="/SistemaSube/reportes.jsp" method="POST">
+			<button type="submit" name="boton-reportes" value="Reportes" class="button" style="padding:20px; maring:30px;">Reportes</button>
+		</form> 
 	</body>
 </html>

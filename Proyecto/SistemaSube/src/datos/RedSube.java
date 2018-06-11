@@ -2,7 +2,8 @@ package datos;
 
 import java.util.GregorianCalendar;
 import datos.TarjetaSube;
-import modelo.Funciones;
+import funciones.Funciones;
+
 
 public class RedSube {
 	private long idRedSube;

@@ -1,10 +1,15 @@
 package dao;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import java.util.GregorianCalendar;
 
+import datos.TransportePublico;
 import datos.Viaje;
+import funciones.Funciones;
 
+import java.util.List;
 public class ViajeDao extends DAO{
 	
 	public Viaje traerUltimoViaje(long nroTarjeta)throws HibernateException {
@@ -18,6 +23,33 @@ public class ViajeDao extends DAO{
 			session.close();
 		}
 		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traer(GregorianCalendar ini,GregorianCalendar fin){
+		List<Viaje> viajes;
+		try {
+			iniciaOperacion();
+			String sql= "from Viaje v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" + Funciones.traerFechaCortaHora(fin)+"' order by v.fechaHora asc";
+			viajes = session.createQuery(sql).list();
+		}finally {
+			session.close();
+		}
+		return viajes;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traer(GregorianCalendar ini,GregorianCalendar fin,TransportePublico transporte){
+		List<Viaje> viajes;
+		try {
+			iniciaOperacion();
+			String sql= "from Viaje v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" 
+			+ Funciones.traerFechaCortaHora(fin)+"' and v.transporte.idTransporte=" + transporte.getIdTransporte()+" order by v.fechaHora asc";
+			viajes = session.createQuery(sql).list();
+		}finally {
+			session.close();
+		}
+		return viajes;
 	}
 
 }
