@@ -7,39 +7,44 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript">
+		
 		$(document).ready(function(){
-			$('#consultarsaldo').click(function(){
+			$('#registrarsube').click(function(){
 				var nroTarjeta = $('#nroTarjeta').val();
+				var documento = $('#documento').val();
 				$.ajax({
 					method: "POST",
-					url: "ConsultarSaldo",
-					data: {nroTarjeta: nroTarjeta},
+					url: "RegistrarSube",
+					data: {nroTarjeta: nroTarjeta,documento: documento},
 					async: false
 				}).done(function(data){
-					$("#responsesaldo").html(data);
+					$("#responseRegistrarSube").html(data);
 				})
 			});
 		});
 		</script>
-		<title>Consultar Saldo</title>
+		<title>Registrar Sube</title>
 	</head>
 	
 	<body>
 		<%@include file="/header.jsp" %>
-		<h1>Consultar Saldo</h1>
+		<h1>Registrar Sube</h1>
 		
 		<form class="navbar-form navbar-right">
 		
 		<label for="nroTarjeta">Numero Tarjeta:</label>
 		<INPUT id="nroTarjeta" name="nroTarjeta">
 		
-		<INPUT id="consultarsaldo" type="button" class="btn btn-success" value="ConsultarSaldo"/>
+		<label for="nroTarjeta">Numero documento:</label>
+		<INPUT id="documento" name="documento">
+		
+		<INPUT id="registrarsube" type="button" class="btn btn-success" value="RegistrarSube"/>
 		
 		</form>
 		<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
 					<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
 				</form>
 		
-		<div id="responsesaldo"></div>
+		<div id="responseRegistrarSube"></div>
 	</body>
 </html>

@@ -6,7 +6,6 @@ import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 
 import datos.Usuario;
-import negocio.TarjetaSubeABM;
 
 public class UsuarioDAO extends DAO {
 	

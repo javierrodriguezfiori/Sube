@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datos.Sesion;
+import datos.Usuario;
+import negocio.UsuarioABM;
+import utils.UsuarioInvalido;
+
 public class ControladorLogin extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,12 +25,28 @@ public class ControladorLogin extends HttpServlet {
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		try {
-			String usuario = request.getParameter("usuario");
+			Usuario usuario = traerUsuario(request.getParameter("documento"));
 			String password = request.getParameter("password");
-		} catch (Exception ex) {
 			
+			if (!usuario.esClaveCorrecta(password))
+				throw new UsuarioInvalido("El usuario no existe.");
+			
+			setearUsuarioLogeado(usuario);
+			response.setStatus(200);
+			request.setAttribute("usuario", usuario);
+		} catch (UsuarioInvalido ex) {
+			response.sendError(404);
+		} catch (Exception ex) {
+			response.sendError(500);
 		}
 		
-		//response.sendError(404);
+	}
+	
+	private Usuario traerUsuario(String documento) throws UsuarioInvalido {
+		return UsuarioABM.getInstance().traerUsuario(documento);
+	}
+	
+	private void setearUsuarioLogeado(Usuario usuario) {
+		Sesion.obtenerSesionActual().setUsuarioLogeado(usuario);
 	}
 }

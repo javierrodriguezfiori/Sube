@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import datos.TarjetaSube;
 import negocio.TarjetaSubeABM;
 
-public class ControladorConsultarSaldo extends HttpServlet {
+public class ControladorRegistrarSube extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		procesarPeticion(request, response);
@@ -25,11 +25,13 @@ public class ControladorConsultarSaldo extends HttpServlet {
 		try {
 			
 			long nroTarjeta = Integer.parseInt(request.getParameter("nroTarjeta"));
+			String documento = request.getParameter("documento");		
+			TarjetaSubeABM.getInstance().asociar(nroTarjeta, documento);
 			TarjetaSube tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
 			request.setAttribute("tarjeta", tarjeta);
-			request.getRequestDispatcher("ajaxsaldo.jsp").forward(request, response);
+			request.getRequestDispatcher("ajaxRegistrarViaje.jsp").forward(request, response);
 		}catch(Exception e) {
-			response.sendError(500,"El numero de tarjeta Ingresado no existe");
+			response.sendError(500,"El numero de tarjeta o documento son inválidos");
 		}
 	}
 

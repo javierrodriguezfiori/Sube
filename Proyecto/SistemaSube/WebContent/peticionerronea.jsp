@@ -64,7 +64,10 @@
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		<% String motivoDeError = (String) request.getAttribute("error"); %>
+		<% String motivoDeError = (String) request.getAttribute("error"); 
+			if (motivoDeError == null)
+				motivoDeError = "Ocurrio un error interno en el servidor, vuelva a intentarlo más tarde.";
+		%>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">

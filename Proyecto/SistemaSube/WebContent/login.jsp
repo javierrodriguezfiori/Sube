@@ -17,20 +17,23 @@
 		
 			$(document).ready(function() {
 				$('#login').click(function() {
-					var usuario = $('#usuario').val();
+					var documento = $('#documento').val();
 					var password = $('#password').val();
 					$.ajax({
 						method: "POST",
 						url: "Login",
-						data: { usuario: usuario, pasword: password},
+						data: { documento: documento, password: password},
 						async: false,
 						statusCode: {
 							404: function() {
 								$("#error").removeClass("hidden");
 							},
+							500: function() {
+								window.location.href = "peticionerronea.jsp";
+							}
 						}
 					}).done(function(data) {
-						$("#responselogin").html(data);
+						window.location.href = "seleccionartarjetaytransporte.jsp";
 					})
 				});
 			});
@@ -79,14 +82,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4" style="padding-top:25px;">
-						<label for="usuario" style="padding:35px;">Usuario: </label>
-						<input id="usuario" name="usuario">
+						<label for="documento" style="padding:35px;">Documento: </label>
+						<input id="documento" name="documento">
 						<label for="password" style="padding:25px;">Password: </label>
-						<input id="password" name="password"> <p id="error" class="hidden">Usuario inexistente, vuelva a intentar.</p>
-						
+						<input id="password" name="password" type="password"> <p id="error" class="hidden">Documento o clave incorrecto, vuelva a intentar.</p>
 					</div>
 					<div class="col-lg-4" style="padding-top:170px;">
-						<input id="login" type="button" class="btn btn-succes;" value="login"/>
+						<input id="login" type="button" class="btn btn-succes;" value="Entrar"/>
 					</div>
 
 				</div>

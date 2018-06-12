@@ -6,6 +6,7 @@ import dao.TarjetaSubeDao;
 import dao.UsuarioDAO;
 import datos.DatosUsuario;
 import datos.Usuario;
+import utils.UsuarioInvalido;
 
 public class UsuarioABM {
 	
@@ -25,15 +26,15 @@ public class UsuarioABM {
 		Usuario user= UsuarioDAO.getInstance().traerUsuario(idUsuario);
 		// Si el usuario no existe tirar error
 		if(user==null)
-			throw new Exception("El usuario no existe");
+			throw new UsuarioInvalido("El usuario no existe");
 		return user;
 	}
 	
-	public Usuario traerUsuario(String documento) throws Exception{
+	public Usuario traerUsuario(String documento) throws UsuarioInvalido{
 		Usuario user= UsuarioDAO.getInstance().traerUsuario(documento);
 		// Si el usuario no existe tirar error
 		if(user==null)
-			throw new Exception("El usuario no existe");
+			throw new UsuarioInvalido("El usuario no existe");
 		return user;
 	}
 	
@@ -45,7 +46,7 @@ public class UsuarioABM {
 	public void eliminar(long idUsuario) throws Exception{ 
 			Usuario user= UsuarioDAO.getInstance().traerUsuario(idUsuario);
 			if(user==null)
-				throw new Exception("El usuario no existe");  
+				throw new Exception("El usuario no existe.");  
 			else
 				TarjetaSubeDao.getInstance().eliminar(user);
 	}

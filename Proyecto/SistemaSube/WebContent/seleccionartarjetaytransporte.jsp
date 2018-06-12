@@ -83,5 +83,9 @@
 		<form action="/SistemaSube/reportes.jsp" method="POST">
 			<button type="submit" name="boton-reportes" value="Reportes" class="button" style="padding:20px; maring:30px;">Reportes</button>
 		</form> 
+		
+		<form action="/SistemaSube/registrarsube.jsp" method="POST">
+			<button type="submit" name="boton-registrarsube" value="RegistrarSube" class="button" style="padding:20px; maring:30px;">RegistrarSube</button>
+		</form> 
 	</body>
 </html>

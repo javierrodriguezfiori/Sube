@@ -2,22 +2,22 @@ package datos;
 
 public class Sesion {
 	private static Sesion sesionUnica;
-	private TarjetaSube tarjetaSubeLogeada;
+	private Usuario usuarioLogeado;
 	
 	private Sesion() { }
 	
-	public Sesion obtenerSesionActual() {
+	public static Sesion obtenerSesionActual() {
 		if (sesionUnica == null)
 			sesionUnica = new Sesion();
 		
 		return sesionUnica;
 	}
 	
-	public void setTarjetaSubeLogeada(TarjetaSube tarjetaSubeNueva) {
-		this.tarjetaSubeLogeada = tarjetaSubeNueva;
+	public void setUsuarioLogeado(Usuario usuarioLogeado) {
+		this.usuarioLogeado = usuarioLogeado;
 	}
 	
-	public TarjetaSube getTarjetaSubeLogeada() {
-		return this.tarjetaSubeLogeada;
+	public Usuario getUsuarioLogeado() {
+		return this.usuarioLogeado;
 	}
 }

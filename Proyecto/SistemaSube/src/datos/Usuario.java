@@ -71,6 +71,10 @@ public class Usuario {
 	public void setDatosUsuario(DatosUsuario datosUsuario) {
 		this.datosUsuario = datosUsuario;
 	}
+	
+	public boolean esClaveCorrecta(String clave) {
+		return this.getClave().equals(clave);
+	}
 
 	@Override
 	public String toString() {

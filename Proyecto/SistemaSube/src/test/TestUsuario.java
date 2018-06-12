@@ -28,11 +28,11 @@ public class TestUsuario {
 //		}
 		
 //		// Test traer por documento
-//				try {
-//					System.out.println(UsuarioABM.getInstance().traerUsuario("34180781"));
-//				} catch (Exception e){
-//					System.out.println(e);
-//				}
+				try {
+					System.out.println(UsuarioABM.getInstance().traerUsuario("3180781"));
+				} catch (Exception e){
+					System.out.println(e);
+				}
 		
 //		// Test eliminar
 //		try {
