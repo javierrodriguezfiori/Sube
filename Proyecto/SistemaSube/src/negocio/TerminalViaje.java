@@ -34,9 +34,8 @@ public class TerminalViaje extends Terminal{
 				    diferencia=ultimoT.getMonto()-precio;
 					viaje.setMonto(precio);
 				    Recarga recarga=new Recarga(diferencia,viaje.getFechaHora(),tarjeta);
-				    TerminalRecarga tr=new TerminalRecarga();
 				    TransaccionABM.getInstance().modificarViajeTren(ultimoT);
-				    cobrado=tr.registrarRecarga(tarjeta,recarga);
+				    cobrado=TerminalRecarga.getInstance().registrarRecarga(tarjeta,recarga);
 				} 
 				else 
 					TransaccionABM.getInstance().modificarViajeTren(ultimoT);	    	

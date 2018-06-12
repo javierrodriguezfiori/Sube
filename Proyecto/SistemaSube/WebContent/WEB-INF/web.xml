@@ -50,4 +50,12 @@
     <servlet-name>ControladorRegistrarSube</servlet-name>
     <url-pattern>/RegistrarSube</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>ControladorRecargarSube</servlet-name>
+    <servlet-class>controladores.ControladorRecargarSube</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControladorRecargarSube</servlet-name>
+    <url-pattern>/RecargarSube</url-pattern>
+  </servlet-mapping>
 </web-app>
