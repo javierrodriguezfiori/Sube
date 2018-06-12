@@ -62,8 +62,12 @@ public class TarjetaSubeABM {
 			if(t.getUsuario()!=null)
 				throw new Exception("Tarjeta ya asociada a un usuario");  
 			else {
-				t.setUsuario(u);
-				modificar(t);
+				if(TarjetaSubeABM.getInstance().traerTarjetaSube(u)!=null) 
+					throw new Exception("El usuario ya tiene una tarjeta asociada");  
+				else {
+					t.setUsuario(u);
+					modificar(t);
+				}
 			}
 	}
 	
