@@ -36,9 +36,13 @@ public class ControladorMostrarReportes extends HttpServlet {
 			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
 			
 			
-			List<Viaje> viajes = viajeABM.traer(fechaHoraInicio, fechaHoraFin);
-			System.out.println(Funciones.imprimirLista(viajes));
-			request.setAttribute("viajes", viajes);
+			List<Viaje> viajesTren = viajeABM.traerViajesTren(fechaHoraInicio, fechaHoraFin);
+			List<Viaje> viajesColectivo = viajeABM.traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
+			List<Viaje> viajesSubte = viajeABM.traerViajesSubte(fechaHoraInicio, fechaHoraFin);
+			
+			request.setAttribute("viajesTren", viajesTren);
+			request.setAttribute("viajesColectivo", viajesColectivo);
+			request.setAttribute("viajesSubte", viajesSubte);
 			request.getRequestDispatcher("ajaxreportes.jsp").forward(request, response);;
 			
 		}catch(Exception e) {
