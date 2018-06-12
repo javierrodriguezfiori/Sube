@@ -11,7 +11,7 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		
 		<link rel="icon" type="image/png" href="http://lametro.edu.ec/wp-content/uploads/2017/03/favicon.png">
-		<script src="js/jquery-3.3.1.js"></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
 		
 		<script type="text/javascript">
 		
@@ -45,16 +45,18 @@
 	<body>
 		<%@ include file="/header.jsp" %>
 		<form>
-			<label for="usuario">Usuario: </label>
-			<input id="usuario" name="usuario">
-			<br>
-			<label for="password">Password: </label>
-			<input id="password" name="password">
-			
-			<br><br>
-			<input id="login" type="button" class="btn btn-succes" value="login"/>
-			
-			<p id="error" class="hidden">FALLO</p>
+			<div class="container">
+				<div class="row">
+					<label for="usuario">Usuario: </label>
+					<input id="usuario" name="usuario">
+					<br>
+					<label for="password">Password: </label>
+					<input id="password" name="password"> <p id="error" class="hidden">Usuario inexistente</p>
+					
+					<br><br>
+					<input id="login" type="button" class="btn btn-succes" value="login"/>
+				</div>
+			</div>
 		</form>
 	</body>
 </html>

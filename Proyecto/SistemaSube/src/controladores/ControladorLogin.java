@@ -18,7 +18,6 @@ public class ControladorLogin extends HttpServlet {
 	}
 	
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("Entre");
 		response.sendError(404);
 	}
 }
