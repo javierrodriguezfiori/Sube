@@ -56,4 +56,14 @@
    <servlet-name>ControladorMostrarReportes</servlet-name>
    <url-pattern>/MostrarReportes</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+   <servlet-name>ControladorMostrarTransaccionesPorNroTarjeta</servlet-name>
+   <servlet-class>controladores.ControladorMostrarTransaccionesPorNroTarjeta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorMostrarTransaccionesPorNroTarjeta</servlet-name>
+   <url-pattern>/MostrarTransaccionesPorNroTarjeta</url-pattern>
+  </servlet-mapping>
 </web-app>
