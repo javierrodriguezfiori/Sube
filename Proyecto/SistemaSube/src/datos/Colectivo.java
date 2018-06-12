@@ -3,6 +3,7 @@ import java.util.Set;
 import negocio.TramoABM;
 import datos.ViajeColectivo;
 import datos.Tramo;
+
 public class Colectivo extends TransportePublico {
 	
 	

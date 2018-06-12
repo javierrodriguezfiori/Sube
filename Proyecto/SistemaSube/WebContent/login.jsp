@@ -39,6 +39,37 @@
 			p.hidden {
 				display: none
 			}
+			
+				      body {
+	        background-color: white;
+	        font-family: 'Roboto';
+	      }
+	
+	      .formulario {
+	          background: gainsboro;
+	      }
+	
+	      .subtitle {
+	        font-size: 16px;
+	      }
+	
+	      .radio-option {
+	        padding-right: 10px;
+	      }
+	      
+      		.button {
+		   	background-color: #008CBA;
+		    border: none;
+		    color: white;
+		    padding: 15px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 12px;
+		    border-radius: 8px;
+		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		    opacity: 0.6;
+		}
 		</style>
 		
 	</head>
@@ -47,14 +78,17 @@
 		<form>
 			<div class="container">
 				<div class="row">
-					<label for="usuario">Usuario: </label>
-					<input id="usuario" name="usuario">
-					<br>
-					<label for="password">Password: </label>
-					<input id="password" name="password"> <p id="error" class="hidden">Usuario inexistente</p>
-					
-					<br><br>
-					<input id="login" type="button" class="btn btn-succes" value="login"/>
+					<div class="col-lg-4" style="padding-top:25px;">
+						<label for="usuario" style="padding:35px;">Usuario: </label>
+						<input id="usuario" name="usuario">
+						<label for="password" style="padding:25px;">Password: </label>
+						<input id="password" name="password"> <p id="error" class="hidden">Usuario inexistente, vuelva a intentar.</p>
+						
+					</div>
+					<div class="col-lg-4" style="padding-top:170px;">
+						<input id="login" type="button" class="btn btn-succes;" value="login"/>
+					</div>
+
 				</div>
 			</div>
 		</form>
