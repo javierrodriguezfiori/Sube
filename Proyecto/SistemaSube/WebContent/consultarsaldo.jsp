@@ -19,7 +19,30 @@ $(document).ready(function(){
 		})
 	});
 });
+
 </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#consultartransacciones').click(function(){
+		var nroTarjeta1 = $('#nroTarjeta1').val();
+		$.ajax({
+			method: "POST",
+			url: "MostrarTransaccionesPorNroTarjeta",
+			data: {nroTarjeta1: nroTarjeta1},
+			async: false
+		}).done(function(data){
+			$("#responsetransacciones").html(data);
+		})
+	});
+});
+
+</script>
+	
+	
+	
+
+
 
 
 <title>Consultar Saldo</title>
@@ -36,10 +59,23 @@ $(document).ready(function(){
 
 <INPUT id="consultarsaldo" type="button" class="btn btn-success" value="ConsultarSaldo"/>
 </form>
+
+<form class="navbar-form navbar-right">
+
+<label for="nroTarjeta1">Historial de Transacciones:</label>
+<INPUT id="nroTarjeta1" name="nroTarjeta">
+
+<INPUT id="consultartransacciones" type="button" class="btn btn-success" value="ConsultarTransacciones"/>
+</form>
+
+
+
 <form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
 			<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
 		</form>
 
 <div id="responsesaldo"></div>
+
+<div id="responsetransacciones"></div>
 </body>
 </html>
