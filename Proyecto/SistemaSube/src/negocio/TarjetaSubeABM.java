@@ -4,7 +4,6 @@ package negocio;
 import dao.TarjetaSubeDao;
 import datos.TarjetaSube;
 import datos.Usuario;
-import datos.RedSube;
 import java.util.GregorianCalendar;
 
 public class TarjetaSubeABM {
@@ -43,6 +42,29 @@ public class TarjetaSubeABM {
 			else
 				TarjetaSubeDao.getInstance().eliminar(t);
 	}
+	
+	public void asociar(long nroTarjeta, String documento) throws Exception{ 
+		Usuario u= UsuarioABM.getInstance().traerUsuario(documento);
+		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
+		if(t==null || u==null) 
+			throw new Exception("Tarjeta o Usuario no encontrado");  
+		else
+			if(t.getUsuario()!=null)
+				throw new Exception("Tarjeta ya asociada a un usuario");  
+			else {
+				t.setUsuario(u);
+				modificar(t);
+			}
+	}
+	
+	public void desasociar(long nroTarjeta) throws Exception{ 
+		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
+		if(t==null)
+			throw new Exception("La tarjeta no existe");  
+		else
+			t.setUsuario(null);
+			modificar(t);
+}
 	
 	public void modificar(TarjetaSube tarjetaSube) throws Exception{
 		TarjetaSubeDao.getInstance().actualizar(tarjetaSube);

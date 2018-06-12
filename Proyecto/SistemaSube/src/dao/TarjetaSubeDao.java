@@ -16,6 +16,7 @@ import datos.TarjetaSube;
 		}
 		return instancia;
 	}
+	
 	public TarjetaSube traerTarjetaSube(long nroTarjeta) throws HibernateException {
 		TarjetaSube objeto = null ;
 		try {
@@ -26,6 +27,5 @@ import datos.TarjetaSube;
 		}
 		return objeto;
 	}
-	
 	
 }
