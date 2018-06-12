@@ -2,12 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>SistemaSube</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
     <welcome-file>seleccionartarjetaytransporte.jsp</welcome-file>
   </welcome-file-list>
   
@@ -19,15 +14,6 @@
   	<servlet-name>ControladorSeleccionarTarjetaYTransporte</servlet-name>
   	<url-pattern>/SeleccionarTarjetaYTransporte</url-pattern>
   </servlet-mapping>
-  
-  <!-- <servlet>
-  	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
-  	<servlet-class>controladores.ControladorSeleccionarEstacionOParada</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>ControladorSeleccionarEstacionOParada</servlet-name>
-  	<url-pattern>/SeleccionarEstacionOParada</url-pattern>
-  </servlet-mapping> -->
   
   <servlet>
   	<servlet-name>ControladorCobrarViaje</servlet-name>
@@ -55,5 +41,14 @@
   <servlet-mapping>
    <servlet-name>ControladorMostrarReportes</servlet-name>
    <url-pattern>/MostrarReportes</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ControladorLogin</servlet-name>
+  	<servlet-class>controladores.ControladorLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorLogin</servlet-name>
+  	<url-pattern>/Login</url-pattern>
   </servlet-mapping>
 </web-app>

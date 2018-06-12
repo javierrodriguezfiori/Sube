@@ -3,7 +3,7 @@
 <%@page import ="datos.Viaje"%>
 <%@page import="java.util.List" %>
 <%@page import="datos.Transaccion" %>
-<%@page import="funciones.Funciones" %>
+<%@page import=" funciones.Funciones " %>
 <table border="1">
 <tr>
  <th>FechaHora</th>

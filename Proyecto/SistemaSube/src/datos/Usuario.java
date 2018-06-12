@@ -2,7 +2,7 @@ package datos;
 
 import java.util.GregorianCalendar;
 
-import modelo.Funciones;
+import funciones.Funciones;
 
 public class Usuario {
 	private long idUsuario;
