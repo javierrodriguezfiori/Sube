@@ -14,45 +14,51 @@ public class TerminalViaje extends Terminal{
 	public boolean cobrarViaje(Viaje viaje) throws Exception{
 		boolean cobrado=false;
 		
-		TarjetaSube tarjeta=viaje.getTarjetaSube();
-		
-		ViajeABM vabm=new ViajeABM();
-		Viaje ultimo=vabm.traerUltimoViaje(tarjeta.getNroTarjeta());
+		TarjetaSube tarjeta=viaje.getTarjetaSube();		
+		Viaje ultimo=ViajeABM.getInstance().traerUltimoViaje(tarjeta.getNroTarjeta());
 		
 		float precio=0;
 		float diferencia=0;
-		
 		boolean cobrarNormal=false;
-		// Evaluar si el ultimo Viaje fue en tren y no pasaron 2 horas
+		
+		// Evaluar si el ultimo Viaje fue en tren
 		if( ultimo instanceof ViajeTren && viaje instanceof ViajeTren){
 			ViajeTren ultimoT=(ViajeTren)ultimo;
 			ViajeTren viajeT=(ViajeTren)viaje;
-			float horario= (viajeT.getFechaHora().getTimeInMillis()-ultimoT.getFechaHora().getTimeInMillis())/1000/60;
-			if(ultimoT.getDestino() == null && horario<=120) {
-				 ultimoT.setDestino(viajeT.getOrigen());
-			     precio=(float)ultimoT.getTransporte().calcularCostoDeViaje(ultimoT);
-			     precio=(float)(precio*TarjetaSubeABM.getInstance().calcularDescuento(tarjeta)*RedSubeABM.getInstance().calcularDescuento(tarjeta.getNroTarjeta(),viaje.getTransporte().getLinea(), viaje.getFechaHora()));
-			     diferencia=ultimoT.getMonto()-precio;
-				 viaje.setMonto(precio);
-			     Recarga recarga=new Recarga(diferencia,viaje.getFechaHora(),tarjeta);
-			     TerminalRecarga tr=new TerminalRecarga();
-			     TransaccionABM.getInstance().modificarViajeTren(ultimoT);
-			     cobrado=tr.registrarRecarga(tarjeta,recarga);
+			if(ultimoT.getDestino() == null) {
+				ultimoT.setDestino(viajeT.getOrigen());
+				// Si el origen del ultimo viaje es distinto al origen del actual, se procede a devolver el dinero. Sino se cierra el ultimo viaje sin devolucion
+				if(ultimoT.getOrigen().getIdParada() != ultimoT.getDestino().getIdParada()) {
+					precio=(float)ultimoT.getTransporte().calcularCostoDeViaje(ultimoT);
+				    precio=(float)(precio*TarjetaSubeABM.getInstance().calcularDescuento(tarjeta)*RedSubeABM.getInstance().calcularDescuento(viaje));
+				    diferencia=ultimoT.getMonto()-precio;
+					viaje.setMonto(precio);
+				    Recarga recarga=new Recarga(diferencia,viaje.getFechaHora(),tarjeta);
+				    TerminalRecarga tr=new TerminalRecarga();
+				    TransaccionABM.getInstance().modificarViajeTren(ultimoT);
+				    cobrado=tr.registrarRecarga(tarjeta,recarga);
+				} 
+				else 
+					TransaccionABM.getInstance().modificarViajeTren(ultimoT);	    	
 			} 
-			else {
+			else 
 				cobrarNormal=true;
-			}
 	    }
-		else {
+		else 
 			cobrarNormal=true;
-		}
 		
 		if(cobrarNormal) {
+			// 
+			if(ultimo instanceof ViajeTren) {
+				ViajeTren ultimoT= (ViajeTren) ultimo;
+				ultimoT.setDestino(ultimoT.getOrigen());
+				TransaccionABM.getInstance().modificarViajeTren(ultimoT); 
+			}
 			// Traer costo desde TransportePublico
 			precio  = (float)viaje.getTransporte().calcularCostoDeViaje(viaje);
 			// Calcular descuento TarjetaSube y RedSube
 			double descuentoTarjetaSube = TarjetaSubeABM.getInstance().calcularDescuento(tarjeta);
-			double descuentoRedSube = RedSubeABM.getInstance().calcularDescuento(tarjeta.getNroTarjeta(),viaje.getTransporte().getLinea(), viaje.getFechaHora());
+			double descuentoRedSube = RedSubeABM.getInstance().calcularDescuento(viaje);
 			// Calcular precio final y actualizarlo en el Viaje
 			precio=(float)(precio*descuentoTarjetaSube*descuentoRedSube);
 			viaje.setMonto(precio);
@@ -62,7 +68,7 @@ public class TerminalViaje extends Terminal{
 			cobrado=registrarViaje(tarjeta,viaje);
 			// Resetear RedSube si no hubo descuento
 			if(descuentoRedSube==1) {
-				RedSubeABM.getInstance().resetearRedSube(viaje.getTarjetaSube().getNroTarjeta(), viaje.getFechaHora(), viaje.getTransporte().getLinea());
+				RedSubeABM.getInstance().resetearRedSube(viaje);
 			}	
 			else {
 				// Actualizar RedSube para contabilizar este ultimo viaje
@@ -89,7 +95,5 @@ public class TerminalViaje extends Terminal{
 		tarjeta.setSaldo((float)(tarjeta.getSaldo()-viaje.getMonto()));
 		return actualizarSaldo(tarjeta);
 	}
-	
-	
-	
+		
 }

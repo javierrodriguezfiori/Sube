@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import dao.RedSubeDao;
 import datos.RedSube;
 import datos.TarjetaSube;
+import datos.Viaje;
 
 public class RedSubeABM {
 	public static RedSubeABM instance = null;
@@ -31,9 +32,13 @@ public class RedSubeABM {
 		RedSubeDao.getInstance().actualizar(rs);
 	}
 
-	public double calcularDescuento(long nroTarjetaSube, String lineaTransporte, GregorianCalendar fechaHora) throws Exception{
+	public double calcularDescuento(Viaje viaje) throws Exception{
 		/* IMPORTANTE!: El metodo está pensado para utilizar su salida multiplicandola por el precio. 
 		En caso de no existir descuento devuelve 1. */		
+		
+		long nroTarjetaSube= viaje.getTarjetaSube().getNroTarjeta();
+		String lineaTransporte= viaje.getTransporte().getLinea();
+		GregorianCalendar fechaHora= viaje.getFechaHora();
 		
 		RedSube redSube = RedSubeDao.getInstance().traerRedSube(nroTarjetaSube);
 	
@@ -65,7 +70,11 @@ public class RedSubeABM {
 		return descuento;
 	}
 	
-	public void resetearRedSube(long nroTarjetaSube, GregorianCalendar fechaHora, String lineaTransporte) {
+	public void resetearRedSube(Viaje viaje) {
+		long nroTarjetaSube= viaje.getTarjetaSube().getNroTarjeta();
+		String lineaTransporte= viaje.getTransporte().getLinea();
+		GregorianCalendar fechaHora= viaje.getFechaHora();
+		
 		RedSube rs = RedSubeDao.getInstance().traerRedSube(nroTarjetaSube);
 		
 		rs.setFechaHora(fechaHora);

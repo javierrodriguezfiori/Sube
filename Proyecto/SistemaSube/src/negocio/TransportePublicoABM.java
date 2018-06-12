@@ -1,5 +1,4 @@
 package negocio;
-import org.hibernate.Hibernate;
 
 import dao.TransportePublicoDao; 
 import datos.Colectivo;
@@ -10,6 +9,7 @@ import datos.Viaje;
 import datos.ViajeColectivo;
 import datos.ViajeSubte;
 import datos.ViajeTren;
+
 public class TransportePublicoABM  {
 	
 	private static TransportePublicoABM instancia = null;
@@ -68,21 +68,19 @@ public class TransportePublicoABM  {
     
     public double calcularCostoDeViaje(Viaje viaje) {
     	double costoViaje=0;
-    	if(viaje instanceof ViajeColectivo) {
+    	if(viaje instanceof ViajeColectivo) 
     		costoViaje = ((ViajeColectivo) viaje).getTramo().getCosto();
-    	}
+    	
     	if(viaje instanceof ViajeTren) {
-    		if(((ViajeTren) viaje).getDestino()==null) {
+    		if(((ViajeTren) viaje).getDestino()==null) 
 				costoViaje = SeccionABM.getInstance().traer((long)3).getCosto();
-			}else {
-				
+			else 
 				costoViaje = SeccionRecorridoABM.getInstance().traer(((ViajeTren) viaje).getOrigen(), ((ViajeTren) viaje).getDestino()).getSeccion().getCosto();
-			}
     	}
-    	if(viaje instanceof ViajeSubte) {
+    		
+    	if(viaje instanceof ViajeSubte) 
     		costoViaje = CostoSubte.getInstance().traerCostoSubte();
-    	}
+    	
     	return costoViaje;
     }
-
 }
