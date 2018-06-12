@@ -14,17 +14,27 @@ public class TarjetaSubeABM {
 	protected TarjetaSubeABM() {};
 	
 	public static TarjetaSubeABM getInstance() {
-		if(instancia==null) {
+		if(noExiste(instancia)) {
 			instancia = new TarjetaSubeABM();
 		}
 		return instancia;
 	}
+	
+	public TarjetaSube traerTarjetaSube(Usuario usuario) throws Exception{
+		TarjetaSube tarjetaSube = TarjetaSubeDao.getInstance().traerTarjetaSube(usuario);
+
+		if(noExiste(tarjetaSube))
+			throw new Exception("La tarjeta no existe");
+		
+		return tarjetaSube;
+	}
 
 	public TarjetaSube traerTarjetaSube(long nroTarjeta) throws Exception{
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
-		// Si la tarjeta no existe tirar error
-		if(t==null)
+
+		if(noExiste(t))
 			throw new Exception("La tarjeta no existe");
+		
 		return t;
 	}
 	
@@ -37,7 +47,7 @@ public class TarjetaSubeABM {
 	
 	public void eliminar(long nroTarjeta) throws Exception{ 
 			TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
-			if(t==null)
+			if(noExiste(t))
 				throw new Exception("La tarjeta no existe");  
 			else
 				TarjetaSubeDao.getInstance().eliminar(t);
@@ -46,7 +56,7 @@ public class TarjetaSubeABM {
 	public void asociar(long nroTarjeta, String documento) throws Exception{ 
 		Usuario u= UsuarioABM.getInstance().traerUsuario(documento);
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
-		if(t==null || u==null) 
+		if(noExiste(t) || noExiste(u)) 
 			throw new Exception("Tarjeta o Usuario no encontrado");  
 		else
 			if(t.getUsuario()!=null)
@@ -59,7 +69,7 @@ public class TarjetaSubeABM {
 	
 	public void desasociar(long nroTarjeta) throws Exception{ 
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
-		if(t==null)
+		if(noExiste(t))
 			throw new Exception("La tarjeta no existe");  
 		else
 			t.setUsuario(null);
@@ -92,5 +102,9 @@ public class TarjetaSubeABM {
 		}
 	
 		return descuento;
+	}
+	
+	private static <T> boolean noExiste(T obj) {
+		return (obj == null);
 	}
 }

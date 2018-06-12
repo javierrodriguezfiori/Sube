@@ -3,6 +3,8 @@ package dao;
 import org.hibernate.HibernateException;
 
 import datos.TarjetaSube;
+import datos.Usuario;
+import funciones.Funciones;
 
     public class TarjetaSubeDao extends DAO{
 
@@ -26,6 +28,21 @@ import datos.TarjetaSube;
 			session.close();
 		}
 		return objeto;
+	}
+	
+	public TarjetaSube traerTarjetaSube(Usuario usuario) throws HibernateException {
+		TarjetaSube tarjeta = null;
+		try {
+			iniciaOperacion();
+			String hql = "from TarjetaSube ts where ts.usuario=" + usuario.getIdUsuario();
+			tarjeta = (TarjetaSube) session.createQuery(hql).uniqueResult();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+		} finally {
+			session.close();
+		}
+		
+		return tarjeta;
 	}
 	
 }

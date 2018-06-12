@@ -2,6 +2,8 @@ package test;
 
 import negocio.TarjetaSubeABM;
 import negocio.UsuarioABM;
+import dao.TarjetaSubeDao;
+import dao.UsuarioDAO;
 import datos.TarjetaSube;
 import datos.Usuario;
 
@@ -57,6 +59,15 @@ public class testTarjetaSube {
 //		} catch (Exception e) {
 //			System.out.println(e);
 //		}
+		
+		// Traer tarjeta por usuario
+		try {
+			Usuario usuario = UsuarioDAO.getInstance().traerUsuario(4);
+			TarjetaSube tarjeta = TarjetaSubeDao.getInstance().traerTarjetaSube(usuario);
+			System.out.println(tarjeta.getNroTarjeta());
+		} catch (Exception e) {
+			
+		}
 	
 	}
 }
