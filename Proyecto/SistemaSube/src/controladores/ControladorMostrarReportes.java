@@ -1,8 +1,7 @@
 package controladores;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +10,9 @@ import funciones.Funciones;
 import java.util.GregorianCalendar;
 import dao.ViajeDao;
 import datos.Viaje;
+
 public class ControladorMostrarReportes extends HttpServlet {
 	
-	ViajeDao viajeABM = new ViajeDao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		procesarPeticion(request, response);
 	}	
@@ -36,7 +35,7 @@ public class ControladorMostrarReportes extends HttpServlet {
 			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
 			
 			
-			List<Viaje> viajes = viajeABM.traer(fechaHoraInicio, fechaHoraFin);
+			List<Viaje> viajes = ViajeDao.getInstance().traer(fechaHoraInicio, fechaHoraFin);
 			System.out.println(Funciones.imprimirLista(viajes));
 			request.setAttribute("viajes", viajes);
 			request.getRequestDispatcher("ajaxreportes.jsp").forward(request, response);;

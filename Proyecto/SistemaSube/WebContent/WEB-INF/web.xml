@@ -3,9 +3,7 @@
   <display-name>SistemaSube</display-name>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
-    <welcome-file>seleccionartarjetaytransporte.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <servlet-name>ControladorSeleccionarTarjetaYTransporte</servlet-name>
     <servlet-class>controladores.ControladorSeleccionarTarjetaYTransporte</servlet-class>
@@ -14,7 +12,6 @@
     <servlet-name>ControladorSeleccionarTarjetaYTransporte</servlet-name>
     <url-pattern>/SeleccionarTarjetaYTransporte</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ControladorCobrarViaje</servlet-name>
     <servlet-class>controladores.ControladorCobrarViaje</servlet-class>
@@ -23,7 +20,6 @@
     <servlet-name>ControladorCobrarViaje</servlet-name>
     <url-pattern>/CobrarViaje</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ControladorConsultarSaldo</servlet-name>
     <servlet-class>controladores.ControladorConsultarSaldo</servlet-class>
@@ -32,7 +28,6 @@
     <servlet-name>ControladorConsultarSaldo</servlet-name>
     <url-pattern>/ConsultarSaldo</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ControladorMostrarReportes</servlet-name>
     <servlet-class>controladores.ControladorMostrarReportes</servlet-class>
@@ -41,7 +36,6 @@
     <servlet-name>ControladorMostrarReportes</servlet-name>
     <url-pattern>/MostrarReportes</url-pattern>
   </servlet-mapping>
-  
    <servlet>
     <servlet-name>ControladorRegistrarSube</servlet-name>
     <servlet-class>controladores.ControladorRegistrarSube</servlet-class>
@@ -50,9 +44,15 @@
     <servlet-name>ControladorRegistrarSube</servlet-name>
     <url-pattern>/RegistrarSube</url-pattern>
   </servlet-mapping>
-  
-    
-  <servlet>
+   <servlet>
+    <servlet-name>ControladorRecargarSube</servlet-name>
+    <servlet-class>controladores.ControladorRecargarSube</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControladorRecargarSube</servlet-name>
+    <url-pattern>/RecargarSube</url-pattern>
+  </servlet-mapping>
+    <servlet>
   	<servlet-name>ControladorLogin</servlet-name>
   	<servlet-class>controladores.ControladorLogin</servlet-class>
   </servlet>
@@ -60,5 +60,4 @@
   	<servlet-name>ControladorLogin</servlet-name>
   	<url-pattern>/Login</url-pattern>
   </servlet-mapping>
-
 </web-app>

@@ -47,27 +47,27 @@ public class testTarjetaSube {
 //			}
 		
 //		// Test asociar Usuario a Tarjeta
-//			try {
-//				TarjetaSubeABM.getInstance().asociar(25, "4");
-//			} catch (Exception e) {
-//				System.out.println(e);
-//			}
+			try {
+				TarjetaSubeABM.getInstance().asociar(26, "34180781");
+			} catch (Exception e) {
+				System.out.println(e);
+			}
 		
 		// Test desasociar Usuario de Tarjeta
 //		try {
-//			TarjetaSubeABM.getInstance().desasociar(24);
+//			TarjetaSubeABM.getInstance().desasociar(26);
 //		} catch (Exception e) {
 //			System.out.println(e);
 //		}
 		
 		// Traer tarjeta por usuario
-		try {
-			Usuario usuario = UsuarioDAO.getInstance().traerUsuario(4);
-			TarjetaSube tarjeta = TarjetaSubeDao.getInstance().traerTarjetaSube(usuario);
-			System.out.println(tarjeta.getNroTarjeta());
-		} catch (Exception e) {
-			
-		}
+//		try {
+//			Usuario usuario = UsuarioDAO.getInstance().traerUsuario(5);
+//			TarjetaSube tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(usuario);
+//			System.out.println(tarjeta);
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		}
 	
 	}
 }

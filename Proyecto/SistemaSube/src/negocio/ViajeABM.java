@@ -1,15 +1,23 @@
 package negocio;
-import org.hibernate.Query;
 
 import dao.ViajeDao;
 import datos.Viaje;
+
 public class ViajeABM {
+	public static ViajeABM instance = null;
 	
+	protected ViajeABM() {}
 	
-	ViajeDao dao = new ViajeDao();
+	public static ViajeABM getInstance() {
+		if(instance==null) {
+			instance = new ViajeABM();
+		}
+		return instance;
+	}
+	
 	public Viaje traerUltimoViaje(long nroTarjeta) {
 		
-		return dao.traerUltimoViaje(nroTarjeta);
+		return ViajeDao.getInstance().traerUltimoViaje(nroTarjeta);
 	}
 
 }
