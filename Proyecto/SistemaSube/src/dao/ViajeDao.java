@@ -26,11 +26,11 @@ public class ViajeDao extends DAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Viaje> traer(GregorianCalendar ini,GregorianCalendar fin){
+	public List<Viaje> traerViajesTren(GregorianCalendar ini,GregorianCalendar fin){
 		List<Viaje> viajes;
 		try {
 			iniciaOperacion();
-			String sql= "from Viaje v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" + Funciones.traerFechaCortaHora(fin)+"' order by v.fechaHora asc";
+			String sql= "from ViajeTren v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" + Funciones.traerFechaCortaHora(fin)+"' order by v.fechaHora ASC";
 			viajes = session.createQuery(sql).list();
 		}finally {
 			session.close();
@@ -39,17 +39,31 @@ public class ViajeDao extends DAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Viaje> traer(GregorianCalendar ini,GregorianCalendar fin,TransportePublico transporte){
+	public List<Viaje> traerViajesColectivo(GregorianCalendar ini,GregorianCalendar fin){
 		List<Viaje> viajes;
 		try {
 			iniciaOperacion();
-			String sql= "from Viaje v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" 
-			+ Funciones.traerFechaCortaHora(fin)+"' and v.transporte.idTransporte=" + transporte.getIdTransporte()+" order by v.fechaHora asc";
+			String sql= "from ViajeColectivo v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" + Funciones.traerFechaCortaHora(fin)+"' order by v.fechaHora ASC";
 			viajes = session.createQuery(sql).list();
 		}finally {
 			session.close();
 		}
 		return viajes;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traerViajesSubte(GregorianCalendar ini,GregorianCalendar fin){
+		List<Viaje> viajes;
+		try {
+			iniciaOperacion();
+			String sql= "from ViajeSubte v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" + Funciones.traerFechaCortaHora(fin)+"' order by v.fechaHora ASC";
+			viajes = session.createQuery(sql).list();
+		}finally {
+			session.close();
+		}
+		return viajes;
+	}
+	
+	
 
 }
