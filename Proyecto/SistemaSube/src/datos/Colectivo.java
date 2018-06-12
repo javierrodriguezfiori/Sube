@@ -1,18 +1,17 @@
 package datos;
 import java.util.Set;
+
 import negocio.TramoABM;
 import datos.ViajeColectivo;
 import datos.Tramo;
+
 public class Colectivo extends TransportePublico {
-	
-	
 	private Set<Tramo> tramos;
 	
 	public Colectivo() {}
 	
 	public Colectivo(long idColectivo,String linea) {
 		super(idColectivo,linea);
-		
 	}
 
 	public Set<Tramo> getTramos() {

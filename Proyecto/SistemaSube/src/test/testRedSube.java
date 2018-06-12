@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 
 import datos.RedSube;
 import datos.TarjetaSube;
+import funciones.Funciones;
 import negocio.RedSubeABM;
 import negocio.TarjetaSubeABM;
 
@@ -11,21 +12,13 @@ public class testRedSube {
 
 	public static void main(String[] args) {	
 
-		agregarRedSube(16);
-			
-//		System.out.println(test.modificarRedSube(9));
-//
-//		System.out.println(test.traerRedSube(9).toString());
-		
-//		GregorianCalendar fechaHora = new GregorianCalendar();
-//		double precio = 9.25;
-//		try {
-//			precio=precio*RedSubeABM.getInstance().calcularDescuento(9,"168",fechaHora);
-//			System.out.println(precio);
-//		} catch (Exception e) {
-//			System.out.println(e);
-//		}
-		
+		//Test calcular descuento
+		try {
+			System.out.println(RedSubeABM.getInstance().calcularDescuento(25,"318",new GregorianCalendar()));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	
 	}
 	
 	public static void agregarRedSube(int nroTarjeta) {

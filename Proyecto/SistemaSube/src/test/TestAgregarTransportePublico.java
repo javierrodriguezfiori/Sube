@@ -23,7 +23,26 @@ public class TestAgregarTransportePublico {
 		//s.agregar(ParadaABM.getInstance().traer((long)1));
 		///System.out.println(s.getParadas());
 		
-
+		//Test agregar colectivo
+//		try {
+//			TransportePublicoABM.getInstance().agregarColectivo(4, "160");
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		}
+		
+		//Test agregar subte
+//		try {
+//			TransportePublicoABM.getInstance().agregarSubte(5, "D");
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		}
+		
+		//Test agregar tren
+		try {
+			TransportePublicoABM.getInstance().agregarTren(6, "Constitucion-Ezeiza");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 }
