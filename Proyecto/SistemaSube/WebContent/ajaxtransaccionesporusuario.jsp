@@ -26,7 +26,7 @@ for(Transaccion transaccion : transacciones){ %>
  <td><%= transaccion.getMonto() %> </td>
  <td><%= transaccion.getClass().getSimpleName() %> </td>
  
- <%if (transaccion instanceof Recarga)detalle=" " ;%>
+
  
  <%if (transaccion instanceof ViajeColectivo){ViajeColectivo viaje =(ViajeColectivo)transaccion;
  detalle="Linea: " + viaje.getTransporte().getLinea() + " ,Tramo: " + viaje.getTramo().getDistancia();} %>
@@ -40,5 +40,6 @@ for(Transaccion transaccion : transacciones){ %>
  
  <td><%= detalle.toString() %> </td>
  </tr>
+ <%detalle=" "; %>
  <%} %>
 </table>
