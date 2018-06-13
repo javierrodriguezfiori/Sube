@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import datos.Sesion;
 import datos.Usuario;
-import negocio.UsuarioABM;
-import utils.UsuarioInvalidoException;
+import datos.TarjetaSube;
+import negocio.TarjetaSubeABM;
+import utils.UsuarioInvalido;
 
-public class ControladorLogin extends HttpServlet implements LoginValidable{
+public class ControladorSeleccionarTarifa extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		procesarPeticion(request, response);
@@ -25,16 +26,29 @@ public class ControladorLogin extends HttpServlet implements LoginValidable{
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		try {
-			Usuario usuario = traerUsuario(request.getParameter("documento"));
-			String password = request.getParameter("password");
-			
-			if (!usuario.esClaveCorrecta(password))
-				throw new UsuarioInvalidoException("El usuario no existe.");
-			
-			setearUsuarioLogeado(usuario);
+			if(Sesion.obtenerSesionActual().getUsuarioLogeado()==null){
+				throw new Exception("ERROR: El usuario no esta logeado.");
+			}
+			TarjetaSube sube=TarjetaSubeABM.getInstance().traerTarjetaSube(Sesion.obtenerSesionActual().getUsuarioLogeado());
+			String tarifa = request.getParameter("tarifa");
+			switch (tarifa) {
+			case "tarifasocial":
+				sube.setEstado(1);
+				TarjetaSubeABM.getInstance().modificar(sube);
+				break;
+			case "boletoestudiantil":
+				sube.setEstado(2);
+				TarjetaSubeABM.getInstance().modificar(sube);
+				break;
+			case "sindescuento":
+				sube.setEstado(0);
+				TarjetaSubeABM.getInstance().modificar(sube);
+				break;
+			default:
+				break;
+		}
 			response.setStatus(200);
-			request.setAttribute("usuario", usuario);
-		} catch (UsuarioInvalidoException ex) {
+		} catch (UsuarioInvalido ex) {
 			response.sendError(404);
 		} catch (Exception ex) {
 			response.sendError(500);
@@ -42,11 +56,6 @@ public class ControladorLogin extends HttpServlet implements LoginValidable{
 		
 	}
 	
-	private Usuario traerUsuario(String documento) throws UsuarioInvalidoException {
-		return UsuarioABM.getInstance().traerUsuario(documento);
-	}
 	
-	private void setearUsuarioLogeado(Usuario usuario) {
-		Sesion.obtenerSesionActual().setUsuarioLogeado(usuario);
-	}
+
 }
