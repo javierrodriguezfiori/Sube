@@ -56,7 +56,7 @@
 	    </style>
 	    
   		<script type="text/javascript">
-			$(document).ready(function() { //$('input[name=name_of_your_radiobutton]:checked').val(); 'input[type=radio][name=bedStatus]
+			$(document).ready(function() { 
 				$(".rad").change(function() {
 					var transportePublico = $('input[name=transporte]:checked').val();
 					$.ajax({
@@ -94,7 +94,7 @@
 	          </div>
 	        </div>
 	        <div class="row">
-	           <div class="col-lg-4" style="padding-top:50px;">
+	           <div class="col-lg-3" style="padding-top:50px;">
 	              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
 	              <input type="radio" name="transporte" value="tren" class="rad" checked/>
 	              <label for="radio" class="radio-option">Tren</label>
@@ -103,10 +103,12 @@
 	              <input type="radio" name="transporte" value="colectivo" class="rad"/>
 	              <label for="radio" class="radio-option">Colectivo</label>
 	          </div>
-   	          <div class="col-lg-6" style="padding:20px; align:right;" id="response"></div>
-	          <div class="col-lg-4" style="padding:50px; align:right;">
-	          	<input type="submit" value="Avanzar" class="button">
-	          </div>
+   	          <div class="col-lg-5" style="padding:20px; align:right; padding-top:50px;" id="response"></div>
+        	</div>
+        	<div class="row">
+       			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
+	          		<input type="submit" value="Avanzar" class="button">
+	          	</div>
         	</div>
         </div>
         <div id="response"></div>
