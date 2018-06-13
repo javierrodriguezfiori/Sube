@@ -92,8 +92,8 @@
 			<button type="submit" name="boton-recargarsube" value="RecargarSube" class="button" style="padding:20px; maring:30px;">RecargarSube</button>
 		</form> 
 		
-		<form action="/SistemaSube/selecciontarifas.jsp" method="POST">
-			<button type="submit" name="boton-selecciontarifas" value="SeleccionarTarifa" class="button" style="padding:20px; maring:30px;">SeleccionarTarifa</button>
+		<form action="/SistemaSube/asignartarifasocial.jsp" method="POST">
+			<button type="submit" name="boton-selecciontarifas" value="SeleccionarTarifa" class="button" style="padding:20px; maring:30px;">AsignarTarifaSocial</button>
 		</form> 
 		
 		<form action="SeleccionarLineaTransporte" method="POST">

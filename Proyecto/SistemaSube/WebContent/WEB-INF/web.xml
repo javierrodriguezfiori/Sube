@@ -116,6 +116,14 @@
    <url-pattern>/SeleccionarTarifa</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+   <servlet-name>ControladorAsignarTarifaSocial</servlet-name>
+   <servlet-class>controladores.ControladorAsignarTarifaSocial</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorAsignarTarifaSocial</servlet-name>
+   <url-pattern>/AsignarTarifaSocial</url-pattern>
+  </servlet-mapping>
   
   <servlet>
    <servlet-name>ControladorSeleccionarLineaDeTransporte</servlet-name>
