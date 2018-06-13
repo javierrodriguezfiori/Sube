@@ -11,6 +11,7 @@ import datos.Sesion;
 import datos.Usuario;
 import negocio.UsuarioABM;
 import utils.UsuarioInvalido;
+import utils.UsuarioInvalidoException;
 
 public class ControladorLogin extends HttpServlet {
 	
@@ -29,7 +30,7 @@ public class ControladorLogin extends HttpServlet {
 			String password = request.getParameter("password");
 			
 			if (!usuario.esClaveCorrecta(password))
-				throw new UsuarioInvalido("El usuario no existe.");
+				throw new UsuarioInvalidoException("El usuario no existe.");
 			
 			setearUsuarioLogeado(usuario);
 			response.setStatus(200);
