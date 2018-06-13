@@ -27,26 +27,26 @@ public class ControladorAsignarTarifaSocial extends HttpServlet {
 		try {
 			long nroTarjeta = Integer.parseInt(request.getParameter("nroTarjeta"));
 			String tarifa = request.getParameter("tarifa");
-			System.out.println(tarifa);
+			
 			TarjetaSube tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
 						
-//			switch(tarifa) {
-//				case "sindescuento":
-//					tarjeta.setEstado(0);
-//					break;
-//				case "tarifasocial":
-//					tarjeta.setEstado(1);
-//					break;
-//				case "boletoestudiantil":
-//					tarjeta.setEstado(2);
-//					break;
-//				default:
-//					tarjeta.setEstado(0);
-//					break;
-//			}	
+			switch(tarifa) {
+				case "sindescuento":
+					tarjeta.setEstado(0);
+					break;
+				case "tarifasocial":
+					tarjeta.setEstado(1);
+					break;
+				case "boletoestudiantil":
+					tarjeta.setEstado(2);
+					break;
+				default:
+					tarjeta.setEstado(0);
+					break;
+			}	
 		
-//			TarjetaSubeDao.getInstance().actualizar(tarjeta);
-//			tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
+			TarjetaSubeDao.getInstance().actualizar(tarjeta);
+			tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
 			request.setAttribute("tarjeta", tarjeta);
 			request.getRequestDispatcher("ajaxAsignarTarifaSocial.jsp").forward(request, response);
 		}catch(Exception e) {
