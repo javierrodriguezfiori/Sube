@@ -91,5 +91,14 @@
 		<form action="/SistemaSube/recargarsube.jsp" method="POST">
 			<button type="submit" name="boton-recargarsube" value="RecargarSube" class="button" style="padding:20px; maring:30px;">RecargarSube</button>
 		</form> 
+		
+		<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
+			<button type="submit" name="boton-consultarsaldo" value="ConsultarSaldo" class="button" style="padding:20px; maring:30px;">ConsultarSaldo</button>
+		</form> 
+		
+		<form action="SeleccionarLineaTransporte" method="POST">
+			<button type="submit" name="boton-reportes" value="Reportes" class="button" style="padding:20px; maring:30px;">Reportes</button>
+		</form> 
 	</body>
+
 </html>

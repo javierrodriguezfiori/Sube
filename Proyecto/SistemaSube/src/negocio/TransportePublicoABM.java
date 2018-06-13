@@ -1,5 +1,9 @@
 package negocio;
 
+import java.util.List;
+
+
+
 import dao.TransportePublicoDao; 
 import datos.Colectivo;
 import datos.Subte;
@@ -25,6 +29,10 @@ public class TransportePublicoABM  {
 	
 	public TransportePublico traer(long idTransporte) {
 		return TransportePublicoDao.getInstance().traerTransportePublico(idTransporte);
+	}
+	
+	public TransportePublico traerTransportePublico(String linea){
+		return TransportePublicoDao.getInstance().traerTransportePublico(linea);
 	}
 	
 	public long agregarColectivo(long id,String linea)throws Exception {
@@ -83,4 +91,21 @@ public class TransportePublicoABM  {
     	
     	return costoViaje;
     }
+
+    
+    
+	public List<TransportePublico> traerColectivos(){
+		return TransportePublicoDao.getInstance().traerColectivos();
+	}
+	
+	
+	public List<TransportePublico> traerTrenes(){
+		return TransportePublicoDao.getInstance().traerTrenes();
+	}
+	
+	
+	public List<TransportePublico> traerSubtes(){
+		return TransportePublicoDao.getInstance().traerSubtes();
+	}
+
 }

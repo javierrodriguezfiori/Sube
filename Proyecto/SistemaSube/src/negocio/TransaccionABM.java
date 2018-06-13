@@ -3,6 +3,8 @@ package negocio;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+
 import dao.*;
 import datos.*;
 
@@ -81,6 +83,10 @@ public class TransaccionABM {
 	
 	public boolean eliminarViajeColectivo(ViajeColectivo vc) {
 		return ViajeColectivoDao.getInstance().eliminar(vc);
+	}
+	
+	public List<Transaccion> traer(long nroTarjeta) throws HibernateException {
+		return TransaccionDao.getInstance().traer(nroTarjeta);
 	}
 
 }
