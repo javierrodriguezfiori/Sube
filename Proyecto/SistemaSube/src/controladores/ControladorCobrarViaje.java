@@ -50,7 +50,12 @@ public class ControladorCobrarViaje extends HttpServlet {
 			TransportePublico transportePublico = transportePublicoABM.traer(Long.parseLong((String)request.getParameter("transportePublicoId")));
 			TarjetaSube tarjetaSube = tarjetaSubeABM.traerTarjetaSube(Long.parseLong((String)request.getParameter("tarjetaSubeNro")));
 			String estacion = (String) request.getParameter("tramoOParada");
-
+			
+			String fecha = request.getParameter("fechaInicio");
+			String hora= request.getParameter("horaInicio");
+			
+			GregorianCalendar fechaHora= Funciones.traerFecha(fecha, hora);
+			
 			Viaje viaje = null;
 			
 			if (transportePublico instanceof Tren) {
@@ -62,7 +67,7 @@ public class ControladorCobrarViaje extends HttpServlet {
 						.findFirst()
 						.get();
 				
-				viaje = new ViajeTren(0.0f, new GregorianCalendar(), tarjetaSube, transportePublico, paradaTren, null);
+				viaje = new ViajeTren(0.0f, fechaHora, tarjetaSube, transportePublico, paradaTren, null);
 			} else if (transportePublico instanceof Colectivo) {
 				Tramo tramoColectivo = (Tramo) transportePublicoABM
 						.traerColectivoYTramos(transportePublico.getIdTransporte())
@@ -72,7 +77,7 @@ public class ControladorCobrarViaje extends HttpServlet {
 						.findFirst()
 						.get();
 				
-				viaje = new ViajeColectivo(0.0f, new GregorianCalendar(), tarjetaSube, transportePublico, tramoColectivo);
+				viaje = new ViajeColectivo(0.0f, fechaHora, tarjetaSube, transportePublico, tramoColectivo);
 			} else if (transportePublico instanceof Subte) {
 				Parada paradaSubte = (Parada) transportePublicoABM.traerSubteYParadas(transportePublico.getIdTransporte())
 						.getParadas()
@@ -80,7 +85,7 @@ public class ControladorCobrarViaje extends HttpServlet {
 						.filter(p -> p.getNombre().equals(estacion))
 						.findFirst()
 						.get();
-				viaje = new ViajeSubte(0.0f, new GregorianCalendar(), tarjetaSube, transportePublico, paradaSubte);
+				viaje = new ViajeSubte(0.0f, fechaHora, tarjetaSube, transportePublico, paradaSubte);
 			}
 				
 			terminalViaje.cobrarViaje(viaje);
