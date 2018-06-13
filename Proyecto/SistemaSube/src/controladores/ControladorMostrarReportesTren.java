@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import funciones.Funciones;
+import negocio.TransportePublicoABM;
+
 import java.util.GregorianCalendar;
 import dao.ViajeDao;
+import dao.ViajeTrenDao;
+import datos.Tren;
 import datos.Viaje;
 
 public class ControladorMostrarReportesTren extends HttpServlet {
@@ -31,11 +35,23 @@ public class ControladorMostrarReportesTren extends HttpServlet {
 		try {
 			
 			
-			String fechaInicio = request.getParameter("fechaInicio");
-			String horaInicio = request.getParameter("horaInicio");
-			String fechaFin = request.getParameter("fechaFin");
-			String horaFin = request.getParameter("horaFin");
-			String linea = request.getParameter("linea");
+			String fechaInicio = request.getParameter("fechaInicio3");
+			String horaInicio = request.getParameter("horaInicio3");
+			String fechaFin = request.getParameter("fechaFin3");
+			String horaFin = request.getParameter("horaFin3");
+			String linea = request.getParameter("lineaTren");
+			
+			GregorianCalendar fechaHoraInicio = Funciones.traerFecha(fechaInicio, horaInicio);
+			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
+			Tren tren = (Tren)TransportePublicoABM.getInstance().traerTransportePublico(linea);
+			List<Viaje> viajesTren = ViajeTrenDao.getInstance().traerViajesTren(fechaHoraInicio, fechaHoraFin, tren.getIdTransporte());
+			
+			request.setAttribute("viajesTren", viajesTren);
+			request.setAttribute("tren", tren);
+			
+			
+			
+			request.getRequestDispatcher("ajaxreportetrenporlinea.jsp").forward(request, response);
 			
 			
 			
