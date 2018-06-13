@@ -66,4 +66,45 @@
    <servlet-name>ControladorMostrarTransaccionesPorNroTarjeta</servlet-name>
    <url-pattern>/MostrarTransaccionesPorNroTarjeta</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+   <servlet-name>ControladorMostrarReportesColectivo</servlet-name>
+   <servlet-class>controladores.ControladorMostrarReportesColectivo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorMostrarReportesColectivo</servlet-name>
+   <url-pattern>/MostrarReportesPorColectivo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>ControladorMostrarReportesSubte</servlet-name>
+   <servlet-class>controladores.ControladorMostrarReportesSubte</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorMostrarReportesSubte</servlet-name>
+   <url-pattern>/MostrarReportesPorSubte</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+   <servlet-name>ControladorMostrarReportesTren</servlet-name>
+   <servlet-class>controladores.ControladorMostrarReportesTren</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorMostrarReportesTren</servlet-name>
+   <url-pattern>/MostrarReportesPorTren</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <servlet>
+   <servlet-name>ControladorSeleccionarLineaDeTransporte</servlet-name>
+   <servlet-class>controladores.ControladorSeleccionarLineaDeTransporte</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorSeleccionarLineaDeTransporte</servlet-name>
+   <url-pattern>/SeleccionarLineaTransporte</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

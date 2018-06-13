@@ -80,7 +80,7 @@
 			<button type="submit" name="boton-consultarsaldo" value="ConsultarSaldo" class="button" style="padding:20px; maring:30px;">ConsultarSaldo</button>
 		</form> 
 		
-		<form action="/SistemaSube/reportes.jsp" method="POST">
+		<form action="SeleccionarLineaTransporte" method="POST">
 			<button type="submit" name="boton-reportes" value="Reportes" class="button" style="padding:20px; maring:30px;">Reportes</button>
 		</form> 
 	</body>

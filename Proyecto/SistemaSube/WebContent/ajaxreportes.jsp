@@ -4,6 +4,10 @@
 <%@page import="java.util.List" %>
 <%@page import="datos.Transaccion" %>
 <%@page import="funciones.Funciones" %>
+
+
+
+ 
 <table border="1">
 <caption>Viajes de Tren</caption>
 <tr>
@@ -23,6 +27,9 @@ for(Viaje viaje : viajesTren){ %>
  <%} %>
 </table>
 
+
+
+
 <table border="1">
 <caption>Viajes de Colectivos</caption>
 <tr>
@@ -41,6 +48,9 @@ for(Viaje viaje : viajesColectivo){ %>
  </tr>
  <%} %>
 </table>
+
+
+
 
 
 <table border="1">
