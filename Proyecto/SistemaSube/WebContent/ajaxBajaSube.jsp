@@ -4,12 +4,12 @@ pageEncoding="ISO-8859-1"%>
 <%@page import = "datos.Usuario" %>
 
 <% TarjetaSube tarjeta = (TarjetaSube)request.getAttribute("tarjeta");%>
-<% String confirmacion = (String)request.getAttribute("resultado");%>
+<% Usuario usuario = (Usuario)request.getAttribute("usuario");%>
 
 <BR>
 Numero de Tarjeta:
 <%= tarjeta.getNroTarjeta() %>
 <BR>
-Confirmacion:
-<%= confirmacion %>
+Usuario:
+<%= tarjeta.getUsuario()%>
 <BR>

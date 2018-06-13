@@ -47,15 +47,15 @@ public class testTarjetaSube {
 //			}
 		
 //		// Test asociar Usuario a Tarjeta
-			try {
-				TarjetaSubeABM.getInstance().asociar(26, "34180781");
-			} catch (Exception e) {
-				System.out.println(e);
-			}
+//			try {
+//				TarjetaSubeABM.getInstance().asociar(25, "34180781");
+//			} catch (Exception e) {
+//				System.out.println(e);
+//			}
 		
 		// Test desasociar Usuario de Tarjeta
 //		try {
-//			TarjetaSubeABM.getInstance().desasociar(26);
+//			TarjetaSubeABM.getInstance().desasociar(25);
 //		} catch (Exception e) {
 //			System.out.println(e);
 //		}

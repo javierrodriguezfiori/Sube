@@ -54,15 +54,17 @@ public class TarjetaSubeABM {
 	}
 	
 	public void asociar(long nroTarjeta, String documento) throws Exception{ 
-		Usuario u= UsuarioABM.getInstance().traerUsuario(documento);
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
+		System.out.println(t);
+		Usuario u= UsuarioABM.getInstance().traerUsuario(documento);
+		System.out.println(u);
 		if(noExiste(t) || noExiste(u)) 
 			throw new Exception("Tarjeta o Usuario no encontrado");  
 		else
 			if(t.getUsuario()!=null)
 				throw new Exception("Tarjeta ya asociada a un usuario");  
 			else {
-				if(TarjetaSubeABM.getInstance().traerTarjetaSube(u)!=null) 
+				if(TarjetaSubeDao.getInstance().traerTarjetaSube(u)!=null) 
 					throw new Exception("El usuario ya tiene una tarjeta asociada");  
 				else {
 					t.setUsuario(u);
@@ -70,6 +72,8 @@ public class TarjetaSubeABM {
 				}
 			}
 	}
+	
+	
 	
 	public void desasociar(long nroTarjeta) throws Exception{ 
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);

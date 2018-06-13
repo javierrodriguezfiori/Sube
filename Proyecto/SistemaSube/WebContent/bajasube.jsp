@@ -16,14 +16,6 @@
 					url: "BajaSube",
 					data: {nroTarjeta: nroTarjeta},
 					async: false
-					statusCode: {
-						404: function() {
-							$("#error").removeClass("hidden");
-						},
-						500: function() {
-							window.location.href = "peticionerronea.jsp";
-						}
-					}
 				}).done(function(data){
 					$("#responseBajaSube").html(data);
 				})

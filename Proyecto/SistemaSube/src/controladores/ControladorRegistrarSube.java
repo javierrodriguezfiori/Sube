@@ -29,7 +29,7 @@ public class ControladorRegistrarSube extends HttpServlet {
 			TarjetaSubeABM.getInstance().asociar(nroTarjeta, documento);
 			TarjetaSube tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
 			request.setAttribute("tarjeta", tarjeta);
-			request.getRequestDispatcher("ajaxRegistrarViaje.jsp").forward(request, response);
+			request.getRequestDispatcher("ajaxRegistrarSube.jsp").forward(request, response);
 		}catch(Exception e) {
 			response.sendError(500,"El numero de tarjeta o documento son inválidos");
 		}
