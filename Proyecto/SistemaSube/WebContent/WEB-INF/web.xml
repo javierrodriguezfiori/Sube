@@ -45,6 +45,14 @@
     <url-pattern>/RegistrarSube</url-pattern>
   </servlet-mapping>
    <servlet>
+   <servlet-name>ControladorBajaSube</servlet-name>
+    <servlet-class>controladores.ControladorBajaSube</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControladorBajaSube</servlet-name>
+    <url-pattern>/BajaSube</url-pattern>
+  </servlet-mapping>
+   <servlet>
     <servlet-name>ControladorRecargarSube</servlet-name>
     <servlet-class>controladores.ControladorRecargarSube</servlet-class>
   </servlet>
