@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import datos.Sesion;
 import datos.Usuario;
 import negocio.UsuarioABM;
-import utils.UsuarioInvalido;
 import utils.UsuarioInvalidoException;
 
-public class ControladorLogin extends HttpServlet {
+public class ControladorLogin extends HttpServlet implements LoginValidable{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		procesarPeticion(request, response);
@@ -35,7 +34,7 @@ public class ControladorLogin extends HttpServlet {
 			setearUsuarioLogeado(usuario);
 			response.setStatus(200);
 			request.setAttribute("usuario", usuario);
-		} catch (UsuarioInvalido ex) {
+		} catch (UsuarioInvalidoException ex) {
 			response.sendError(404);
 		} catch (Exception ex) {
 			response.sendError(500);
@@ -43,7 +42,7 @@ public class ControladorLogin extends HttpServlet {
 		
 	}
 	
-	private Usuario traerUsuario(String documento) throws UsuarioInvalido {
+	private Usuario traerUsuario(String documento) throws UsuarioInvalidoException {
 		return UsuarioABM.getInstance().traerUsuario(documento);
 	}
 	
