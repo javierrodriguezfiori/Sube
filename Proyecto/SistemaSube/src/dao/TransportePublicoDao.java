@@ -41,6 +41,42 @@ public class TransportePublicoDao extends DAO {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<TransportePublico> traerColectivos()throws HibernateException{
+		List<TransportePublico> lista;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Colectivo").list();
+		}finally {
+			session.close();
+		}
+		return lista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TransportePublico> traerTrenes()throws HibernateException{
+		List<TransportePublico> lista;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Tren").list();
+		}finally {
+			session.close();
+		}
+		return lista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<TransportePublico> traerSubtes()throws HibernateException{
+		List<TransportePublico> lista;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Subte").list();
+		}finally {
+			session.close();
+		}
+		return lista;
+	}
+	
 	public TransportePublico traerTransportePublico(String linea)throws HibernateException{
 		TransportePublico objeto = null;;
 		try {

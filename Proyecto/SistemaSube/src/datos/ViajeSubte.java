@@ -2,6 +2,8 @@ package datos;
 
 import java.util.GregorianCalendar;
 
+import funciones.Funciones;
+
 public class ViajeSubte extends Viaje{
 	
 	private Parada origen;
@@ -24,7 +26,7 @@ public class ViajeSubte extends Viaje{
 	@Override
 	public String toString() {
 		return "ViajeSubte [origen=" + origen + ", transporte=" + transporte + ", idTransaccion=" + idTransaccion
-				+ ", monto=" + monto + ", fechaHora=" + fechaHora + ", tarjetaSube=" + tarjetaSube + "]";
+				+ ", monto=" + monto + ", fechaHora=" + Funciones.traerFechaCortaHora(fechaHora) + ", tarjetaSube=" + tarjetaSube + "]";
 	}
 	
 	

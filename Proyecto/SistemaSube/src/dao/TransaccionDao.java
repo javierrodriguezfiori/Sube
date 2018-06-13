@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 
 import datos.Transaccion;
@@ -26,6 +28,19 @@ public class TransaccionDao extends DAO{
 		session.close();
 		}
 		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Transaccion> traer(long nroTarjeta) throws HibernateException {
+		List<Transaccion> transacciones = null;
+		try {
+		iniciaOperacion();
+		transacciones = session.createQuery("from Transaccion t where t.tarjetaSube.nroTarjeta="+nroTarjeta + " order by t.fechaHora DESC").list();
+		} 
+		finally {
+		session.close();
+		}
+		return transacciones;
 	}
 
 }
