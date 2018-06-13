@@ -85,6 +85,31 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#reportetrenes').click(function(){
+		var fechaInicio3 = $('#fechaInicio3').val();
+		var horaInicio3 = $('#horaInicio3').val();
+		var fechaFin3 = $('#fechaFin3').val();
+		var horaFin3 = $('#horaFin3').val();
+		var lineaTren = $('#lineaTren').val()
+		$.ajax({
+			method: "POST",
+			url: "MostrarReportesPorTren",
+			data: {fechaInicio3: fechaInicio3,
+			       horaInicio3: horaInicio3,
+			       fechaFin3: fechaFin3,
+			       horaFin3: horaFin3,
+			       lineaTren: lineaTren,
+			       },
+			async: false
+		}).done(function(data){
+			$("#responsereportestrenes").html(data);
+		})
+	});
+});
+</script>
+
 </head>
 <body>
 <%@include file="/header.jsp" %>
@@ -169,8 +194,35 @@ $(document).ready(function(){
 </form>
 
 
+<form class="navbar-form navbar-right">
+<label for="fechaInicio3">fecha Inicio</label>
+<INPUT id="fechaInicio3" value="05/05/2018" name="fechaInicio">
+
+<label for="horaInicio3">hora Inicio</label>
+<INPUT id="horaInicio3" value="00:00:00" name="horaInicio">
+
+<label for="fechaFin3">fecha Fin</label>
+<INPUT id="fechaFin3" value="11/06/2018" name="fechaFin">
+
+<label for="horaFin3">hora Fin</label>
+<INPUT id="horaFin3" value="00:00:00" name="horaFin">
+<% List<TransportePublico> lineasTrenes = (List) request.getAttribute("trenes"); %>
+                        <label class="subtitle">Seleccione la linea de Subte</label> 
+						<select id="lineaTren" name="lineaTren" style="width:200px; align:center;">
+							<option values="0">Selecciona una linea</option>
+							<% for (TransportePublico tren : lineasTrenes) { %>
+							<%String linea = tren.getLinea();%>
+							<option value="<%=linea%>"><%=linea%></option>
+							<% } %>
+						</select>
+
+<INPUT id="reportetrenes"  type="button" class="btn btn-succes" value="ReporteTren"/>
+</form>
+
+
 <div id="responsereporte"></div>
 <div id="responsereportecolectivos"></div>
 <div id="responsereportesubtes"></div>
+<div id="responsereportestrenes"></div>
 </body>
 </html>
