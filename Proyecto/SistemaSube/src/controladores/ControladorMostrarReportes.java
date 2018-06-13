@@ -30,20 +30,53 @@ public class ControladorMostrarReportes extends HttpServlet {
 			String horaInicio = request.getParameter("horaInicio");
 			String fechaFin = request.getParameter("fechaFin");
 			String horaFin = request.getParameter("horaFin");
-			
-			
+			int opcion = Integer.parseInt(request.getParameter("Transporte"));
 			GregorianCalendar fechaHoraInicio = Funciones.traerFecha(fechaInicio, horaInicio);
 			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
 			
+			if(opcion==1) {
+				
+				
+				
+				List<Viaje> viajesTren = viajeABM.traerViajesTren(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesColectivo = viajeABM.traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesSubte = viajeABM.traerViajesSubte(fechaHoraInicio, fechaHoraFin);
+				
+				request.setAttribute("viajesTren", viajesTren);
+				request.setAttribute("viajesColectivo", viajesColectivo);
+				request.setAttribute("viajesSubte", viajesSubte);
+				
+				request.getRequestDispatcher("ajaxreportes.jsp").forward(request, response);
+				
+				
+			}
 			
-			List<Viaje> viajesTren = viajeABM.traerViajesTren(fechaHoraInicio, fechaHoraFin);
-			List<Viaje> viajesColectivo = viajeABM.traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
-			List<Viaje> viajesSubte = viajeABM.traerViajesSubte(fechaHoraInicio, fechaHoraFin);
+			if(opcion==2){
+				List<Viaje> viajesTren = viajeABM.traerViajesTren(fechaHoraInicio, fechaHoraFin);
+				request.setAttribute("viajesTren", viajesTren);
+				request.getRequestDispatcher("ajaxreportetren.jsp").forward(request, response);
+				
+			}
 			
-			request.setAttribute("viajesTren", viajesTren);
-			request.setAttribute("viajesColectivo", viajesColectivo);
-			request.setAttribute("viajesSubte", viajesSubte);
-			request.getRequestDispatcher("ajaxreportes.jsp").forward(request, response);;
+
+			if(opcion==3){
+				List<Viaje> viajesColectivo = viajeABM.traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
+				request.setAttribute("viajesColectivo", viajesColectivo);
+				request.getRequestDispatcher("ajaxreportecolectivo.jsp").forward(request, response);
+				
+			}
+
+			if(opcion==4){
+				List<Viaje> viajesSubte = viajeABM.traerViajesSubte(fechaHoraInicio, fechaHoraFin);
+				request.setAttribute("viajesSubte", viajesSubte);
+				request.getRequestDispatcher("ajaxreportesubte.jsp").forward(request, response);
+				
+			}
+			
+			
+			
+			
+			
 			
 		}catch(Exception e) {
 			response.sendError(500,"Fecha Incorrecta");
