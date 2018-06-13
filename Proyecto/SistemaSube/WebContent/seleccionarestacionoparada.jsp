@@ -3,6 +3,8 @@
 <%@page import="datos.TarjetaSube" %>
 <%@page import="datos.TransportePublico" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.GregorianCalendar" %>
+<%@ page import="funciones.Funciones" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -95,6 +97,10 @@
 		    </div>
             <input type="hidden" name="tarjetaSubeNro" value="<%= Long.valueOf(tarjetaSube.getNroTarjeta()) %>">
             <input type="hidden" name="transportePublicoId" value="<%= Long.valueOf(transportePublico.getIdTransporte()) %>">
+            <label for="fecha">fecha</label>
+            <INPUT id="fecha" value="DD:MM:AA" name="fechaInicio">
+            <label for="hora">hora</label>
+            <INPUT id="hora" value="HH:MM:SS" name="horaInicio">
 	    </form>
 		<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
 			<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
