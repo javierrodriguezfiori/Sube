@@ -35,16 +35,16 @@ public class ControladorMostrarReportesSubte extends HttpServlet {
 			String fechaFin = request.getParameter("fechaFin2");
 			String horaFin = request.getParameter("horaFin2");
 			String linea = request.getParameter("lineaSubte");
-			System.out.println(linea);
+			
 			GregorianCalendar fechaHoraInicio = Funciones.traerFecha(fechaInicio, horaInicio);
 			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
 			Subte subte = (Subte)TransportePublicoABM.getInstance().traerTransportePublico(linea);
 			List<Viaje> viajesSubte = ViajeSubteDao.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin, subte.getIdTransporte());
-			System.out.println(linea);
+			
 			request.setAttribute("viajesSubte", viajesSubte);
 			request.setAttribute("subte", subte);
 			
-			System.out.println(Funciones.imprimirLista(viajesSubte));
+			
 			
 			request.getRequestDispatcher("ajaxreportesubteporlinea.jsp").forward(request, response);
 			
