@@ -11,7 +11,7 @@
 		$(document).ready(function(){
 			$('#asignartarifasocial').click(function(){
 				var nroTarjeta = $('#nroTarjeta').val();
-				var tarifa = $('#tarifa').val();
+				var tarifa = $('.radio-option:checked').val();
 				$.ajax({
 					method: "POST",
 					url: "AsignarTarifaSocial",
@@ -36,17 +36,17 @@
 		<INPUT id="nroTarjeta" name="nroTarjeta">
 		
 		<div class="col-lg-4" style="padding-top:50px;">
-           <!--  <label class="subtitle">¿Qué tarifa desea tramitar?</label> <BR>
-           <input type="radio" name="tarifa" value="tarifasocial" checked/>
-           <label for="radio" class="radio-option">Tarifa Social</label>
-           <input type="radio" name="tarifa" value="boletoestudiantil"/>
-           <label for="radio" class="radio-option">Boleto Estudiantil</label>
-           <input type="radio" name="tarifa" value="sindescuento"/>
-           <label for="radio" class="radio-option">Sin Descuento</label>-->
-           <select id="tarifa" name="tarifa">
+           <label class="subtitle">¿Qué tarifa desea tramitar?</label> <BR>
+           <input type="radio" class="radio-option" name="tarifa" value="tarifasocial" checked/>
+           <label for="radio" >Tarifa Social</label>
+           <input type="radio" class="radio-option" name="tarifa" value="boletoestudiantil"/>
+           <label for="radio" >Boleto Estudiantil</label>
+           <input type="radio" class="radio-option" name="tarifa" value="sindescuento"/>
+           <label for="radio" >Sin Descuento</label>
+           <!--  <select id="tarifa" name="tarifa">
            <option value="sindescuentos">Sin Descuentos</option>
            <option value="tarifasocial">Tarifasocial</option>
-           <option value="boletoestudiantil">Boleto Estudiantil</option>
+           <option value="boletoestudiantil">Boleto Estudiantil</option>-->
            
            </select>
 	    </div>

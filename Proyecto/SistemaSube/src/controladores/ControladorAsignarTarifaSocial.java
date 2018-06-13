@@ -28,6 +28,7 @@ public class ControladorAsignarTarifaSocial extends HttpServlet {
 			long nroTarjeta = Integer.parseInt(request.getParameter("nroTarjeta"));
 			String tarifa = request.getParameter("tarifa");
 			
+			
 			TarjetaSube tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
 						
 			switch(tarifa) {
