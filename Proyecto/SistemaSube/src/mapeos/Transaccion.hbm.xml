@@ -15,6 +15,10 @@
 		<key column="idRecarga"/>
 	</joined-subclass>	
 	
+	<joined-subclass table="devolucion" name="datos.Devolucion">
+		<key column="idDevolucion"/>
+	</joined-subclass>
+	
 	<joined-subclass table="viaje" name="datos.Viaje">
 		<key column="idViaje"/>
 		<many-to-one column="idTransportePublico" class="datos.TransportePublico" name="transporte" lazy="false"  not-null="true"/>

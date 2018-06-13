@@ -2,7 +2,7 @@ package negocio;
 
 import datos.Viaje;
 import datos.TarjetaSube;
-import datos.Recarga;
+import datos.Devolucion;
 import datos.ViajeTren;
 import utils.SaldoInsuficienteException;
 import datos.ViajeSubte;
@@ -10,6 +10,16 @@ import datos.ViajeColectivo;
 import datos.RedSube;
 
 public class TerminalViaje extends Terminal{
+	public static TerminalViaje instance = null;
+	
+	protected TerminalViaje() {}
+	
+	public static TerminalViaje getInstance() {
+		if(instance==null) {
+			instance = new TerminalViaje();
+		}
+		return instance;
+	}
 	
 	public boolean cobrarViaje(Viaje viaje) throws Exception{
 		boolean cobrado=false;
@@ -33,9 +43,9 @@ public class TerminalViaje extends Terminal{
 				    precio=(float)(precio*TarjetaSubeABM.getInstance().calcularDescuento(tarjeta)*RedSubeABM.getInstance().calcularDescuento(viaje));
 				    diferencia=ultimoT.getMonto()-precio;
 					viaje.setMonto(precio);
-				    Recarga recarga=new Recarga(diferencia,viaje.getFechaHora(),tarjeta);
+				    Devolucion devolucion=new Devolucion(diferencia,viaje.getFechaHora(),tarjeta);
 				    TransaccionABM.getInstance().modificarViajeTren(ultimoT);
-				    cobrado=TerminalRecarga.getInstance().registrarRecarga(tarjeta,recarga);
+				    cobrado=DevolucionABM.getInstance().registrarDevolucion(tarjeta,devolucion);
 				} 
 				else 
 					TransaccionABM.getInstance().modificarViajeTren(ultimoT);	    	

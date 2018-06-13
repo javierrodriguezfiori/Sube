@@ -30,7 +30,7 @@ import utils.SaldoInsuficienteException;
 
 public class ControladorCobrarViaje extends HttpServlet {
 	
-	TerminalViaje terminalViaje = new TerminalViaje();
+	TerminalViaje terminalViaje = TerminalViaje.getInstance();
 	TarjetaSubeABM tarjetaSubeABM = TarjetaSubeABM.getInstance();
 	TransportePublicoABM transportePublicoABM = TransportePublicoABM.getInstance();
 	

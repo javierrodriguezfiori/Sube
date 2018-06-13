@@ -26,6 +26,11 @@ public class TransaccionABM {
 		return RecargaDao.getInstance().agregar(r);
 	}
 	
+	public long agregarDevolucion(float monto, GregorianCalendar fechaHora, TarjetaSube tarjetaSube) {
+		Devolucion d=new Devolucion(monto,fechaHora,tarjetaSube);
+		return RecargaDao.getInstance().agregar(d);
+	}
+	
 	public boolean modificarRecarga(Recarga r) {
 		return RecargaDao.getInstance().actualizar(r);
 	}
