@@ -2,6 +2,8 @@ package datos;
 
 import java.util.GregorianCalendar;
 
+import funciones.Funciones;
+
 public class Recarga extends Transaccion {
 	
 	public Recarga(){}
@@ -12,7 +14,7 @@ public class Recarga extends Transaccion {
 
 	@Override
 	public String toString() {
-		return "Recarga [idTransaccion=" + idTransaccion + ", monto=" + monto + ", fechaHora=" + fechaHora
+		return "Recarga [idTransaccion=" + idTransaccion + ", monto=" + monto + ", fechaHora=" + Funciones.traerFechaCortaHora(fechaHora)
 				+ ", tarjetaSube=" + tarjetaSube + "]";
 	}
 	

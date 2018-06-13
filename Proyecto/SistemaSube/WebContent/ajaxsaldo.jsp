@@ -2,8 +2,16 @@
 pageEncoding="ISO-8859-1"%>
 <%@page import = "datos.TarjetaSube" %>
 <% TarjetaSube tarjeta = (TarjetaSube)request.getAttribute("tarjeta");%>
-<BR>
-Numero de Tarjeta:
-<%= tarjeta.getNroTarjeta() %><BR>
-Saldo :
-<%= tarjeta.getSaldo() %><BR>
+<table border="1">
+<caption>Saldo</caption>
+<tr>
+ <th>Numero de Tarjeta</th>
+ <th>Saldo</th>
+ 
+<tr>
+ <td><%= tarjeta.getNroTarjeta() %> </td>
+ <td><%= tarjeta.getSaldo() %> </td>
+ 
+ </tr>
+ 
+</table>

@@ -29,6 +29,10 @@ public class TransportePublicoABM  {
 		return TransportePublicoDao.getInstance().traerTransportePublico(idTransporte);
 	}
 	
+	public TransportePublico traerTransportePublico(String linea){
+		return TransportePublicoDao.getInstance().traerTransportePublico(linea);
+	}
+	
 	public long agregarColectivo(long id,String linea)throws Exception {
 		if(TransportePublicoDao.getInstance().traerTransportePublico(linea)!=null)throw new Exception("Linea existente");
 		Colectivo c = new Colectivo(id,linea);
@@ -86,18 +90,32 @@ public class TransportePublicoABM  {
     	return costoViaje;
     }
     
+	public List<TransportePublico> traerColectivos(){
+		return TransportePublicoDao.getInstance().traerColectivos();
+	}
+	
+	
+	public List<TransportePublico> traerTrenes(){
+		return TransportePublicoDao.getInstance().traerTrenes();
+	}
+	
+	
+	public List<TransportePublico> traerSubtes(){
+		return TransportePublicoDao.getInstance().traerSubtes();
+	}
+
     public List<TransportePublico> traerTransportesSegunTexto(String transporteEnTexto) {
     	List<TransportePublico> listaTransportes = null;
     	
     	switch (transporteEnTexto) {
     		case "colectivo":
-    			//listaTransportes = traerColectivos();
+    			listaTransportes = traerColectivos();
     			break;
     		case "subte":
-    			//listaTransportes = traerSubtes();
+    			listaTransportes = traerSubtes();
     			break;
     		case "tren":
-    			//listaTransportes = traerTrenes();
+    			listaTransportes = traerTrenes();
     			break;
     		default:
     			break;
