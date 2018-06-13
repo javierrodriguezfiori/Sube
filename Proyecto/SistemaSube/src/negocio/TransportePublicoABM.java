@@ -1,5 +1,8 @@
 package negocio;
+import java.util.List;
+
 import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
 
 import dao.TransportePublicoDao; 
 import datos.Colectivo;
@@ -25,6 +28,10 @@ public class TransportePublicoABM  {
 	
 	public TransportePublico traer(long idTransporte) {
 		return TransportePublicoDao.getInstance().traerTransportePublico(idTransporte);
+	}
+	
+	public TransportePublico traerTransportePublico(String linea)throws HibernateException{
+		return TransportePublicoDao.getInstance().traerTransportePublico(linea);
 	}
 	
 	public long agregarColectivo(long id,String linea)throws Exception {
@@ -84,5 +91,21 @@ public class TransportePublicoABM  {
     	}
     	return costoViaje;
     }
+    
+    
+    
+	public List<TransportePublico> traerColectivos()throws HibernateException{
+		return TransportePublicoDao.getInstance().traerColectivos();
+	}
+	
+	
+	public List<TransportePublico> traerTrenes()throws HibernateException{
+		return TransportePublicoDao.getInstance().traerTrenes();
+	}
+	
+	
+	public List<TransportePublico> traerSubtes()throws HibernateException{
+		return TransportePublicoDao.getInstance().traerSubtes();
+	}
 
 }
