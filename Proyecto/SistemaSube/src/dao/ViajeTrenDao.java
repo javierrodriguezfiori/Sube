@@ -20,7 +20,7 @@ public class ViajeTrenDao extends DAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Viaje> traerViajesSubte(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
+	public List<Viaje> traerViajesTren(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
 		List<Viaje> viajes;
 		try {
 			iniciaOperacion();
