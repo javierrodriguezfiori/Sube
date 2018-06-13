@@ -99,7 +99,14 @@
    <url-pattern>/MostrarReportesPorTren</url-pattern>
   </servlet-mapping>
   
-  
+  <servlet>
+   <servlet-name>ControladorSeleccionarTarifa</servlet-name>
+   <servlet-class>controladores.ControladorSeleccionarTarifa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorSeleccionarTarifa</servlet-name>
+   <url-pattern>/SeleccionarTarifa</url-pattern>
+  </servlet-mapping>
   
   
   <servlet>
