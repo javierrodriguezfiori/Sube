@@ -1,6 +1,11 @@
 package dao;
 
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import datos.Viaje;
 import datos.ViajeTren;
+import funciones.Funciones;
 
 public class ViajeTrenDao extends DAO{
 	
@@ -12,6 +17,20 @@ public class ViajeTrenDao extends DAO{
 		if (instancia == null)
 			instancia = new ViajeTrenDao();
 		return instancia;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traerViajesSubte(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
+		List<Viaje> viajes;
+		try {
+			iniciaOperacion();
+			String sql= "from ViajeTren v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" + Funciones.traerFechaCortaHora(fin)+"'" + 
+			" and v.transporte.idTransporte="+idTransporte+ " order by v.fechaHora ASC";
+			viajes = session.createQuery(sql).list();
+		}finally {
+			session.close();
+		}
+		return viajes;
 	}
 	
 
