@@ -52,12 +52,28 @@
     <servlet-name>ControladorRecargarSube</servlet-name>
     <url-pattern>/RecargarSube</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
   	<servlet-name>ControladorLogin</servlet-name>
   	<servlet-class>controladores.ControladorLogin</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ControladorLogin</servlet-name>
   	<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ControladorTramosYEstaciones</servlet-name>
+  	<servlet-class>controladores.ControladorTramosYEstaciones</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorTramosYEstaciones</servlet-name>
+  	<url-pattern>/TramosEstaciones</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ControladorLineas</servlet-name>
+  	<servlet-class>controladores.ControladorLineas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorLineas</servlet-name>
+  	<url-pattern>/Lineas</url-pattern>
   </servlet-mapping>
 </web-app>

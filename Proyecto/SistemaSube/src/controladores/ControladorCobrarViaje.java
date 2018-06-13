@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import datos.Colectivo;
 import datos.Parada;
+import datos.Sesion;
 import datos.Subte;
 import datos.TarjetaSube;
 import datos.Tramo;
@@ -27,8 +28,10 @@ import negocio.TarjetaSubeABM;
 import negocio.TerminalViaje;
 import negocio.TransportePublicoABM;
 import utils.SaldoInsuficienteException;
+import utils.TarjetaSubeInexistenteException;
+import utils.UsuarioInvalidoException;
 
-public class ControladorCobrarViaje extends HttpServlet {
+public class ControladorCobrarViaje extends HttpServlet implements LoginValidable {
 	
 	TerminalViaje terminalViaje = new TerminalViaje();
 	TarjetaSubeABM tarjetaSubeABM = TarjetaSubeABM.getInstance();
@@ -46,12 +49,17 @@ public class ControladorCobrarViaje extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
-		try {
+		try {			
 			TransportePublico transportePublico = transportePublicoABM.traer(Long.parseLong((String)request.getParameter("transportePublicoId")));
-			TarjetaSube tarjetaSube = tarjetaSubeABM.traerTarjetaSube(Long.parseLong((String)request.getParameter("tarjetaSubeNro")));
 			String estacion = (String) request.getParameter("tramoOParada");
-
-			Viaje viaje = null;
+			
+			if (!existeUsuarioLogeado())
+				throw new UsuarioInvalidoException("No existe un usuario logeado.");
+			
+			if(!usuarioTieneTarjetaSube())
+				throw new TarjetaSubeInexistenteException("No existe una tarjeta sube registrada en este usuario.");
+			
+			/*Viaje viaje = null;
 			
 			if (transportePublico instanceof Tren) {
 				Parada paradaTren = (Parada) transportePublicoABM
@@ -89,7 +97,7 @@ public class ControladorCobrarViaje extends HttpServlet {
 			request.setAttribute("fechaYHora", Funciones.traerFechaCortaHora(viaje.getFechaHora()));
 			request.setAttribute("saldo", String.valueOf(viaje.getTarjetaSube().getSaldo()));
 			response.setStatus(200);
-			request.getRequestDispatcher("mostrarviajecobrado.jsp").forward(request, response);
+			request.getRequestDispatcher("mostrarviajecobrado.jsp").forward(request, response);*/
 		} catch (SaldoInsuficienteException ex) {
 			response.setStatus(400);
 			request.setAttribute("error", "Saldo insuficiente.");

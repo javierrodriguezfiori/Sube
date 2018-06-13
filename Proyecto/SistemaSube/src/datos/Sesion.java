@@ -20,4 +20,8 @@ public class Sesion {
 	public Usuario getUsuarioLogeado() {
 		return this.usuarioLogeado;
 	}
+	
+	public void deslogear() {
+		setUsuarioLogeado(null);
+	}
 }

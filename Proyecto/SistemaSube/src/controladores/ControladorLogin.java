@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import datos.Sesion;
 import datos.Usuario;
 import negocio.UsuarioABM;
-import utils.UsuarioInvalido;
+import utils.UsuarioInvalidoException;
 
 public class ControladorLogin extends HttpServlet {
 	
@@ -29,12 +29,12 @@ public class ControladorLogin extends HttpServlet {
 			String password = request.getParameter("password");
 			
 			if (!usuario.esClaveCorrecta(password))
-				throw new UsuarioInvalido("El usuario no existe.");
+				throw new UsuarioInvalidoException("El usuario no existe.");
 			
 			setearUsuarioLogeado(usuario);
 			response.setStatus(200);
 			request.setAttribute("usuario", usuario);
-		} catch (UsuarioInvalido ex) {
+		} catch (UsuarioInvalidoException ex) {
 			response.sendError(404);
 		} catch (Exception ex) {
 			response.sendError(500);
@@ -42,7 +42,7 @@ public class ControladorLogin extends HttpServlet {
 		
 	}
 	
-	private Usuario traerUsuario(String documento) throws UsuarioInvalido {
+	private Usuario traerUsuario(String documento) throws UsuarioInvalidoException {
 		return UsuarioABM.getInstance().traerUsuario(documento);
 	}
 	

@@ -14,7 +14,6 @@
 		<script src="js/jquery-3.3.1.min.js"></script>
 		
 		<script type="text/javascript">
-		
 			$(document).ready(function() {
 				$('#login').click(function() {
 					var documento = $('#documento').val();
@@ -33,7 +32,7 @@
 							}
 						}
 					}).done(function(data) {
-						window.location.href = "seleccionartarjetaytransporte.jsp";
+						window.location.href = "cobrarViaje.jsp";
 					})
 				});
 			});
