@@ -29,11 +29,13 @@ public class ControladorLineas extends HttpServlet {
 		try {
 			String transporteEnTexto = (String) request.getParameter("transportePublico");
 			List<TransportePublico> listaTransportes = obtenerTransportes(transporteEnTexto);
-
-			request.setAttribute("transportes", listaTransportes);
+			
+			request.setAttribute("transportesPublicos", listaTransportes);
+			response.setStatus(200);
 			request.getRequestDispatcher("lineas.jsp").forward(request, response);
 		} catch (Exception ex) {
-			
+			// Si se produce una excepcion no controlada, se devuelve un HTTP Server Internal Error (500)
+			response.sendError(500);
 		}
 	}
 	

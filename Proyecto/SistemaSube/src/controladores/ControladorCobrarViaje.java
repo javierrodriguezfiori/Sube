@@ -50,54 +50,15 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 		response.setContentType("text/html;charset=UTF-8");
 		
 		try {			
-			TransportePublico transportePublico = transportePublicoABM.traer(Long.parseLong((String)request.getParameter("transportePublicoId")));
-			String estacion = (String) request.getParameter("tramoOParada");
+			String transportePublico = (String)request.getParameter("transportePublico");
+			String linea = (String) request.getParameter("linea");
+			String estacion = (String) request.getParameter("tramoOEstacion");
 			
 			if (!existeUsuarioLogeado())
 				throw new UsuarioInvalidoException("No existe un usuario logeado.");
 			
 			if(!usuarioTieneTarjetaSube())
 				throw new TarjetaSubeInexistenteException("No existe una tarjeta sube registrada en este usuario.");
-			
-			/*Viaje viaje = null;
-			
-			if (transportePublico instanceof Tren) {
-				Parada paradaTren = (Parada) transportePublicoABM
-						.traerTrenYParadas(transportePublico.getIdTransporte())
-						.getParadas()
-						.stream()
-						.filter(p -> p.getNombre().equals(estacion))
-						.findFirst()
-						.get();
-				
-				viaje = new ViajeTren(0.0f, new GregorianCalendar(), tarjetaSube, transportePublico, paradaTren, null);
-			} else if (transportePublico instanceof Colectivo) {
-				Tramo tramoColectivo = (Tramo) transportePublicoABM
-						.traerColectivoYTramos(transportePublico.getIdTransporte())
-						.getTramos()
-						.stream()
-						.filter(t -> t.getCosto() == Float.parseFloat(estacion))
-						.findFirst()
-						.get();
-				
-				viaje = new ViajeColectivo(0.0f, new GregorianCalendar(), tarjetaSube, transportePublico, tramoColectivo);
-			} else if (transportePublico instanceof Subte) {
-				Parada paradaSubte = (Parada) transportePublicoABM.traerSubteYParadas(transportePublico.getIdTransporte())
-						.getParadas()
-						.stream()
-						.filter(p -> p.getNombre().equals(estacion))
-						.findFirst()
-						.get();
-				viaje = new ViajeSubte(0.0f, new GregorianCalendar(), tarjetaSube, transportePublico, paradaSubte);
-			}
-				
-			terminalViaje.cobrarViaje(viaje);
-			request.setAttribute("transporte", viaje.getTransporte().getLinea());
-			request.setAttribute("monto", String.valueOf(viaje.getMonto()));
-			request.setAttribute("fechaYHora", Funciones.traerFechaCortaHora(viaje.getFechaHora()));
-			request.setAttribute("saldo", String.valueOf(viaje.getTarjetaSube().getSaldo()));
-			response.setStatus(200);
-			request.getRequestDispatcher("mostrarviajecobrado.jsp").forward(request, response);*/
 		} catch (SaldoInsuficienteException ex) {
 			response.setStatus(400);
 			request.setAttribute("error", "Saldo insuficiente.");

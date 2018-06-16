@@ -49,34 +49,78 @@
 		    opacity: 0.6;
 		}
 		
-		.rad { }
+		.opciones{
+			padding-top:50px;
+		}
 		
 		.button:hover {opacity: 1}
 	
 	    </style>
 	    
   		<script type="text/javascript">
+  			// $("#error").removeClass("hidden"); Como mostrar un elemento del HTML oculto
+  		
+  			// Primer AJAX a ejecutar
+  			// Carga las lineas
 			$(document).ready(function() { 
-				$(".rad").change(function() {
-					var transportePublico = $('input[name=transporte]:checked').val();
+				var d = new Date();
+				document.getElementById("demo").innerHTML = d;
+				$('input:radio[name=radio-transportes]').change(function() { ///input:radio[name=bedStatus]:checked
+					var transportePublico = $('#radio-transportes:checked').val();
 					$.ajax({
 						method: "POST",
 						url: "Lineas",
 						data: { transportePublico: transportePublico },
 						async: false,
 						statusCode: {
-							404: function() {
-								$("#error").removeClass("hidden");
-							},
 							500: function() {
 								window.location.href = "peticionerronea.jsp";
 							}
 						}
 					}).done(function(data) {
-						$("#response").html(data);
+						$("#response-lineas-de-transporte").html(data);
 					})
 				});
 			});
+			
+  			// Primer elemento externo cargado, segundo AJAX a ejecutar
+  			// Carga las estaciones o tramos
+			$(document).on("change", "#lineas", function(event) {
+				var idLineaDeTransporte = $('#lineas option:selected').val();
+				$.ajax({
+					method: "POST",
+					url: "TramosEstaciones",
+					data: { idLineaDeTransporte: idLineaDeTransporte },
+					async: false,
+					statusCode: {
+						500: function() {
+							window.location.href = "peticionerronea.jsp";
+						}
+					}
+				}).done(function(data) {
+					$("#response-tramos-o-estaciones").html(data);
+				})
+			});
+  			
+  			$(document).on("click", ".button", function(event) {
+  				var transportePublico = $('transportes-publicos:checked:checked').val();
+  				var idLineaDeTransporte = $('#lineas option:selected').val();
+  				var tramoOEstacion = $('tramoOEstacion option:selected').val();
+  				$.ajax({
+  					method: "POST",
+  					url: "CobrarViaje",
+  					data: { idLineaDeTransporte: idLineaDeTransporte, transportePublico: transportePublico, tramoOEstacion: tramoOEstacion },
+  					async: false,
+					statusCode: {
+						500: function() {
+							window.location.href = "peticionerronea.jsp";
+						}
+					}
+  				}).done(function(data) {
+  					alert("Un exito");	
+  				}) 
+  				
+  			});
 		</script>
 	    
 	</head>
@@ -90,20 +134,22 @@
       	<div class="container">
 	        <div class="row">
 	          <div class="col-lg-6" style="padding-top:30px;">
-	            <label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=tarjetaDeUsuario.getNroTarjeta() %></label>
+	            <label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=tarjetaDeUsuario.getNroTarjeta() %></label> <br>
+	            <label id="demo"></label>
 	          </div>
 	        </div>
 	        <div class="row">
-	           <div class="col-lg-3" style="padding-top:50px;">
+	           <div class="col-lg-3 opciones">
 	              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
-	              <input type="radio" name="transporte" value="tren" class="rad" checked/>
-	              <label for="radio" class="radio-option">Tren</label>
-	              <input type="radio" name="transporte" value="subte" class="rad"/>
-	              <label for="radio" class="radio-option">Subte</label>
-	              <input type="radio" name="transporte" value="colectivo" class="rad"/>
-	              <label for="radio" class="radio-option">Colectivo</label>
+	              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren" checked/>
+	              <label for="radio" >Tren</label>
+	              <input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
+	              <label for="radio">Subte</label>
+	              <input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
+	              <label for="radio">Colectivo</label>
 	          </div>
-   	          <div class="col-lg-5" style="padding:20px; align:right; padding-top:50px;" id="response"></div>
+   	          <div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
+   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
         	</div>
         	<div class="row">
        			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
@@ -111,6 +157,5 @@
 	          	</div>
         	</div>
         </div>
-        <div id="response"></div>
 	</body>
 </html>

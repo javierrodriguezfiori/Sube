@@ -16,6 +16,7 @@ import datos.Tramo;
 import datos.TransportePublico;
 import datos.Tren;
 import negocio.TransportePublicoABM;
+import utils.LineaSinTramosOEstacionesException;
 
 public class ControladorTramosYEstaciones extends HttpServlet {
 	
@@ -31,32 +32,37 @@ public class ControladorTramosYEstaciones extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		try {
-			long idTransporte = Long.parseLong((String) request.getParameter("transporte"));
+			long idTransporte = Long.parseLong((String) request.getParameter("idLineaDeTransporte"));
 			TransportePublico transportePublico = TransportePublicoABM.getInstance().traer(idTransporte);
-			List<String> estacionesOTramos = obtenerEstacionesOTramos(transportePublico);
+			List<String> tramosOEstaciones = obtenerTramosOEstaciones(transportePublico);
 			
-			request.setAttribute("estacionesOTramos", estacionesOTramos);
+			if (tramosOEstaciones.isEmpty())
+				throw new LineaSinTramosOEstacionesException("La linea " + transportePublico.getLinea() + " no tiene tramos o estaciones asociados.");
+			
+			request.setAttribute("tramosOEstaciones", tramosOEstaciones);
+			response.setStatus(200);
 			request.getRequestDispatcher("tramosOEstaciones.jsp").forward(request, response);
+		} catch (LineaSinTramosOEstacionesException ex) {
+			response.sendError(404);
 		} catch (Exception ex) {
-			
+			response.sendError(500);
 		}
 	}
 	
-	private List<String> obtenerEstacionesOTramos(TransportePublico transportePublico) {
-		List<String> estacionesOTramos = new ArrayList();
+	private List<String> obtenerTramosOEstaciones(TransportePublico transportePublico) {
+		List<String> tramosOEstaciones = new ArrayList();
 		
 		if (transportePublico instanceof Tren) {
 			for (Parada parada : TransportePublicoABM.getInstance().traerTrenYParadas(transportePublico.getIdTransporte()).getParadas())
-				estacionesOTramos.add(parada.getNombre());
+				tramosOEstaciones.add(parada.getNombre());
 		} else if (transportePublico instanceof Subte) {
 			for (Parada parada : TransportePublicoABM.getInstance().traerSubteYParadas(transportePublico.getIdTransporte()).getParadas())
-				estacionesOTramos.add(parada.getNombre());
-
+				tramosOEstaciones.add(parada.getNombre());
 		} else if (transportePublico instanceof Colectivo) {
 			for (Tramo tramo : TransportePublicoABM.getInstance().traerColectivoYTramos(transportePublico.getIdTransporte()).getTramos())
-				estacionesOTramos.add(String.valueOf(tramo.getCosto()));
+				tramosOEstaciones.add(String.valueOf(tramo.getCosto()));
 		}
 		
-		return estacionesOTramos;
+		return tramosOEstaciones;
 	}
 }
