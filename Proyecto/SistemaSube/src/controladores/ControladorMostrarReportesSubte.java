@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import dao.ViajeSubteDao;
 import datos.Subte;
 import datos.Viaje;
+import datos.ViajeSubte;
 import negocio.TransportePublicoABM;
 public class ControladorMostrarReportesSubte extends HttpServlet {
 	
@@ -39,7 +40,7 @@ public class ControladorMostrarReportesSubte extends HttpServlet {
 			GregorianCalendar fechaHoraInicio = Funciones.traerFecha(fechaInicio, horaInicio);
 			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
 			Subte subte = (Subte)TransportePublicoABM.getInstance().traerTransportePublico(linea);
-			List<Viaje> viajesSubte = ViajeSubteDao.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin, subte.getIdTransporte());
+			List<ViajeSubte> viajesSubte = ViajeSubteDao.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin, subte.getIdTransporte());
 			
 			request.setAttribute("viajesSubte", viajesSubte);
 			request.setAttribute("subte", subte);

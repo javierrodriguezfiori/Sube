@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import funciones.Funciones;
 import java.util.GregorianCalendar;
-import dao.ViajeDao;
+import negocio.ViajeABM;
 import datos.Viaje;
 
 public class ControladorMostrarReportes extends HttpServlet {
@@ -37,9 +37,9 @@ public class ControladorMostrarReportes extends HttpServlet {
 				
 				
 				
-				List<Viaje> viajesTren = ViajeDao.getInstance().traerViajesTren(fechaHoraInicio, fechaHoraFin);
-				List<Viaje> viajesColectivo = ViajeDao.getInstance().traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
-				List<Viaje> viajesSubte = ViajeDao.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesTren = ViajeABM.getInstance().traerViajesTren(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesColectivo = ViajeABM.getInstance().traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesSubte = ViajeABM.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin);
 				
 				request.setAttribute("viajesTren", viajesTren);
 				request.setAttribute("viajesColectivo", viajesColectivo);
@@ -51,7 +51,7 @@ public class ControladorMostrarReportes extends HttpServlet {
 			}
 			
 			if(opcion==2){
-				List<Viaje> viajesTren = ViajeDao.getInstance().traerViajesTren(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesTren = ViajeABM.getInstance().traerViajesTren(fechaHoraInicio, fechaHoraFin);
 				request.setAttribute("viajesTren", viajesTren);
 				request.getRequestDispatcher("ajaxreportetren.jsp").forward(request, response);
 				
@@ -59,14 +59,14 @@ public class ControladorMostrarReportes extends HttpServlet {
 			
 
 			if(opcion==3){
-				List<Viaje> viajesColectivo = ViajeDao.getInstance().traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesColectivo = ViajeABM.getInstance().traerViajesColectivo(fechaHoraInicio, fechaHoraFin);
 				request.setAttribute("viajesColectivo", viajesColectivo);
 				request.getRequestDispatcher("ajaxreportecolectivo.jsp").forward(request, response);
 				
 			}
 
 			if(opcion==4){
-				List<Viaje> viajesSubte = ViajeDao.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin);
+				List<Viaje> viajesSubte = ViajeABM.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin);
 				request.setAttribute("viajesSubte", viajesSubte);
 				request.getRequestDispatcher("ajaxreportesubte.jsp").forward(request, response);
 				

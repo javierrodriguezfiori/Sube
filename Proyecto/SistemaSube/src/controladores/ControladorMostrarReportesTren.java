@@ -18,6 +18,7 @@ import dao.ViajeDao;
 import dao.ViajeTrenDao;
 import datos.Tren;
 import datos.Viaje;
+import datos.ViajeTren;
 
 public class ControladorMostrarReportesTren extends HttpServlet {
 	
@@ -44,7 +45,7 @@ public class ControladorMostrarReportesTren extends HttpServlet {
 			GregorianCalendar fechaHoraInicio = Funciones.traerFecha(fechaInicio, horaInicio);
 			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
 			Tren tren = (Tren)TransportePublicoABM.getInstance().traerTransportePublico(linea);
-			List<Viaje> viajesTren = ViajeTrenDao.getInstance().traerViajesTren(fechaHoraInicio, fechaHoraFin, tren.getIdTransporte());
+			List<ViajeTren> viajesTren = ViajeTrenDao.getInstance().traerViajesTren(fechaHoraInicio, fechaHoraFin, tren.getIdTransporte());
 			
 			request.setAttribute("viajesTren", viajesTren);
 			request.setAttribute("tren", tren);

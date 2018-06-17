@@ -20,8 +20,8 @@ public class ViajeTrenDao extends DAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Viaje> traerViajesTren(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
-		List<Viaje> viajes;
+	public List<ViajeTren> traerViajesTren(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
+		List<ViajeTren> viajes;
 		try {
 			iniciaOperacion();
 			String sql= "from ViajeTren v where v.fechaHora>='" + Funciones.traerFechaCortaHora(ini) + "' and v.fechaHora<='" + Funciones.traerFechaCortaHora(fin)+"'" + 
