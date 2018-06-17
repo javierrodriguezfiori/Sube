@@ -16,6 +16,7 @@ import java.util.GregorianCalendar;
 import dao.ViajeColectivoDao;
 import datos.Colectivo;
 import datos.Viaje;
+import datos.ViajeColectivo;
 import negocio.TransportePublicoABM;
 
 public class ControladorMostrarReportesColectivo extends HttpServlet {
@@ -43,7 +44,7 @@ public class ControladorMostrarReportesColectivo extends HttpServlet {
 			GregorianCalendar fechaHoraInicio = Funciones.traerFecha(fechaInicio, horaInicio);
 			GregorianCalendar fechaHoraFin = Funciones.traerFecha(fechaFin,horaFin);
 			Colectivo colectivo = (Colectivo)TransportePublicoABM.getInstance().traerTransportePublico(linea);
-			List<Viaje> viajesColectivo = ViajeColectivoDao.getInstance().traerViajesColectivo(fechaHoraInicio, fechaHoraFin, colectivo.getIdTransporte());
+			List<ViajeColectivo> viajesColectivo = ViajeColectivoDao.getInstance().traerViajesColectivo(fechaHoraInicio, fechaHoraFin, colectivo.getIdTransporte());
 			
 			request.setAttribute("viajesColectivo", viajesColectivo);
 			request.setAttribute("colectivo", colectivo);
