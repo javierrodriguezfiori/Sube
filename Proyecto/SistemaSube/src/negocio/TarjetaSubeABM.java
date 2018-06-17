@@ -22,10 +22,8 @@ public class TarjetaSubeABM {
 	
 	public TarjetaSube traerTarjetaSube(Usuario usuario) throws Exception{
 		TarjetaSube tarjetaSube = TarjetaSubeDao.getInstance().traerTarjetaSube(usuario);
-
-		if(noExiste(tarjetaSube))
-			throw new Exception("La tarjeta no existe");
 		
+		// No valido si existe. Me sirve null.
 		return tarjetaSube;
 	}
 

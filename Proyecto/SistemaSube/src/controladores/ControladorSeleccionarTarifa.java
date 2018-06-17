@@ -11,7 +11,7 @@ import datos.Sesion;
 import datos.Usuario;
 import datos.TarjetaSube;
 import negocio.TarjetaSubeABM;
-import utils.UsuarioInvalido;
+import utils.UsuarioInvalidoException;
 
 public class ControladorSeleccionarTarifa extends HttpServlet {
 	
@@ -48,7 +48,7 @@ public class ControladorSeleccionarTarifa extends HttpServlet {
 				break;
 		}
 			response.setStatus(200);
-		} catch (UsuarioInvalido ex) {
+		} catch (UsuarioInvalidoException ex) {
 			response.sendError(404);
 		} catch (Exception ex) {
 			response.sendError(500);

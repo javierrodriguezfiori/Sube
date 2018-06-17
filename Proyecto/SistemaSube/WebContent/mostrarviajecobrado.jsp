@@ -59,7 +59,7 @@
 				<h4 style="margin:10px;">Viaje realizado - Boleto</h4>
 				<div class="col-lg-6" ">
 					Monto: ${monto} <br>
-					Transporte: ${transporte} <br>
+					Transporte: ${linea} <br>
 				</div>
 				<div class="col-lg-6" ">
 					Fecha y hora: ${fechaYHora} <br>
@@ -69,7 +69,7 @@
 		</div>
 		<div class="container">
 			<div style="align:right">
-				<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
+				<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
 					<button type="submit" name="boton-volver" value="Volver" class="button">Realizar otro viaje</button>
 				</form>
 			</div>

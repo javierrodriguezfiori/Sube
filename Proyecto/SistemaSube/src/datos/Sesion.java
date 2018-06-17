@@ -1,5 +1,7 @@
 package datos;
 
+import negocio.TarjetaSubeABM;
+
 public class Sesion {
 	private static Sesion sesionUnica;
 	private Usuario usuarioLogeado;
@@ -19,5 +21,13 @@ public class Sesion {
 	
 	public Usuario getUsuarioLogeado() {
 		return this.usuarioLogeado;
+	}
+	
+	public void deslogear() {
+		setUsuarioLogeado(null);
+	}
+	
+	public TarjetaSube getTarjetaSubeDelUsuario() throws Exception {
+		return TarjetaSubeABM.getInstance().traerTarjetaSube(this.usuarioLogeado);
 	}
 }

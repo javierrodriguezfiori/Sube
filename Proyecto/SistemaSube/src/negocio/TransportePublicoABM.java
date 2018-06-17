@@ -2,8 +2,6 @@ package negocio;
 
 import java.util.List;
 
-
-
 import dao.TransportePublicoDao; 
 import datos.Colectivo;
 import datos.Subte;
@@ -91,8 +89,6 @@ public class TransportePublicoABM  {
     	
     	return costoViaje;
     }
-
-    
     
 	public List<TransportePublico> traerColectivos(){
 		return TransportePublicoDao.getInstance().traerColectivos();
@@ -108,4 +104,23 @@ public class TransportePublicoABM  {
 		return TransportePublicoDao.getInstance().traerSubtes();
 	}
 
+    public List<TransportePublico> traerTransportesSegunTexto(String transporteEnTexto) {
+    	List<TransportePublico> listaTransportes = null;
+    	
+    	switch (transporteEnTexto) {
+    		case "colectivo":
+    			listaTransportes = traerColectivos();
+    			break;
+    		case "subte":
+    			listaTransportes = traerSubtes();
+    			break;
+    		case "tren":
+    			listaTransportes = traerTrenes();
+    			break;
+    		default:
+    			break;
+    	}
+    	
+    	return listaTransportes;
+    }
 }

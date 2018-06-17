@@ -82,13 +82,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8" style="padding-top:50px;">
-						<label class="subtitle">Seleccione la estación o el tramo</label> <BR>
-						<select name="tramoOParada" style="width:200px; align:center;">
-							<option values="0">Selecciona una parada o tramo</option>
-							<% for (String tramoOParada : paradasTramos) { %>
-							<option value="<%=tramoOParada%>"><%=tramoOParada%></option>
-							<% } %>
-						</select>
+
 					</div>
 				</div>
 			</div>
