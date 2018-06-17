@@ -8,7 +8,7 @@
 %> 
  
 <label class="subtitle">Seleccione la línea del transporte en la que viajará</label> <BR>
-<select id="lineas" style="width:200px; align:center;">
+<select id="lineas" name="lineas" style="width:200px; align:center;">
 	<option values="0">Selecciona una línea</option>
 	<% for (TransportePublico transporte : transportesPublicos) { %>
 	<option value="<%=transporte.getIdTransporte()%>"><%=transporte.getLinea()%></option>

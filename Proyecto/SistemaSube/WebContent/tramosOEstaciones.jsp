@@ -7,7 +7,7 @@
 %> 
  
 <label class="subtitle">Seleccione la estación o el tramo</label> <BR>
-<select id="tramoOEstacion" style="width:200px; align:center;">
+<select id="tramoOEstacion" name="tramoOEstacion" style="width:200px; align:center;">
 	<option values="0">Selecciona una parada o tramo</option>
 	<% for (String tramoOEstacion : tramosOEstaciones) { %>
 	<option value="<%=tramoOEstacion%>"><%=tramoOEstacion%></option>

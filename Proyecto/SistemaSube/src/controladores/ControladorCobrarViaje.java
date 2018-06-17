@@ -34,7 +34,6 @@ import utils.UsuarioInvalidoException;
 public class ControladorCobrarViaje extends HttpServlet implements LoginValidable {
 	
 	TerminalViaje terminalViaje = new TerminalViaje();
-	TarjetaSubeABM tarjetaSubeABM = TarjetaSubeABM.getInstance();
 	TransportePublicoABM transportePublicoABM = TransportePublicoABM.getInstance();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,15 +49,28 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 		response.setContentType("text/html;charset=UTF-8");
 		
 		try {			
-			String transportePublico = (String)request.getParameter("transportePublico");
-			String linea = (String) request.getParameter("linea");
-			String estacion = (String) request.getParameter("tramoOEstacion");
 			
 			if (!existeUsuarioLogeado())
 				throw new UsuarioInvalidoException("No existe un usuario logeado.");
 			
 			if(!usuarioTieneTarjetaSube())
 				throw new TarjetaSubeInexistenteException("No existe una tarjeta sube registrada en este usuario.");
+			
+			String linea = (String) request.getParameter("lineas");
+			String tramoOEstacion = (String) request.getParameter("tramoOEstacion");
+			String fechaEnTexto = (String) request.getParameter("fecha");
+			
+			TransportePublico transportePublico = TransportePublicoABM.getInstance().traer(Long.parseLong(linea));
+			GregorianCalendar fechaDeViaje = parsearFechaEnTexto(fechaEnTexto);
+			
+			Viaje viaje = crearViaje(transportePublico, tramoOEstacion, fechaDeViaje);
+			terminalViaje.cobrarViaje(viaje);
+			request.setAttribute("linea", viaje.getTransporte().getLinea());
+			request.setAttribute("monto", String.valueOf(viaje.getMonto()));
+			request.setAttribute("fechaYHora", Funciones.traerFechaCortaHora(viaje.getFechaHora()));
+			request.setAttribute("saldo", String.valueOf(viaje.getTarjetaSube().getSaldo()));
+			response.setStatus(200);
+			request.getRequestDispatcher("mostrarviajecobrado.jsp").forward(request, response);
 		} catch (SaldoInsuficienteException ex) {
 			response.setStatus(400);
 			request.setAttribute("error", "Saldo insuficiente.");
@@ -68,5 +80,59 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 			request.setAttribute("error", "Ocurrió un error interno en el sistema, por favor vuelva a intentarlo.");
 			request.getRequestDispatcher("/peticionerronea.jsp").forward(request, response);
 		}
+	}
+	
+	private GregorianCalendar parsearFechaEnTexto(String fechaEnTexto) {
+		GregorianCalendar fechaFormateada = null;
+		
+		if (fechaEnTexto.isEmpty())
+			fechaFormateada = new GregorianCalendar();
+		else {
+			int dia = Integer.parseInt(fechaEnTexto.substring(0, 2));
+			int mes = Integer.parseInt(fechaEnTexto.substring(3, 5));
+			int anio = Integer.parseInt(fechaEnTexto.substring(6, 10));
+			int hora = Integer.parseInt(fechaEnTexto.substring(11, 13));
+			int minutos = Integer.parseInt(fechaEnTexto.substring(14, 16));
+			fechaFormateada = new GregorianCalendar(anio, mes - 1, dia, hora, minutos);
+		}
+		
+		return fechaFormateada;	
+	}
+	
+	private Viaje crearViaje(TransportePublico transportePublico, String tramoOEstacion, GregorianCalendar fechaDeViaje) throws Exception {
+		TarjetaSube tarjetaSubeLogeada = Sesion.obtenerSesionActual().getTarjetaSubeDelUsuario();
+		Viaje viaje = null;
+		
+		if (transportePublico instanceof Tren) {
+			Parada paradaTren = (Parada) transportePublicoABM
+					.traerTrenYParadas(transportePublico.getIdTransporte())
+					.getParadas()
+					.stream()
+					.filter(p -> p.getNombre().equals(tramoOEstacion))
+					.findFirst()
+					.get();
+			viaje = new ViajeTren(0.0f, fechaDeViaje, tarjetaSubeLogeada, transportePublico, paradaTren, null);
+			
+		} else if (transportePublico instanceof Colectivo) {
+			Tramo tramoColectivo = (Tramo) transportePublicoABM
+					.traerColectivoYTramos(transportePublico.getIdTransporte())
+					.getTramos()
+					.stream()
+					.filter(t -> t.getCosto() == Float.parseFloat(tramoOEstacion))
+					.findFirst()
+					.get();
+			viaje = new ViajeColectivo(0.0f, fechaDeViaje, tarjetaSubeLogeada, transportePublico, tramoColectivo);
+			
+		} else if (transportePublico instanceof Subte) {
+			Parada paradaSubte = (Parada) transportePublicoABM.traerSubteYParadas(transportePublico.getIdTransporte())
+					.getParadas()
+					.stream()
+					.filter(p -> p.getNombre().equals(tramoOEstacion))
+					.findFirst()
+					.get();
+			viaje = new ViajeSubte(0.0f, fechaDeViaje, tarjetaSubeLogeada, transportePublico, paradaSubte);
+		}
+		
+		return viaje;
 	}
 }

@@ -16,7 +16,10 @@
 	    <link rel="icon" type="image/png" href="http://lametro.edu.ec/wp-content/uploads/2017/03/favicon.png">
 	    <link rel="stylesheet" href="https://gla2imagenes.blob.core.windows.net/constanciadigitalresources/resources/js/plugins/bootstrap/dist/css/bootstrap.min.css?sv=2017-04-17&si=constanciadigitalresourcesro-1602180B752&sr=c&sig=I4p4EsqgDQCjnWb3e5TJDSaW5iBsit%2FwVoCr4lHZBpQ%3D">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="js/datetimepicker-master/build/jquery.datetimepicker.min.css">
 		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+		
 		<style>
 	      body {
 	        background-color: white;
@@ -53,19 +56,39 @@
 			padding-top:50px;
 		}
 		
+		.description {
+			display:none;
+			border:1px solid #F00;
+			width:150px;
+		}‹
+		
 		.button:hover {opacity: 1}
 	
 	    </style>
 	    
   		<script type="text/javascript">
   			// $("#error").removeClass("hidden"); Como mostrar un elemento del HTML oculto
-  		
+  			
+  			$(document).ready(function() {
+  				$('#datetime').hover(function(e) {
+  					$('.description').show();
+  				},
+  				function(e){
+  					$('.description').hide();
+  				})
+  			})
+  			
+  			$(document).ready(function() {
+  				$('#datetime').datetimepicker({
+  					format: 'd/m/Y H:i',
+  					minDate: '0'
+  				});
+  			})
+  			
   			// Primer AJAX a ejecutar
   			// Carga las lineas
 			$(document).ready(function() { 
-				var d = new Date();
-				document.getElementById("demo").innerHTML = d;
-				$('input:radio[name=radio-transportes]').change(function() { ///input:radio[name=bedStatus]:checked
+				$('input:radio[name=radio-transportes]').change(function() {
 					var transportePublico = $('#radio-transportes:checked').val();
 					$.ajax({
 						method: "POST",
@@ -101,15 +124,16 @@
 					$("#response-tramos-o-estaciones").html(data);
 				})
 			});
-  			
+  			/*
   			$(document).on("click", ".button", function(event) {
-  				var transportePublico = $('transportes-publicos:checked:checked').val();
   				var idLineaDeTransporte = $('#lineas option:selected').val();
-  				var tramoOEstacion = $('tramoOEstacion option:selected').val();
+  				var tramoOEstacion = $('#tramoOEstacion option:selected').val();
+  				var fecha = $('#datetime').val();
+  				alert(fecha);
   				$.ajax({
   					method: "POST",
   					url: "CobrarViaje",
-  					data: { idLineaDeTransporte: idLineaDeTransporte, transportePublico: transportePublico, tramoOEstacion: tramoOEstacion },
+  					data: { idLineaDeTransporte: idLineaDeTransporte, tramoOEstacion: tramoOEstacion, fecha: fecha },
   					async: false,
 					statusCode: {
 						500: function() {
@@ -117,10 +141,10 @@
 						}
 					}
   				}).done(function(data) {
-  					alert("Un exito");	
+  					window.location.href = "mostrarviajecobrado.jsp";	
   				}) 
   				
-  			});
+  			});*/
 		</script>
 	    
 	</head>
@@ -132,30 +156,35 @@
 			TarjetaSube tarjetaDeUsuario = abmSube.traerTarjetaSube(usuarioLogeado);
 		%>
       	<div class="container">
-	        <div class="row">
-	          <div class="col-lg-6" style="padding-top:30px;">
-	            <label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=tarjetaDeUsuario.getNroTarjeta() %></label> <br>
-	            <label id="demo"></label>
-	          </div>
-	        </div>
-	        <div class="row">
-	           <div class="col-lg-3 opciones">
-	              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
-	              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren" checked/>
-	              <label for="radio" >Tren</label>
-	              <input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
-	              <label for="radio">Subte</label>
-	              <input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
-	              <label for="radio">Colectivo</label>
-	          </div>
-   	          <div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
-   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
-        	</div>
-        	<div class="row">
-       			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
-	          		<input type="submit" value="Avanzar" class="button">
-	          	</div>
-        	</div>
+      		<form method="POST" action="/SistemaSube/CobrarViaje">
+		        <div class="row">
+		          <div class="col-lg-6" style="padding-top:30px;">
+		            <label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=tarjetaDeUsuario.getNroTarjeta() %></label> <br>
+		          </div>
+		          <div class="col-lg-6" style="padding-top:30px;">
+		          	<p> Fecha del viaje: <input id="datetime" name="fecha" type="text"> </p>
+		          	<div class="description">POPUP</div>
+		          </div>
+		        </div>
+		        <div class="row">
+		           <div class="col-lg-3 opciones">
+		              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
+		              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren" checked/>
+		              <label for="radio" >Tren</label>
+		              <input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
+		              <label for="radio">Subte</label>
+		              <input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
+		              <label for="radio">Colectivo</label>
+		          </div>
+	   	          <div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
+	   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
+	        	</div>
+	        	<div class="row">
+	       			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
+		          		<input type="submit" value="Emitir boleto" class="button">
+		          	</div>
+	        	</div>
+        	</form>
         </div>
 	</body>
 </html>
