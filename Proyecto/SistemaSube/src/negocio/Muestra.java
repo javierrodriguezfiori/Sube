@@ -40,11 +40,11 @@ public class Muestra {
 	private int idMuestra2;
 	private String nombre;
 	private String nombre2;
-	private int muestra;
+	private float muestra;
 	
 	
 	
-	public Muestra(int idMuestra, String nombre, int muestra) {
+	public Muestra(int idMuestra, String nombre, float muestra) {
 		super();
 		this.idMuestra = idMuestra;
 		this.nombre = nombre;
@@ -53,7 +53,7 @@ public class Muestra {
 		
 	}
 	
-	public Muestra(int idMuestra,int idMuestra2, String nombre,String nombre2, int muestra) {
+	public Muestra(int idMuestra,int idMuestra2, String nombre,String nombre2, float muestra) {
 		super();
 		this.idMuestra = idMuestra;
 		this.nombre = nombre;
@@ -77,11 +77,11 @@ public class Muestra {
 	}
 
 	
-	public int getMuestra() {
+	public float getMuestra() {
 		return muestra;
 	}
 
-	public void setMuestra(int muestra) {
+	public void setMuestra(float muestra) {
 		this.muestra = muestra;
 	}
 
