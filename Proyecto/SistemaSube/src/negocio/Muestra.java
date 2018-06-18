@@ -4,7 +4,7 @@ package negocio;
 
 
 /**
- * Esta Clase define una Muestra, según el tipo de estadistica la muestra
+ * Esta Clase define una Muestra, según el tipo de Transporte la muestra
  * define la informacion de la siguiente manera:
  * Colectivo:
  *  idMuestra= id origen tramo
@@ -25,9 +25,11 @@ package negocio;
  *  nombre2 = null
  *  muestra =  (depende de la estadistica solicitada) 
  * 
- * Las atributos idMuestra y idMuestra2 no son datos importantes solo se utilazan el 
+ * Las atributos idMuestra y idMuestra2 no son datos importantes solo se utilazan en el 
  * algoritmo de estadistica. Los datos importantes son nombre y muestra(en el caso
  * de los trenes nombre2 tambien).
+ * 
+ * 
  * 
  * @author Mauro Lucas Pereyra
  * @version 17/06/2018
@@ -40,11 +42,11 @@ public class Muestra {
 	private int idMuestra2;
 	private String nombre;
 	private String nombre2;
-	private int muestra;
+	private float muestra;
 	
 	
 	
-	public Muestra(int idMuestra, String nombre, int muestra) {
+	public Muestra(int idMuestra, String nombre, float muestra) {
 		super();
 		this.idMuestra = idMuestra;
 		this.nombre = nombre;
@@ -53,7 +55,7 @@ public class Muestra {
 		
 	}
 	
-	public Muestra(int idMuestra,int idMuestra2, String nombre,String nombre2, int muestra) {
+	public Muestra(int idMuestra,int idMuestra2, String nombre,String nombre2, float muestra) {
 		super();
 		this.idMuestra = idMuestra;
 		this.nombre = nombre;
@@ -77,11 +79,11 @@ public class Muestra {
 	}
 
 	
-	public int getMuestra() {
+	public float getMuestra() {
 		return muestra;
 	}
 
-	public void setMuestra(int muestra) {
+	public void setMuestra(float muestra) {
 		this.muestra = muestra;
 	}
 
