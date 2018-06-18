@@ -4,7 +4,7 @@ package negocio;
 
 
 /**
- * Esta Clase define una Muestra, según el tipo de estadistica la muestra
+ * Esta Clase define una Muestra, según el tipo de Transporte la muestra
  * define la informacion de la siguiente manera:
  * Colectivo:
  *  idMuestra= id origen tramo
@@ -25,9 +25,11 @@ package negocio;
  *  nombre2 = null
  *  muestra =  (depende de la estadistica solicitada) 
  * 
- * Las atributos idMuestra y idMuestra2 no son datos importantes solo se utilazan el 
+ * Las atributos idMuestra y idMuestra2 no son datos importantes solo se utilazan en el 
  * algoritmo de estadistica. Los datos importantes son nombre y muestra(en el caso
  * de los trenes nombre2 tambien).
+ * 
+ * 
  * 
  * @author Mauro Lucas Pereyra
  * @version 17/06/2018
