@@ -1,0 +1,16 @@
+idParada;Nombre;Distancia
+1;Constitucion;0
+2;Hipólito Yrigoyen;2,60
+3;D.Santillán Y M.Kosteki;0.9
+4;Gerli;2,78
+5;Lanús;2,50
+6;Remedios de Escalada;2,16
+7;Banfield;2,16
+8;Lomas de Zamora;2,02
+9;Temperley;1,66
+10;Adrogue;2,35
+11;Burzaco;3,14
+12;Longhcamps;3,50
+13;Glew;3,22
+14;Guernica;3,33
+15;Alejandro Korn;7,03
