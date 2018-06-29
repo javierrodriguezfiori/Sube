@@ -1,9 +1,12 @@
 package datos;
 
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import negocio.SeccionRecorridoABM;
 import negocio.SeccionABM;
 import datos.ViajeTren;
+import funciones.Funciones;
 public class Tren extends TransportePublico {
 	
    private Set<Parada> paradas;
@@ -39,27 +42,43 @@ public class Tren extends TransportePublico {
 		return costoViaje;
 	}
 	
-	public int calulcarSeccionViaje(Parada origen,Parada destino) {
-		int seccion = 1;
-		for(Parada parada : paradas) {
+	public float calcularDistanciaViaje(Parada origen,Parada destino) {
+		float distancia = 0;
+		List<Parada> listaParadas = new ArrayList<Parada>();
+		for(Parada parada : this.paradas) {
+			listaParadas.add(parada);
+		}
+		
+		
+		
+		int i=0;
+		boolean encontrado = false;
+		while(i<listaParadas.size()) {
+			
+			if(listaParadas.get(i).equals(origen) || listaParadas.get(i).equals(destino)) {
+				encontrado = !encontrado;
+			}
+			
+			if(encontrado) {
+				
+				distancia += listaParadas.get(i+1).getDistanciaKM();
+			}
+			
+			i++;
 			
 		}
-		return seccion;
+		
+		return distancia;
 	}
 	
-	public float calcularDistancia(Parada origen,Parada destino) {
-		float distancia=0;
-		boolean encontrado = false;
-		for(Parada p : paradas) {
-			if(p.equals(destino) || p.equals(origen)) {
-				encontrado = !encontrado;
-				
-			}
-			if(encontrado) {
-				distancia += p.getDistanciaKM();
-			}
-		}
-		return distancia;
+	public int calcularSeccionViaje(Parada origen,Parada destino) {
+		
+		int seccion=1;
+		float distancia = calcularDistanciaViaje(origen,destino);
+		if(distancia>13) seccion = 2;
+		if(distancia>27) seccion = 3;
+		
+		return seccion;
 	}
 
 	@Override
