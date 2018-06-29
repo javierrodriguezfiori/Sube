@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+			$(document).ready(function() {
+				$('#login').click(function() {
+					var documento = $('#documento').val();
+					var password = $('#password').val();
+					$.ajax({
+						method: "POST",
+						url: "Login",
+						data: { documento: documento, password: password},
+						async: false,
+						statusCode: {
+							404: function() {
+								$("#error").removeClass("hidden");
+							},
+							500: function() {
+								window.location.href = "peticionerronea.jsp";
+							}
+						}
+					}).done(function(data) {
+						window.location.href = "cobrarViaje.jsp";
+					})
+				});
+			});
+		</script>
+		<include file="/header.jsp" >
+		<form>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4" style="padding-top:25px;">
+						<label for="documento" style="padding:35px;">Documento: </label>
+						<input id="documento" name="documento">
+						<label for="password" style="padding:25px;">Password: </label>
+						<input id="password" name="password" type="password"> <p id="error" class="hidden">Documento o clave incorrecto, vuelva a intentar.</p>
+					</div>
+					<div class="col-lg-4" style="padding-top:170px;">
+						<input id="login" type="button" class="btn btn-succes;" value="Entrar"/>
+					</div>
+
+				</div>
+			</div>
+		</form>
+</body>
+</html>
