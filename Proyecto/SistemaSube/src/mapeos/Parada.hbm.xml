@@ -8,6 +8,7 @@
 	           
 	        </id>
 	        <property column="nombre" name="nombre" type="string"/>
+	        <property column="distanciaKM" name="distanciaKM" type="float"/>
 	        
 	        
 	        

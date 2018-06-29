@@ -38,6 +38,29 @@ public class Tren extends TransportePublico {
 		}else throw new Exception("El viaje no es ViajeTren");
 		return costoViaje;
 	}
+	
+	public int calulcarSeccionViaje(Parada origen,Parada destino) {
+		int seccion = 1;
+		for(Parada parada : paradas) {
+			
+		}
+		return seccion;
+	}
+	
+	public float calcularDistancia(Parada origen,Parada destino) {
+		float distancia=0;
+		boolean encontrado = false;
+		for(Parada p : paradas) {
+			if(p.equals(destino) || p.equals(origen)) {
+				encontrado = !encontrado;
+				
+			}
+			if(encontrado) {
+				distancia += p.getDistanciaKM();
+			}
+		}
+		return distancia;
+	}
 
 	@Override
 	public String toString() {
