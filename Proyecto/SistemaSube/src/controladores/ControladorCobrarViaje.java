@@ -33,6 +33,7 @@ import utils.UsuarioInvalidoException;
 
 public class ControladorCobrarViaje extends HttpServlet implements LoginValidable {
 	
+	TarjetaSubeABM tarjetaSubeABM = TarjetaSubeABM.getInstance();
 	TerminalViaje terminalViaje = TerminalViaje.getInstance();
 	TransportePublicoABM transportePublicoABM = TransportePublicoABM.getInstance();
 	
@@ -49,12 +50,9 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 		response.setContentType("text/html;charset=UTF-8");
 		
 		try {			
+			String nroTarjeta = (String) request.getParameter("tarjetasube");
 			
-			if (!existeUsuarioLogeado())
-				throw new UsuarioInvalidoException("No existe un usuario logeado.");
-			
-			if(!usuarioTieneTarjetaSube())
-				throw new TarjetaSubeInexistenteException("No existe una tarjeta sube registrada en este usuario.");
+			TarjetaSube tarjetaSube = validarTarjetaSube(nroTarjeta);
 			
 			String linea = (String) request.getParameter("lineas");
 			String tramoOEstacion = (String) request.getParameter("tramoOEstacion");
@@ -63,7 +61,7 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 			TransportePublico transportePublico = TransportePublicoABM.getInstance().traer(Long.parseLong(linea));
 			GregorianCalendar fechaDeViaje = parsearFechaEnTexto(fechaEnTexto);
 			
-			Viaje viaje = crearViaje(transportePublico, tramoOEstacion, fechaDeViaje);
+			Viaje viaje = crearViaje(transportePublico, tramoOEstacion, fechaDeViaje, tarjetaSube);
 			terminalViaje.cobrarViaje(viaje);
 			request.setAttribute("linea", viaje.getTransporte().getLinea());
 			request.setAttribute("monto", String.valueOf(viaje.getMonto()));
@@ -71,6 +69,10 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 			request.setAttribute("saldo", String.valueOf(viaje.getTarjetaSube().getSaldo()));
 			response.setStatus(200);
 			request.getRequestDispatcher("mostrarviajecobrado.jsp").forward(request, response);
+		} catch (TarjetaSubeInexistenteException ex) {
+			response.setStatus(404);
+			request.setAttribute("error", ex.getMessage());
+			request.getRequestDispatcher("/peticionerronea.jsp").forward(request, response);
 		} catch (SaldoInsuficienteException ex) {
 			response.setStatus(400);
 			request.setAttribute("error", "Saldo insuficiente.");
@@ -99,8 +101,7 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 		return fechaFormateada;	
 	}
 	
-	private Viaje crearViaje(TransportePublico transportePublico, String tramoOEstacion, GregorianCalendar fechaDeViaje) throws Exception {
-		TarjetaSube tarjetaSubeLogeada = Sesion.obtenerSesionActual().getTarjetaSubeDelUsuario();
+	private Viaje crearViaje(TransportePublico transportePublico, String tramoOEstacion, GregorianCalendar fechaDeViaje, TarjetaSube tarjetaSube) throws Exception {
 		Viaje viaje = null;
 		
 		if (transportePublico instanceof Tren) {
@@ -111,7 +112,7 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 					.filter(p -> p.getNombre().equals(tramoOEstacion))
 					.findFirst()
 					.get();
-			viaje = new ViajeTren(0.0f, fechaDeViaje, tarjetaSubeLogeada, transportePublico, paradaTren, null);
+			viaje = new ViajeTren(0.0f, fechaDeViaje, tarjetaSube, transportePublico, paradaTren, null);
 			
 		} else if (transportePublico instanceof Colectivo) {
 			Tramo tramoColectivo = (Tramo) transportePublicoABM
@@ -121,7 +122,7 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 					.filter(t -> t.getCosto() == Float.parseFloat(tramoOEstacion))
 					.findFirst()
 					.get();
-			viaje = new ViajeColectivo(0.0f, fechaDeViaje, tarjetaSubeLogeada, transportePublico, tramoColectivo);
+			viaje = new ViajeColectivo(0.0f, fechaDeViaje, tarjetaSube, transportePublico, tramoColectivo);
 			
 		} else if (transportePublico instanceof Subte) {
 			Parada paradaSubte = (Parada) transportePublicoABM.traerSubteYParadas(transportePublico.getIdTransporte())
@@ -130,9 +131,23 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 					.filter(p -> p.getNombre().equals(tramoOEstacion))
 					.findFirst()
 					.get();
-			viaje = new ViajeSubte(0.0f, fechaDeViaje, tarjetaSubeLogeada, transportePublico, paradaSubte);
+			viaje = new ViajeSubte(0.0f, fechaDeViaje, tarjetaSube, transportePublico, paradaSubte);
 		}
 		
 		return viaje;
+	}
+	
+	private TarjetaSube validarTarjetaSube(String nroTarjeta) throws TarjetaSubeInexistenteException {
+		TarjetaSube tarjetaSube = tarjetaSubeABM.validarTarjetaSube(nroTarjeta);
+		
+		if (tarjetaSube == null)
+		{
+			if (Sesion.obtenerSesionActual().getUsuarioLogeado() != null)
+				throw new TarjetaSubeInexistenteException("Debe registrar una tarjeta sube antes de realizar un viaje.");
+			else
+				throw new TarjetaSubeInexistenteException("Debe ingresar una tarjeta sube para realizar un viaje.");
+		}
+		
+		return tarjetaSube;
 	}
 }

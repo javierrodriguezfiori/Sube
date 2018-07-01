@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@page import="datos.Viaje" %>
+<%@page import="datos.Sesion" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -68,9 +69,14 @@
 			</div>
 		</div>
 		<div class="container">
+		<% 
+		String retorno = "/SistemaSube/home.jsp";
+		if (Sesion.obtenerSesionActual().getUsuarioLogeado() == null)
+					retorno = "/SistemaSube/index.jsp";
+		%>
 			<div style="align:right">
-				<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
-					<button type="submit" name="boton-volver" value="Volver" class="button">Realizar otro viaje</button>
+				<form action="<%=retorno%>" method="POST">
+					<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
 				</form>
 			</div>
 		</div>
