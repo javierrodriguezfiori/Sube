@@ -32,7 +32,7 @@
 							}
 						}
 					}).done(function(data) {
-						window.location.href = "cobrarViaje.jsp";
+						window.location.href = "home.jsp";
 					})
 				});
 			});
