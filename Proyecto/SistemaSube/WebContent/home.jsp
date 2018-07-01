@@ -71,8 +71,8 @@
 					</form>				
 				</div>
 				<div class="col-lg-4">
-					<form action="/SistemaSube/reportes.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="Reportes" class="button">Reportes</button>
+					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
+						<button type="submit" name="boton-volver" value="Reportes" class="button">Consultas</button>
 					</form>				
 				</div>
 				<div class="col-lg-4">
