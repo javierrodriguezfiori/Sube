@@ -2,6 +2,7 @@ package negocio;
 
 
 import dao.TarjetaSubeDao;
+import datos.Sesion;
 import datos.TarjetaSube;
 import datos.Usuario;
 import java.util.GregorianCalendar;
@@ -71,8 +72,6 @@ public class TarjetaSubeABM {
 			}
 	}
 	
-	
-	
 	public void desasociar(long nroTarjeta) throws Exception{ 
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
 		if(noExiste(t))
@@ -108,6 +107,21 @@ public class TarjetaSubeABM {
 		}
 	
 		return descuento;
+	}
+	
+	public TarjetaSube validarTarjetaSube(String nroTarjeta) {
+		TarjetaSube tarjetaSube = null;
+		
+		try {
+			if (Sesion.obtenerSesionActual().getUsuarioLogeado() != null)
+				tarjetaSube = Sesion.obtenerSesionActual().getTarjetaSubeDelUsuario();
+			else if (nroTarjeta != null)
+				tarjetaSube = traerTarjetaSube(Long.parseLong(nroTarjeta));
+		} catch (NumberFormatException e) {	
+			
+		} catch (Exception e) {	}
+		
+		return tarjetaSube;
 	}
 	
 	private static <T> boolean noExiste(T obj) {
