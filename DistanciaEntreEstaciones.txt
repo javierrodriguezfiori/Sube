@@ -1,7 +1,7 @@
 idParada;Nombre;Distancia
 1;Constitucion;0
 2;Hipólito Yrigoyen;2,60
-3;D.Santillán Y M.Kosteki;0.9
+3;D.Santillán Y M.Kosteki;0,9
 4;Gerli;2,78
 5;Lanús;2,50
 6;Remedios de Escalada;2,16
