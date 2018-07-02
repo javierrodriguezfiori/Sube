@@ -11,6 +11,8 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		
 		<link rel="icon" type="image/png" href="http://lametro.edu.ec/wp-content/uploads/2017/03/favicon.png">
+		<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.css">
+		<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
 		<script src="js/jquery-3.3.1.min.js"></script>
 		
 		<script type="text/javascript">
@@ -38,60 +40,30 @@
 			});
 		</script>
 		<style>
-			p.hidden {
-				display: none
+		.center-screen {
+ 			 display: flex;
+ 			 flex-direction: column;
+			 justify-content: center;
+ 			 align-items: center;
+  			 text-align: center;
 			}
-			
-				      body {
-	        background-color: white;
-	        font-family: 'Roboto';
-	      }
-	
-	      .formulario {
-	          background: gainsboro;
-	      }
-	
-	      .subtitle {
-	        font-size: 16px;
-	      }
-	
-	      .radio-option {
-	        padding-right: 10px;
-	      }
-	      
-      		.button {
-		   	background-color: #008CBA;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 12px;
-		    border-radius: 8px;
-		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-		    opacity: 0.6;
-		}
 		</style>
 		
 	</head>
 	<body>
-		<%@ include file="/header.jsp" %>
-		<form>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4" style="padding-top:25px;">
-						<label for="documento" style="padding:35px;">Documento: </label>
-						<input id="documento" name="documento">
-						<label for="password" style="padding:25px;">Password: </label>
-						<input id="password" name="password" type="password"> <p id="error" class="hidden">Documento o clave incorrecto, vuelva a intentar.</p>
-					</div>
-					<div class="col-lg-4" style="padding-top:170px;">
-						<input id="login" type="button" class="btn btn-succes;" value="Entrar"/>
-					</div>
-
-				</div>
-			</div>
+		<%@ include file="/header.jsp" %>	
+		<form class="center-screen">
+			<h4>Inicio</h4>
+    		<div class="form-group">
+     			<label for="documento" style="padding:35px">Documento: </label>
+				<input id="documento" name="documento" class="form-control" placeholder="Documento" style="width:200px">
+      			<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    		</div>
+    		<div class="form-group">
+    			<label for="password" style="padding:25px">Password: </label>
+				<input id="password" name="password" type="password" class="form-control" placeholder="Password" style="width:200px"> <p id="error" class="hidden">Documento o clave incorrecto, vuelva a intentar.</p>
+   			</div>
+    		<button type="submit" id="login" class="btn btn-primary" value="Entrar">Entrar</button>
 		</form>
 	</body>
 </html>

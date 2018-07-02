@@ -12,75 +12,28 @@
 	    <link rel="icon" type="image/png" href="http://lametro.edu.ec/wp-content/uploads/2017/03/favicon.png">
 	    <link rel="stylesheet" href="https://gla2imagenes.blob.core.windows.net/constanciadigitalresources/resources/js/plugins/bootstrap/dist/css/bootstrap.min.css?sv=2017-04-17&si=constanciadigitalresourcesro-1602180B752&sr=c&sig=I4p4EsqgDQCjnWb3e5TJDSaW5iBsit%2FwVoCr4lHZBpQ%3D">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.css">
+		<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
 		
-		<style>
-	      body {
-	        background-color: white;
-	        font-family: 'Roboto';
-	      }
 	
-	      .formulario {
-	          background: gainsboro;
-	      }
-	
-	      .subtitle {
-	        font-size: 16px;
-	      }
-	
-	      .radio-option {
-	        padding-right: 10px;
-	      }
-	      
-	      .btn-link{
-			  border:none;
-			  outline:none;
-			  background:none;
-			  cursor:pointer;
-			  color:#0000EE;
-			  padding:0;
-			  text-decoration:underline;
-			  font-family:inherit;
-			  font-size:inherit;
-			}
-			
-		.button {
-		    background-color: #008CBA;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 12px;
-		    border-radius: 8px;
-		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-		    opacity: 0.6;
-		}
-		
-		.button:hover {opacity: 1}
-	    </style>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
 		
-		<div class= "container">
-			<div class="row">
-				<div class="col-lg-4">
-					<form action="/SistemaSube/login.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="Logearse" class="button">Entrar</button>
+				<div style="margin-top:10%">
+					<form action="/SistemaSube/login.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+						<button type="submit" name="boton-volver" value="Logearse" class="btn btn-primary" style="display: inline-block">Entrar</button>
+					</form>				
+				
+					<form action="" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+						<button type="submit" name="boton-volver" value="Registrarse" class="btn btn-primary" style="display: inline-block">Registrarse</button>
+					</form>				
+				
+				
+					<form action="/SistemaSube/cobrarViajeNoLogeado.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+						<button type="submit" name="boton-volver" value="EmitirBoleto" class="btn btn-primary" style="display: inline-block">Realizar viaje</button>
 					</form>				
 				</div>
-				<div class="col-lg-4">
-					<form action="" method="POST">
-						<button type="submit" name="boton-volver" value="Registrarse" class="button">Registrarse</button>
-					</form>				
-				</div>
-				<div class="col-lg-4">
-					<form action="/SistemaSube/cobrarViajeNoLogeado.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="EmitirBoleto" class="button">Realizar viaje</button>
-					</form>				
-				</div>
-			</div>
-		</div>
+			
 	</body>
 </html>
