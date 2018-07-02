@@ -9,7 +9,7 @@
  
 <label class="subtitle">Seleccione la línea del transporte</label> <BR>
 <select id="lineas" name="lineas" style="width:200px; align:center;">
-	<option value="0">Todos</option>
+	<option value="0">Todas las Lineas</option>
 	<% for (TransportePublico transporte : transportesPublicos) { %>
 	<option value="<%=transporte.getIdTransporte()%>"><%=transporte.getLinea()%></option>
 	<% } %>
