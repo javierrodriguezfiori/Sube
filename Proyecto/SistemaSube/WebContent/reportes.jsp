@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Reportes</title>
-
+<link rel="stylesheet" href="js/datetimepicker-master/build/jquery.datetimepicker.min.css">
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
 
@@ -80,9 +80,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#reporte').click(function(){
-		var fechaInicio = $('#fechaInicio').val();
+		var fechaInicio = $('#datetimeInicio').val();
 		
-		var fechaFin = $('#fechaFin').val();
+		var fechaFin = $('#datetimeFin').val();
 		
 		var idLineaDeTransporte = $('#lineas option:selected').val();
 		var transportePublico = $('#radio-transportes:checked').val();
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-		$('#datetime').hover(function(e) {
+		$('#datetimeInicio').hover(function(e) {
 			$('.description').show();
 		},
 		function(e){
@@ -137,9 +137,25 @@ $(document).ready(function() {
 	})
 	
 	$(document).ready(function() {
-		$('#datetime').datetimepicker({
-			format: 'd/m/Y H:i',
-			minDate: '0'
+		$('#datetimeInicio').datetimepicker({
+			format: 'd/m/Y H:i'
+			
+		});
+	})
+
+$(document).ready(function() {
+		$('#datetimeFin').hover(function(e) {
+			$('.description').show();
+		},
+		function(e){
+			$('.description').hide();
+		})
+	})
+	
+	$(document).ready(function() {
+		$('#datetimeFin').datetimepicker({
+			format: 'd/m/Y H:i'
+			
 		});
 	})
 
@@ -153,11 +169,11 @@ $(document).ready(function() {
 <h1>Reportes</h1>
 <form class="navbar-form navbar-right">
 <div class="col-lg-6" style="padding-top:50px;">
-<p class="tool"> Fecha de Inicio: <input id="fechaInicio" name="fecha" type="text"> 
+<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
 <span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 </div>
 <div>
-<p class="tool"> Fecha de Fin: <input id="fechaFin" name="fecha" type="text"> 
+<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
 <span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 </div>
 <label class="subtitle">Seleccione tipo de Transporte</label> <BR>
