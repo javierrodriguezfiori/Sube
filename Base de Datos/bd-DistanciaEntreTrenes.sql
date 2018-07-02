@@ -153,7 +153,7 @@ DROP TABLE IF EXISTS `parada`;
 CREATE TABLE `parada` (
   `idParada` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
-  `distanciaKM` float DEFAULT NULL,
+  `distanciaKM` float DEFAULT '0',
   PRIMARY KEY (`idParada`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -164,7 +164,7 @@ CREATE TABLE `parada` (
 
 LOCK TABLES `parada` WRITE;
 /*!40000 ALTER TABLE `parada` DISABLE KEYS */;
-INSERT INTO `parada` VALUES (1,'Constitucion',0),(2,'Hipólito Yrigoyen',2.6),(3,'D.Santillán Y M.Kosteki',0.9),(4,'Gerli',2.78),(5,'Lanús',2.5),(6,'Remedios de Escalada',2.16),(7,'Banfield',2.16),(8,'Lomas de Zamora',2.02),(9,'Temperley',1.66),(10,'Adrogue',2.35),(11,'Burzaco',3.14),(12,'Longhcamps',3.5),(13,'Glew',3.22),(14,'Guernica',3.33),(15,'Alejandro Korn',7.03),(16,'San Juan',NULL),(17,'Independencia',NULL),(18,'Moreno',NULL),(19,'Av. de Mayo',NULL),(20,'Diagonal Norte',NULL),(21,'Lavalle',NULL),(22,'Gnral. San Martin',NULL),(23,'Retiro',NULL);
+INSERT INTO `parada` VALUES (1,'Constitucion',0),(2,'Hipólito Yrigoyen',2.6),(3,'D.Santillán Y M.Kosteki',0.9),(4,'Gerli',2.78),(5,'Lanús',2.5),(6,'Remedios de Escalada',2.16),(7,'Banfield',2.16),(8,'Lomas de Zamora',2.02),(9,'Temperley',1.66),(10,'Adrogue',2.35),(11,'Burzaco',3.14),(12,'Longhcamps',3.5),(13,'Glew',3.22),(14,'Guernica',3.33),(15,'Alejandro Korn',7.03),(16,'San Juan',0),(17,'Independencia',0),(18,'Moreno',0),(19,'Av. de Mayo',0),(20,'Diagonal Norte',0),(21,'Lavalle',0),(22,'Gnral. San Martin',0),(23,'Retiro',0);
 /*!40000 ALTER TABLE `parada` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -659,4 +659,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-01 16:27:26
+-- Dump completed on 2018-07-01 18:19:05
