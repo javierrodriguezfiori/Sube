@@ -7,23 +7,94 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Reportes</title>
+<link rel="stylesheet" href="js/datetimepicker-master/build/jquery.datetimepicker.min.css">
 <script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+
+<style>
+	      body {
+	        background-color: white;
+	        font-family: 'Roboto';
+	      }
+	
+	      .formulario {
+	          background: gainsboro;
+	      }
+	
+	      .subtitle {
+	        font-size: 16px;
+	      }
+	
+	      .radio-option {
+	        padding-right: 10px;
+	      }
+	      
+      		.button {
+		   	background-color: #008CBA;
+		    border: none;
+		    color: white;
+		    padding: 15px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 12px;
+		    border-radius: 8px;
+		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		    opacity: 0.6;
+		}
+		
+		.opciones{
+			padding-top:50px;
+		}
+		
+		.description {
+			display:none;
+			border:1px solid #F00;
+			width:150px;
+		}‹
+		
+		.button:hover {opacity: 1}
+		
+
+		
+		.tool:hover .tooltiptext {
+			display:block;
+		}
+		
+		.tooltiptext {
+			background-color: #6495ED;
+			padding: 10px 0;
+			border-radius: 6px;
+			text-align: center;
+			width: 200px;
+			display:none;
+		    color: white;
+		    margin-left: 150px; /* moves the tooltip to the right */
+		    margin-top: 5px; /* moves it down */
+		    position: absolute;
+		    z-index: 1000;
+		}
+	
+	    </style>
+
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#reporte').click(function(){
-		var fechaInicio = $('#fechaInicio').val();
-		var horaInicio = $('#horaInicio').val();
-		var fechaFin = $('#fechaFin').val();
-		var horaFin = $('#horaFin').val();
-		var Transporte = $('#Transporte').val()
+		var fechaInicio = $('#datetimeInicio').val();
+		
+		var fechaFin = $('#datetimeFin').val();
+		
+		var idLineaDeTransporte = $('#lineas option:selected').val();
+		var transportePublico = $('#radio-transportes:checked').val();
 		$.ajax({
 			method: "POST",
 			url: "MostrarReportes",
 			data: {fechaInicio: fechaInicio,
-			       horaInicio: horaInicio,
+			       
 			       fechaFin: fechaFin,
-			       horaFin: horaFin,
-			       Transporte: Transporte,
+			       
+			       idLineaDeTransporte: idLineaDeTransporte,
+			       transportePublico: transportePublico 
 			       },
 			async: false
 		}).done(function(data){
@@ -31,108 +102,88 @@ $(document).ready(function(){
 		})
 	});
 });
-</script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#reportecolectivos').click(function(){
-		var fechaInicio1 = $('#fechaInicio1').val();
-		var horaInicio1 = $('#horaInicio1').val();
-		var fechaFin1 = $('#fechaFin1').val();
-		var horaFin1 = $('#horaFin1').val();
-		var lineaColectivo = $('#lineaColectivo').val()
+
+
+
+$(document).ready(function() { 
+	$('input:radio[name=radio-transportes]').change(function() {
+		var transportePublico = $('#radio-transportes:checked').val();
 		$.ajax({
 			method: "POST",
-			url: "MostrarReportesPorColectivo",
-			data: {fechaInicio1: fechaInicio1,
-			       horaInicio1: horaInicio1,
-			       fechaFin1: fechaFin1,
-			       horaFin1: horaFin1,
-			       lineaColectivo: lineaColectivo,
-			       },
-			async: false
-		}).done(function(data){
-			$("#responsereportecolectivos").html(data);
+			url: "SeleccionarLineaTransporte",
+			data: { transportePublico: transportePublico },
+			async: false,
+			statusCode: {
+				500: function() {
+					window.location.href = "peticionerronea.jsp";
+				}
+			}
+		}).done(function(data) {
+			$("#response-lineas-de-transporte").html(data);
 		})
 	});
 });
-</script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#reportesubtes').click(function(){
-		var fechaInicio2 = $('#fechaInicio2').val();
-		var horaInicio2 = $('#horaInicio2').val();
-		var fechaFin2 = $('#fechaFin2').val();
-		var horaFin2 = $('#horaFin2').val();
-		var lineaSubte = $('#lineaSubte').val()
-		$.ajax({
-			method: "POST",
-			url: "MostrarReportesPorSubte",
-			data: {fechaInicio2: fechaInicio2,
-			       horaInicio2: horaInicio2,
-			       fechaFin2: fechaFin2,
-			       horaFin2: horaFin2,
-			       lineaSubte: lineaSubte,
-			       },
-			async: false
-		}).done(function(data){
-			$("#responsereportesubtes").html(data);
+$(document).ready(function() {
+		$('#datetimeInicio').hover(function(e) {
+			$('.description').show();
+		},
+		function(e){
+			$('.description').hide();
 		})
-	});
-});
+	})
+	
+	$(document).ready(function() {
+		$('#datetimeInicio').datetimepicker({
+			format: 'd/m/Y H:i'
+			
+		});
+	})
+
+$(document).ready(function() {
+		$('#datetimeFin').hover(function(e) {
+			$('.description').show();
+		},
+		function(e){
+			$('.description').hide();
+		})
+	})
+	
+	$(document).ready(function() {
+		$('#datetimeFin').datetimepicker({
+			format: 'd/m/Y H:i'
+			
+		});
+	})
+
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#reportetrenes').click(function(){
-		var fechaInicio3 = $('#fechaInicio3').val();
-		var horaInicio3 = $('#horaInicio3').val();
-		var fechaFin3 = $('#fechaFin3').val();
-		var horaFin3 = $('#horaFin3').val();
-		var lineaTren = $('#lineaTren').val()
-		$.ajax({
-			method: "POST",
-			url: "MostrarReportesPorTren",
-			data: {fechaInicio3: fechaInicio3,
-			       horaInicio3: horaInicio3,
-			       fechaFin3: fechaFin3,
-			       horaFin3: horaFin3,
-			       lineaTren: lineaTren,
-			       },
-			async: false
-		}).done(function(data){
-			$("#responsereportestrenes").html(data);
-		})
-	});
-});
-</script>
+
 
 </head>
 <body>
 <%@include file="/header.jsp" %>
 <h1>Reportes</h1>
 <form class="navbar-form navbar-right">
-<label for="fechaInicio">fecha Inicio</label>
-<INPUT id="fechaInicio" value="05/05/2018" name="fechaInicio">
-
-<label for="horaInicio">hora Inicio</label>
-<INPUT id="horaInicio" value="00:00:00" name="horaInicio">
-
-<label for="fechaFin">fecha Fin</label>
-<INPUT id="fechaFin" value="11/06/2018" name="fechaFin">
-
-<label for="horaFin">hora Fin</label>
-<INPUT id="horaFin" value="00:00:00" name="horaFin">
+<div class="col-lg-6" style="padding-top:50px;">
+<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
+<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+</div>
+<div>
+<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
+<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+</div>
 <label class="subtitle">Seleccione tipo de Transporte</label> <BR>
-<select id="Transporte" name="Transporte">
- <option value="1">Todos</option>
- <option value="2">Tren</option>
- <option value="3">Colectivo</option>
- <option value="4">Subte</option>
-</select>
+<label class="subtitle">Seleccione un Transporte Publico</label> <BR>
+<input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>
+<label for="radio" >Tren</label>
+<input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
+<label for="radio">Subte</label>
+<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
+<label for="radio">Colectivo</label>
 
 <INPUT id="reporte"  type="button" class="btn btn-succes" value="Reporte"/>
 </form>
@@ -141,88 +192,13 @@ $(document).ready(function(){
 
 
 
-<form class="navbar-form navbar-right">
-<label for="fechaInicio1">fecha Inicio</label>
-<INPUT id="fechaInicio1" value="05/05/2018" name="fechaInicio">
-
-<label for="horaInicio1">hora Inicio</label>
-<INPUT id="horaInicio1" value="00:00:00" name="horaInicio">
-
-<label for="fechaFin1">fecha Fin</label>
-<INPUT id="fechaFin1" value="11/06/2018" name="fechaFin">
-
-<label for="horaFin1">hora Fin</label>
-<INPUT id="horaFin1" value="00:00:00" name="horaFin">
-<% List<TransportePublico> lineasColectivo = (List) request.getAttribute("colectivos"); %>
-                        <label class="subtitle">Seleccione la linea de Colectivo</label> <BR>
-						<select id="lineaColectivo" name="lineaColectivo" style="width:200px; align:center;">
-							<option values="0">Selecciona una linea</option>
-							<% for (TransportePublico colectivo : lineasColectivo) { %>
-							<%String linea = colectivo.getLinea();%>
-							<option value="<%=linea%>"><%=linea%></option>
-							<% } %>
-						</select>
-
-<INPUT id="reportecolectivos"  type="button" class="btn btn-succes" value="ReporteColectivo"/>
-</form>
 
 
 
-<form class="navbar-form navbar-right">
-<label for="fechaInicio2">fecha Inicio</label>
-<INPUT id="fechaInicio2" value="05/05/2018" name="fechaInicio">
-
-<label for="horaInicio2">hora Inicio</label>
-<INPUT id="horaInicio2" value="00:00:00" name="horaInicio">
-
-<label for="fechaFin2">fecha Fin</label>
-<INPUT id="fechaFin2" value="11/06/2018" name="fechaFin">
-
-<label for="horaFin2">hora Fin</label>
-<INPUT id="horaFin2" value="00:00:00" name="horaFin">
-<% List<TransportePublico> lineasSubtes = (List) request.getAttribute("subtes"); %>
-                        <label class="subtitle">Seleccione la linea de Subte</label> 
-						<select id="lineaSubte" name="lineaSubte" style="width:200px; align:center;">
-							<option values="0">Selecciona una linea</option>
-							<% for (TransportePublico subte : lineasSubtes) { %>
-							<%String linea = subte.getLinea();%>
-							<option value="<%=linea%>"><%=linea%></option>
-							<% } %>
-						</select>
-
-<INPUT id="reportesubtes"  type="button" class="btn btn-succes" value="ReporteSubte"/>
-</form>
-
-
-<form class="navbar-form navbar-right">
-<label for="fechaInicio3">fecha Inicio</label>
-<INPUT id="fechaInicio3" value="05/05/2018" name="fechaInicio">
-
-<label for="horaInicio3">hora Inicio</label>
-<INPUT id="horaInicio3" value="00:00:00" name="horaInicio">
-
-<label for="fechaFin3">fecha Fin</label>
-<INPUT id="fechaFin3" value="11/06/2018" name="fechaFin">
-
-<label for="horaFin3">hora Fin</label>
-<INPUT id="horaFin3" value="00:00:00" name="horaFin">
-<% List<TransportePublico> lineasTrenes = (List) request.getAttribute("trenes"); %>
-                        <label class="subtitle">Seleccione la linea de Subte</label> 
-						<select id="lineaTren" name="lineaTren" style="width:200px; align:center;">
-							<option values="0">Selecciona una linea</option>
-							<% for (TransportePublico tren : lineasTrenes) { %>
-							<%String linea = tren.getLinea();%>
-							<option value="<%=linea%>"><%=linea%></option>
-							<% } %>
-						</select>
-
-<INPUT id="reportetrenes"  type="button" class="btn btn-succes" value="ReporteTren"/>
-</form>
 
 
 <div id="responsereporte"></div>
-<div id="responsereportecolectivos"></div>
-<div id="responsereportesubtes"></div>
-<div id="responsereportestrenes"></div>
+<div id="response-lineas-de-transporte"></div>
+
 </body>
 </html>

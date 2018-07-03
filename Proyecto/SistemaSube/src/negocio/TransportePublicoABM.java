@@ -80,8 +80,11 @@ public class TransportePublicoABM  {
     	if(viaje instanceof ViajeTren) {
     		if(((ViajeTren) viaje).getDestino()==null) 
 				costoViaje = SeccionABM.getInstance().traer((long)3).getCosto();
-			else 
-				costoViaje = SeccionRecorridoABM.getInstance().traer(((ViajeTren) viaje).getOrigen(), ((ViajeTren) viaje).getDestino()).getSeccion().getCosto();
+			else {
+				Tren tren = (Tren)viaje.getTransporte();
+				long seccion = tren.calcularSeccionViaje(((ViajeTren) viaje).getOrigen(), ((ViajeTren) viaje).getDestino());
+				costoViaje = SeccionABM.getInstance().traer(seccion).getCosto();
+			}
     	}
     		
     	if(viaje instanceof ViajeSubte) 
