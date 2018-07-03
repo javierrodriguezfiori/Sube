@@ -11,9 +11,9 @@
 <%@page import="datos.Subte" %>
 
 
-
+<%Tren tren = (Tren)request.getAttribute("tren"); %>
 <table border="1">
-<caption>Estadistica Tren</caption>
+<caption>Estadistica Tren : <%=tren.getLinea() %> </caption>
 <tr>
  <th>Origen</th>
  <th>Destino</th>

@@ -11,10 +11,10 @@
 <%@page import="datos.Subte" %>
 
 
-
+<%Subte subte = (Subte)request.getAttribute("subte"); %>
 
 <table border="1">
-<caption>Estadistica Subte</caption>
+<caption>Estadistica Subte : <%=subte.getLinea() %></caption>
 <tr>
  <th>Origen</th>
 

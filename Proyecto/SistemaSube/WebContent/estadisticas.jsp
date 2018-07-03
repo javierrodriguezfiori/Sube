@@ -168,7 +168,7 @@ $(document).ready(function() {
 </head>
 <body>
 <%@include file="/header.jsp" %>
-<h1>Reportes</h1>
+<h1>Estadisticas</h1>
 <form class="navbar-form navbar-right">
 <div class="col-lg-6" style="padding-top:50px;">
 <p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 

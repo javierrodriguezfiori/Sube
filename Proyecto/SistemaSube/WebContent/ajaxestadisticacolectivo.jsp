@@ -12,9 +12,9 @@
 
 
 
-
+<%Colectivo colectivo = (Colectivo)request.getAttribute("colectivo"); %>
 <table border="1">
-<caption>Estadistica Colectivo</caption>
+<caption>Estadistica Colectivo : <%=colectivo.getLinea() %></caption>
 <tr>
  <th>Tramo</th>
 
