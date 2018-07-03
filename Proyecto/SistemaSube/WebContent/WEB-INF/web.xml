@@ -167,4 +167,12 @@
   	<servlet-name>ControladorRegistro</servlet-name>
   	<url-pattern>/Registro</url-pattern>
   </servlet-mapping>
+    <servlet>
+	<servlet-name>ControladorLogOut</servlet-name>
+  	<servlet-class>controladores.ControladorLogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorLogOut</servlet-name>
+  	<url-pattern>/LogOut</url-pattern>
+  </servlet-mapping> 
 </web-app>

@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<%@page import="datos.Viaje" %>
-<%@page import="datos.Sesion" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -34,6 +30,18 @@
 	      .radio-option {
 	        padding-right: 10px;
 	      }
+	      
+	      .btn-link{
+			  border:none;
+			  outline:none;
+			  background:none;
+			  cursor:pointer;
+			  color:#0000EE;
+			  padding:0;
+			  text-decoration:underline;
+			  font-family:inherit;
+			  font-size:inherit;
+			}
 			
 		.button {
 		    background-color: #008CBA;
@@ -50,36 +58,38 @@
 		}
 		
 		.button:hover {opacity: 1}
-			
 	    </style>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		<div class="container" style="padding-top:30px; margin-top:60px; border:1px solid black; width:700px; height:150px; background-color:Gainsboro;">
+		
+		<div class= "container">
 			<div class="row">
-				<h4 style="margin:10px;">Viaje realizado - Boleto</h4>
-				<div class="col-lg-6" ">
-					Monto: ${monto} <br>
-					Transporte: ${linea} <br>
+				<div class="col-lg-4">
+					<form action="/SistemaSube/LogOut" method="POST">
+						<button type="submit" value="Salir" class="button">Salir</button>
+					</form>				
 				</div>
-				<div class="col-lg-6" ">
-					Fecha y hora: ${fechaYHora} <br>
-					Nuevo saldo de la tarjeta: ${saldo} <br>
+				<div class="col-lg-4">
+					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
+						<button type="submit" value="Reportes" class="button">Consultas</button>
+					</form>				
 				</div>
-			</div>
-		</div>
-		<div class="container">
-		<% 
-		String retorno = "/SistemaSube/home.jsp";
-		if (Sesion.obtenerSesionActual().getUsuarioLogeado() == null)
-			retorno = "/SistemaSube/index.jsp";
-		else if (Sesion.obtenerSesionActual().tienePrivilegios())
-			retorno = "/SistemaSube/homeAdmin.jsp";
-		%>
-			<div style="align:right">
-				<form action="<%=retorno%>" method="POST">
-					<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
-				</form>
+				<div class="col-lg-4">
+					<form action="/SistemaSube/cobrarViajeNoLogeado.jsp" method="POST">
+						<button type="submit" value="EmitirBoleto" class="button">Realizar viaje</button>
+					</form>				
+				</div>
+				<div class="col-lg-4">
+					<form action="/SistemaSube/asignartarifasocial.jsp" method="POST">
+						<button type="submit" value="AsignarTarifaSocial" class="button">Asignar Tarifa Social</button>
+					</form>				
+				</div>				
+				<div class="col-lg-4">
+					<form action="/SistemaSube/bajasube.jsp" method="POST">
+						<button type="submit" value="DeshabilitarTarjta" class="button">Deshabilitar tarjeta</button>
+					</form>				
+				</div>						
 			</div>
 		</div>
 	</body>

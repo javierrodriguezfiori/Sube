@@ -150,7 +150,6 @@
 	<body>
 		<%@ include file="/header.jsp" %>
       	<div class="container">
-      		<form method="POST" action="/SistemaSube/CobrarViaje">
 		        <div class="row">
 		          <div class="col-lg-6" style="padding-top:50px;">
 		           	Tarjeta Sube >  <input type="text" name="tarjetasube" id="tarjetasube"/>
@@ -174,11 +173,24 @@
 	   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
 	        	</div>
 	        	<div class="row">
-	       			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
+        			<% 
+					String retorno = "/SistemaSube/index.jsp";
+					if (Sesion.obtenerSesionActual().getUsuarioLogeado() != null)
+								retorno = "/SistemaSube/homeAdmin.jsp";
+					%>
+					<form method="POST" action="/SistemaSube/CobrarViaje">		
+	       			<div class="col-lg-7" style="padding-top:50px; align:right;">
 		          		<input type="submit" value="Emitir boleto" class="button">
 		          	</div>
+		     		</form>     	
+	        		<div class="col-lg-5" style="padding-top:50px; align:right;">
+   						<form action="<%=retorno%>" method="POST">
+							<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
+						</form>
+	        		</div>
 	        	</div>
-        	</form>
+			</div>
+        	
         </div>
 	</body>
 </html>

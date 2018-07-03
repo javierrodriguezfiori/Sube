@@ -27,7 +27,7 @@
 						async: false,
 						statusCode: {
 							404: function() {
-								$("#error").removeClass("hidden");
+								alert("Documento o clave incorrecta, vuelva a intentar.");
 							},
 							500: function() {
 								window.location.href = "peticionerronea.jsp";

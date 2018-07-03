@@ -30,4 +30,8 @@ public class Sesion {
 	public TarjetaSube getTarjetaSubeDelUsuario() throws Exception {
 		return TarjetaSubeABM.getInstance().traerTarjetaSube(this.usuarioLogeado);
 	}
+	
+	public boolean tienePrivilegios() {
+		return usuarioLogeado.getRol().getDescripcion().equals("Admin");
+	}
 }

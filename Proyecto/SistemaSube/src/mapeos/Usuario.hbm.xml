@@ -26,6 +26,14 @@
 	    		 unique="true" not-null="true" lazy="false" cascade="all"/>
 	</class>
 	
+	<class name="datos.Rol" table="rol">
+	    <id name="idRol" column="idRol" type="int">
+	        <generator class="native" />
+	    </id>
+
+	    <property column="descripcion" name="descripcion" type="string"/>
+	</class>	
+	
 	<class name="datos.Usuario" table="usuario">
 		<id name="idUsuario" column="idUsuario" type="long">
 	        <generator class="native" />
@@ -37,6 +45,9 @@
 		<property column="tipoDocumento" name="tipoDocumento" type="string"/>
 		
 	    <many-to-one name="datosUsuario" column="datosusuario" class="datos.DatosUsuario"
+	    		 unique="true" not-null="true" lazy="false" cascade="all"/>
+	    		 
+	    <many-to-one name="rol" column="idRol" class="datos.Rol"
 	    		 unique="true" not-null="true" lazy="false" cascade="all"/>
 	</class>
 </hibernate-mapping>
