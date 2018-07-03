@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sube` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sube`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: sube
@@ -139,7 +141,7 @@ CREATE TABLE `devolucion` (
 
 LOCK TABLES `devolucion` WRITE;
 /*!40000 ALTER TABLE `devolucion` DISABLE KEYS */;
-INSERT INTO `devolucion` VALUES (52),(54),(56);
+INSERT INTO `devolucion` VALUES (52),(54),(56),(68),(72),(74),(76),(78);
 /*!40000 ALTER TABLE `devolucion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +157,7 @@ CREATE TABLE `parada` (
   `nombre` varchar(45) NOT NULL,
   `distanciaKM` float DEFAULT '0',
   PRIMARY KEY (`idParada`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +166,7 @@ CREATE TABLE `parada` (
 
 LOCK TABLES `parada` WRITE;
 /*!40000 ALTER TABLE `parada` DISABLE KEYS */;
-INSERT INTO `parada` VALUES (1,'Constitucion',0),(2,'Hipólito Yrigoyen',2.6),(3,'D.Santillán Y M.Kosteki',0.9),(4,'Gerli',2.78),(5,'Lanús',2.5),(6,'Remedios de Escalada',2.16),(7,'Banfield',2.16),(8,'Lomas de Zamora',2.02),(9,'Temperley',1.66),(10,'Adrogue',2.35),(11,'Burzaco',3.14),(12,'Longhcamps',3.5),(13,'Glew',3.22),(14,'Guernica',3.33),(15,'Alejandro Korn',7.03),(16,'San Juan',0),(17,'Independencia',0),(18,'Moreno',0),(19,'Av. de Mayo',0),(20,'Diagonal Norte',0),(21,'Lavalle',0),(22,'Gnral. San Martin',0),(23,'Retiro',0);
+INSERT INTO `parada` VALUES (1,'Constitucion',0),(2,'Hipólito Yrigoyen',2.6),(3,'D.Santillán Y M.Kosteki',0.9),(4,'Gerli',2.78),(5,'Lanús',2.5),(6,'Remedios de Escalada',2.16),(7,'Banfield',2.16),(8,'Lomas de Zamora',2.02),(9,'Temperley',1.66),(10,'Adrogue',2.35),(11,'Burzaco',3.14),(12,'Longhcamps',3.5),(13,'Glew',3.22),(14,'Guernica',3.33),(15,'Alejandro Korn',7.03),(16,'San Juan',0),(17,'Independencia',0),(18,'Moreno',0),(19,'Av. de Mayo',0),(20,'Diagonal Norte',0),(21,'Lavalle',0),(22,'Gnral. San Martin',0),(23,'Retiro',0),(24,'Congreso de Tucumán',0),(25,'Juramento',0),(26,'José Hernández',0),(27,'Olleris',0),(28,'Ministro Carranza',0),(29,'Palermo',0),(30,'Plaza Italia',0),(31,'Scalabrini Ortiz',0),(32,'Bulnes',0),(33,'Aguero',0),(34,'Pueyrredón',0),(35,'Facultad de Medicina',0),(36,'Callao',0),(37,'Tribunales',0),(38,'9 de julio',0),(39,'Catedral',0),(40,'Turdera',3),(41,'Lavallol',1.96),(42,'Guillón',1.91),(43,'Monte Grande',2.32),(44,'El jaguel',3.21),(45,'Ezeiza',3.33);
 /*!40000 ALTER TABLE `parada` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +193,7 @@ CREATE TABLE `paradaporsubte` (
 
 LOCK TABLES `paradaporsubte` WRITE;
 /*!40000 ALTER TABLE `paradaporsubte` DISABLE KEYS */;
-INSERT INTO `paradaporsubte` VALUES (2,1),(2,16),(2,17),(2,18),(2,19),(2,20),(2,21),(2,22),(2,23);
+INSERT INTO `paradaporsubte` VALUES (2,1),(2,16),(2,17),(2,18),(2,19),(2,20),(2,21),(2,22),(2,23),(5,24),(5,25),(5,26),(5,27),(5,28),(5,29),(5,30),(5,31),(5,32),(5,33),(5,34),(5,35),(5,36),(5,37),(5,38),(5,39);
 /*!40000 ALTER TABLE `paradaporsubte` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +220,7 @@ CREATE TABLE `paradaportren` (
 
 LOCK TABLES `paradaportren` WRITE;
 /*!40000 ALTER TABLE `paradaportren` DISABLE KEYS */;
-INSERT INTO `paradaportren` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15);
+INSERT INTO `paradaportren` VALUES (1,1),(6,1),(1,2),(6,2),(1,3),(6,3),(1,4),(6,4),(1,5),(6,5),(1,6),(6,6),(1,7),(6,7),(1,8),(6,8),(1,9),(6,9),(1,10),(1,11),(1,12),(1,13),(1,14),(1,15),(6,40),(6,41),(6,42),(6,43),(6,44),(6,45);
 /*!40000 ALTER TABLE `paradaportren` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,7 +271,7 @@ CREATE TABLE `redsube` (
 
 LOCK TABLES `redsube` WRITE;
 /*!40000 ALTER TABLE `redsube` DISABLE KEYS */;
-INSERT INTO `redsube` VALUES (25,'2018-06-13 02:00:49',1,'Constitucion-A.Korn'),(26,'2018-06-17 21:37:00',1,'318');
+INSERT INTO `redsube` VALUES (25,'2018-06-13 02:00:49',1,'Constitucion-A.Korn'),(26,'2018-07-05 15:26:00',1,'Constitucion-A.Korn');
 /*!40000 ALTER TABLE `redsube` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -377,7 +379,7 @@ CREATE TABLE `tarjetasube` (
 
 LOCK TABLES `tarjetasube` WRITE;
 /*!40000 ALTER TABLE `tarjetasube` DISABLE KEYS */;
-INSERT INTO `tarjetasube` VALUES (25,3000,2,NULL),(26,1990,0,5);
+INSERT INTO `tarjetasube` VALUES (25,3000,2,NULL),(26,1938.37,0,5);
 /*!40000 ALTER TABLE `tarjetasube` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -448,7 +450,7 @@ CREATE TABLE `transaccion` (
   PRIMARY KEY (`idTransaccion`),
   KEY `fk_tarjetasube_transaccion_idx` (`nroTarjeta`),
   CONSTRAINT `fk_tarjetasube_transaccion` FOREIGN KEY (`nroTarjeta`) REFERENCES `tarjetasube` (`nroTarjeta`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +459,7 @@ CREATE TABLE `transaccion` (
 
 LOCK TABLES `transaccion` WRITE;
 /*!40000 ALTER TABLE `transaccion` DISABLE KEYS */;
-INSERT INTO `transaccion` VALUES (1,1,'2018-06-13 07:03:03',25),(2,1,'2018-06-13 07:03:03',25),(3,1,'2018-06-13 07:03:03',25),(4,1,'2018-06-13 07:03:03',25),(5,40,'2018-06-13 07:03:03',25),(6,5,'2018-06-13 07:03:03',25),(7,40,'2018-06-13 07:03:03',25),(8,40,'2018-06-13 07:03:03',25),(50,5.5,'2018-06-13 01:47:43',25),(51,5.5,'2018-06-13 01:57:36',25),(52,2.75,'2018-06-13 01:58:06',25),(53,5.5,'2018-06-13 01:58:40',25),(54,1.5,'2018-06-13 01:59:34',25),(55,5.5,'2018-06-13 02:00:49',25),(56,1.5,'2018-06-13 02:01:32',25),(57,500,'2018-06-13 05:37:13',26),(58,300,'2018-06-13 07:02:41',25),(59,0.14,'2018-06-13 07:02:56',25),(60,17,'2018-06-13 07:03:00',25),(61,40,'2018-06-13 07:03:03',25),(62,40,'2018-06-13 07:03:03',25),(63,40,'2018-06-13 07:03:03',25),(64,10,'2018-06-17 21:37:00',26);
+INSERT INTO `transaccion` VALUES (1,1,'2018-06-13 07:03:03',25),(2,1,'2018-06-13 07:03:03',25),(3,1,'2018-06-13 07:03:03',25),(4,1,'2018-06-13 07:03:03',25),(5,40,'2018-06-13 07:03:03',25),(6,5,'2018-06-13 07:03:03',25),(7,40,'2018-06-13 07:03:03',25),(8,40,'2018-06-13 07:03:03',25),(50,5.5,'2018-06-13 01:47:43',25),(51,5.5,'2018-06-13 01:57:36',25),(52,2.75,'2018-06-13 01:58:06',25),(53,5.5,'2018-06-13 01:58:40',25),(54,1.5,'2018-06-13 01:59:34',25),(55,5.5,'2018-06-13 02:00:49',25),(56,1.5,'2018-06-13 02:01:32',25),(57,500,'2018-06-13 05:37:13',26),(58,300,'2018-06-13 07:02:41',25),(59,0.14,'2018-06-13 07:02:56',25),(60,17,'2018-06-13 07:03:00',25),(61,40,'2018-06-13 07:03:03',25),(62,40,'2018-06-13 07:03:03',25),(63,40,'2018-06-13 07:03:03',25),(64,10,'2018-06-17 21:37:00',26),(65,15,'2018-07-02 18:00:00',26),(66,2.75,'2018-07-02 19:32:00',26),(67,5.5,'2018-07-02 19:32:44',26),(68,2.75,'2018-07-02 19:33:01',26),(69,5,'2018-07-02 21:00:00',26),(70,1.375,'2018-07-02 21:15:36',26),(71,5.5,'2018-07-02 21:16:13',26),(72,2.75,'2018-07-02 21:16:23',26),(73,5.5,'2018-07-02 22:19:16',26),(74,2.75,'2018-07-02 22:19:42',26),(75,5.5,'2018-07-02 22:27:11',26),(76,2.75,'2018-07-02 22:27:30',26),(77,5.5,'2018-07-02 22:30:29',26),(78,0,'2018-07-02 22:32:07',26),(79,5.5,'2018-07-02 22:32:30',26),(80,5.5,'2018-07-05 15:26:00',26);
 /*!40000 ALTER TABLE `transaccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -472,7 +474,7 @@ CREATE TABLE `transportepublico` (
   `idTransportePublico` int(11) NOT NULL AUTO_INCREMENT,
   `linea` varchar(45) NOT NULL,
   PRIMARY KEY (`idTransportePublico`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -481,7 +483,7 @@ CREATE TABLE `transportepublico` (
 
 LOCK TABLES `transportepublico` WRITE;
 /*!40000 ALTER TABLE `transportepublico` DISABLE KEYS */;
-INSERT INTO `transportepublico` VALUES (1,'Constitucion-A.Korn'),(2,'C'),(3,'318'),(4,'160'),(5,'D');
+INSERT INTO `transportepublico` VALUES (1,'Constitucion-A.Korn'),(2,'C'),(3,'318'),(4,'160'),(5,'D'),(6,'Constitucion-Ezeiza');
 /*!40000 ALTER TABLE `transportepublico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -505,7 +507,7 @@ CREATE TABLE `tren` (
 
 LOCK TABLES `tren` WRITE;
 /*!40000 ALTER TABLE `tren` DISABLE KEYS */;
-INSERT INTO `tren` VALUES (1);
+INSERT INTO `tren` VALUES (1),(6);
 /*!40000 ALTER TABLE `tren` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -562,7 +564,7 @@ CREATE TABLE `viaje` (
 
 LOCK TABLES `viaje` WRITE;
 /*!40000 ALTER TABLE `viaje` DISABLE KEYS */;
-INSERT INTO `viaje` VALUES (50,1),(51,1),(53,1),(55,1),(62,1),(63,1),(6,2),(7,2),(8,2),(1,3),(2,3),(3,3),(4,3),(5,3),(64,3);
+INSERT INTO `viaje` VALUES (50,1),(51,1),(53,1),(55,1),(62,1),(63,1),(66,1),(67,1),(70,1),(71,1),(73,1),(75,1),(77,1),(79,1),(80,1),(6,2),(7,2),(8,2),(65,2),(1,3),(2,3),(3,3),(4,3),(5,3),(64,3),(69,3);
 /*!40000 ALTER TABLE `viaje` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -589,7 +591,7 @@ CREATE TABLE `viajecolectivo` (
 
 LOCK TABLES `viajecolectivo` WRITE;
 /*!40000 ALTER TABLE `viajecolectivo` DISABLE KEYS */;
-INSERT INTO `viajecolectivo` VALUES (1,1),(2,1),(64,1),(5,2),(3,3),(4,4);
+INSERT INTO `viajecolectivo` VALUES (1,1),(2,1),(64,1),(69,1),(5,2),(3,3),(4,4);
 /*!40000 ALTER TABLE `viajecolectivo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -616,7 +618,7 @@ CREATE TABLE `viajesubte` (
 
 LOCK TABLES `viajesubte` WRITE;
 /*!40000 ALTER TABLE `viajesubte` DISABLE KEYS */;
-INSERT INTO `viajesubte` VALUES (6,1),(7,1),(8,16);
+INSERT INTO `viajesubte` VALUES (6,1),(7,1),(65,1),(8,16);
 /*!40000 ALTER TABLE `viajesubte` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -646,7 +648,7 @@ CREATE TABLE `viajetren` (
 
 LOCK TABLES `viajetren` WRITE;
 /*!40000 ALTER TABLE `viajetren` DISABLE KEYS */;
-INSERT INTO `viajetren` VALUES (50,1,1),(51,1,1),(53,3,3),(55,1,9),(62,1,5),(63,1,5);
+INSERT INTO `viajetren` VALUES (50,1,1),(51,1,1),(53,3,3),(55,1,9),(62,1,5),(63,1,5),(66,1,1),(67,2,2),(70,1,1),(71,1,1),(73,15,15),(75,15,15),(77,15,15),(79,1,1),(80,1,NULL);
 /*!40000 ALTER TABLE `viajetren` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -659,4 +661,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-01 18:19:05
+-- Dump completed on 2018-07-03 18:29:36
