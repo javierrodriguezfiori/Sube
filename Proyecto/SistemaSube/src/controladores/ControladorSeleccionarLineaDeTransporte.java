@@ -32,15 +32,12 @@ public class ControladorSeleccionarLineaDeTransporte extends HttpServlet {
 		try {
 			
 			
-			List<TransportePublico> trenes = TransportePublicoABM.getInstance().traerTrenes();
-			List<TransportePublico> colectivos = TransportePublicoABM.getInstance().traerColectivos();
-			List<TransportePublico> subtes = TransportePublicoABM.getInstance().traerSubtes();
+			String transporteEnTexto = (String) request.getParameter("transportePublico");
+			List<TransportePublico> listaTransportes = obtenerTransportes(transporteEnTexto);
 			
-			request.setAttribute("trenes", trenes);
-			request.setAttribute("colectivos", colectivos);
-			request.setAttribute("subtes", subtes);
-			
-			request.getRequestDispatcher("reportes.jsp").forward(request, response);
+			request.setAttribute("transportesPublicos", listaTransportes);
+			response.setStatus(200);
+			request.getRequestDispatcher("lineasreportes.jsp").forward(request, response);
 			
 			
 			
@@ -50,5 +47,8 @@ public class ControladorSeleccionarLineaDeTransporte extends HttpServlet {
 			response.sendError(500,"Fecha Incorrecta");
 		}
 		}
+	private List<TransportePublico> obtenerTransportes(String transporteEnTexto) {
+		return TransportePublicoABM.getInstance().traerTransportesSegunTexto(transporteEnTexto);
+	}
 
 }

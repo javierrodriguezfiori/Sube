@@ -4,6 +4,7 @@ public class Parada {
 	
 	private long idParada;
 	private String nombre;
+	private float distanciaKM;
 	
 	public Parada() {};
 	
@@ -36,10 +37,20 @@ public class Parada {
 		return resultado;
 	}
 
+
+	public float getDistanciaKM() {
+		return distanciaKM;
+	}
+
+	public void setDistanciaKM(float distanciaKM) {
+		this.distanciaKM = distanciaKM;
+	}
+
 	@Override
 	public String toString() {
-		return "Parada [idParada=" + idParada + ", nombre=" + nombre + "]";
+		return "Parada [idParada=" + idParada + ", nombre=" + nombre + ", distanciaKM=" + distanciaKM + "]";
 	}
+	
 	
 	
 
