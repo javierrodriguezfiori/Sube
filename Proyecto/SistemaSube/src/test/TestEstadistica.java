@@ -16,7 +16,9 @@ public class TestEstadistica {
 	   // System.out.println(funciones.Funciones.imprimirLista(ViajeABM.getInstance().estadisticaViajeTren(ini, fin, (long)1).getMuestras()));
 	    
 	    
-	    System.out.println(funciones.Funciones.imprimirLista(ViajeABM.getInstance().estadisticaSumMontosViajesTren(ini, fin, (long)1).getMuestras()));
+	    //System.out.println(funciones.Funciones.imprimirLista(ViajeABM.getInstance().estadisticaSumMontosViajesTren(ini, fin, (long)1).getMuestras()));
+	   // System.out.println(funciones.Funciones.imprimirLista(ViajeABM.getInstance().estadisticaCantViajesTren(ini, fin, (long)1).getMuestras()));
+	    System.out.println(funciones.Funciones.imprimirLista(ViajeABM.getInstance().estadisticaSumMontosViajesColectivo(ini, fin, (long)3).getMuestras()));
 	}
 
 }
