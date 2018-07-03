@@ -28,7 +28,7 @@ public abstract class TransportePublico {
 		this.linea = linea;
 	}
 	
-	public abstract double calcularCostoDeViaje(Viaje viaje)throws Exception;
+	
 	
 	
 	

@@ -39,7 +39,8 @@ public class TerminalViaje extends Terminal{
 				ultimoT.setDestino(viajeT.getOrigen());
 				// Si el origen del ultimo viaje es distinto al origen del actual, se procede a devolver el dinero. Sino se cierra el ultimo viaje sin devolucion
 				if(ultimoT.getOrigen().getIdParada() != ultimoT.getDestino().getIdParada()) {
-					precio=(float)ultimoT.getTransporte().calcularCostoDeViaje(ultimoT);
+					
+					precio = (float) TransportePublicoABM.getInstance().calcularCostoDeViaje(ultimoT);
 				    precio=(float)(precio*TarjetaSubeABM.getInstance().calcularDescuento(tarjeta)*RedSubeABM.getInstance().calcularDescuento(viaje));
 				    diferencia=ultimoT.getMonto()-precio;
 					viaje.setMonto(precio);
@@ -64,7 +65,8 @@ public class TerminalViaje extends Terminal{
 				TransaccionABM.getInstance().modificarViajeTren(ultimoT); 
 			}
 			// Traer costo desde TransportePublico
-			precio  = (float)viaje.getTransporte().calcularCostoDeViaje(viaje);
+			
+			precio = (float) TransportePublicoABM.getInstance().calcularCostoDeViaje(viaje);
 			// Calcular descuento TarjetaSube y RedSube
 			double descuentoTarjetaSube = TarjetaSubeABM.getInstance().calcularDescuento(tarjeta);
 			double descuentoRedSube = RedSubeABM.getInstance().calcularDescuento(viaje);
