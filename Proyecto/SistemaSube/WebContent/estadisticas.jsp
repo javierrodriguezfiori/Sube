@@ -107,6 +107,8 @@ $(document).ready(function(){
 
 
 
+
+
 $(document).ready(function() { 
 	$('input:radio[name=radio-transportes]').change(function() {
 		var transportePublico = $('#radio-transportes:checked').val();
@@ -194,11 +196,15 @@ $(document).ready(function() {
 
 
 
+<table class="columns">
+		<tr>
+			<td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
+			<td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
+		</tr>
+</table>
 
-
-
-<div id="responseestadistica"></div>
 <div id="response-lineas-de-transporte"></div>
+
 
 </body>
 </html>

@@ -1,11 +1,15 @@
 package controladores;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
 import funciones.Funciones;
 import java.util.GregorianCalendar;
 
@@ -55,7 +59,11 @@ public class ControladorMostrarEstadisticas extends HttpServlet {
 			if(transportePublico instanceof Tren) {
 				List<Muestra> cant = ViajeABM.getInstance().estadisticaCantViajesTren(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
 				
-				
+
+				Gson gson = new Gson();
+				response.setContentType("application/json");
+				PrintWriter out = response.getWriter();
+				out.println(gson.toJson(cant));
 				
 				request.getRequestDispatcher("ajaxestadistica.jsp").forward(request, response);
 			}
