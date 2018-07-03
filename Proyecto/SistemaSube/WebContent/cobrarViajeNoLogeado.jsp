@@ -19,38 +19,14 @@
 	    <link rel="stylesheet" href="js/datetimepicker-master/build/jquery.datetimepicker.min.css">
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+		<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.css">
+		<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
 		
 		<style>
-	      body {
-	        background-color: white;
-	        font-family: 'Roboto';
-	      }
-	
-	      .formulario {
-	          background: gainsboro;
-	      }
-	
-	      .subtitle {
-	        font-size: 16px;
-	      }
-	
-	      .radio-option {
-	        padding-right: 10px;
-	      }
 	      
-      		.button {
-		   	background-color: #008CBA;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 12px;
-		    border-radius: 8px;
-		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-		    opacity: 0.6;
-		}
+	    .radio-option {
+	        padding-right: 10px;
+	      }  
 		
 		.opciones{
 			padding-top:50px;
@@ -62,10 +38,7 @@
 			width:150px;
 		}‹
 		
-		.button:hover {opacity: 1}
-		
-
-		
+	
 		.tool:hover .tooltiptext {
 			display:block;
 		}
@@ -151,33 +124,38 @@
 		<%@ include file="/header.jsp" %>
       	<div class="container">
       		<form method="POST" action="/SistemaSube/CobrarViaje">
-		        <div class="row">
-		          <div class="col-lg-6" style="padding-top:50px;">
-		           	Tarjeta Sube >  <input type="text" name="tarjetasube" id="tarjetasube"/>
-		          </div>
-		          <div class="col-lg-6" style="padding-top:50px;">
-		          	<p class="tool"> Fecha del viaje: <input id="datetime" name="fecha" type="text"> 
+      		<div class="form-group" style="padding-top:50px;">
+  				<label class="col-form-label" for="tarjetasube">Tarjeta Sube</label>
+  				<input type="text" class="form-control" placeholder="Tarjeta Sube" name="tarjetasube" id="tarjetasube" style="width:200px"/>
+			</div>
+			<div class="form-group" style="padding-top:50px;">
+  				<p class="tool"> Fecha del viaje: <input id="datetime" name="fecha" type="text" class="form-control" style="width:200px"> 
 		          	<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
-		          </div>
-		        </div>
-		        <div class="row">
-		           <div class="col-lg-3 opciones">
-		              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
-		              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren" checked/>
-		              <label for="radio" >Tren</label>
-		              <input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
-		              <label for="radio">Subte</label>
-		              <input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
-		              <label for="radio">Colectivo</label>
-		          </div>
-	   	          <div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
-	   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
-	        	</div>
-	        	<div class="row">
+			</div>
+		    <div class="form-group">
+		    <div class="col-lg-3 opciones">
+		    	<label class="subtitle">¿En qué transporte público viajará?</label> <BR>
+    			<div class="custom-control custom-radio">
+      				<input type="radio" name="radio-transportes" id="radio-transportes" value="tren" class="custom-control-input" checked/>
+		              <label for="radio" class="custom-control-label">Tren</label>
+    			</div>
+    			<div class="custom-control custom-radio">
+      				<input type="radio" name="radio-transportes" id="radio-transportes" value="subte" class="custom-control-input"/>
+		              <label for="radio" class="custom-control-label">Subte</label>
+    			</div>
+    			<div class="custom-control custom-radio">
+      				<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo" class="custom-control-input"/>
+		              <label for="radio" class="custom-control-label">Colectivo</label>
+    			</div>
+    			</div>
+    			<div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
+	   	        <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
+	   	        <div class="row">
 	       			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
-		          		<input type="submit" value="Emitir boleto" class="button">
+		          		<button type="submit" name="boton-volver" value="Emitir boleto" class="btn btn-primary">Emitir boleto</button>
 		          	</div>
-	        	</div>
+    		</div>   
+		        
         	</form>
         </div>
 	</body>
