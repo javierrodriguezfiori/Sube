@@ -114,7 +114,7 @@ $(document).ready(function() {
 		var transportePublico = $('#radio-transportes:checked').val();
 		$.ajax({
 			method: "POST",
-			url: "SeleccionarLineaTransporte",
+			url: "SeleccionarLineaTransporte2",
 			data: { transportePublico: transportePublico },
 			async: false,
 			statusCode: {
