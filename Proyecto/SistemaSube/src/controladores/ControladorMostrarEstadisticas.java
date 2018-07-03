@@ -56,24 +56,21 @@ public class ControladorMostrarEstadisticas extends HttpServlet {
 				List<Muestra> cant = ViajeABM.getInstance().estadisticaCantViajesTren(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
 				
 				
-				request.setAttribute("viajesTren", viajesTren);
-				request.setAttribute("tren", (Tren)transportePublico);
-				request.getRequestDispatcher("ajaxreportetrenporlinea.jsp").forward(request, response);
+				
+				request.getRequestDispatcher("ajaxestadistica.jsp").forward(request, response);
 			}
 			
 			if(transportePublico instanceof Colectivo) {
-				List<ViajeColectivo> viajesColectivo = ViajeABM.getInstance().traerViajesColectivo(fechaHoraInicio, fechaHoraFin,transportePublico.getIdTransporte());
-				request.setAttribute("viajesColectivo", viajesColectivo);
-				request.setAttribute("colectivo", (Colectivo)transportePublico);
-				request.getRequestDispatcher("ajaxreportecolectivoporlinea.jsp").forward(request, response);
+				List<Muestra> cant = ViajeABM.getInstance().estadisticaCantViajesColectivo(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
+				
+				request.getRequestDispatcher("ajaxestadistica.jsp").forward(request, response);
 				
 			}
 			
 			if(transportePublico instanceof Subte) {
-				List<ViajeSubte> viajesSubte = ViajeABM.getInstance().traerViajesSubte(fechaHoraInicio, fechaHoraFin,transportePublico.getIdTransporte());
-				request.setAttribute("viajesSubte", viajesSubte);
-				request.setAttribute("subte", (Subte)transportePublico);
-				request.getRequestDispatcher("ajaxreportesubteporlinea.jsp").forward(request, response);
+				List<Muestra> cant = ViajeABM.getInstance().estadisticaCantViajesSubte(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
+				
+				request.getRequestDispatcher("ajaxestadistica.jsp").forward(request, response);
 			}
 		
 			
