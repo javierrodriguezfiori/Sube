@@ -56,6 +56,14 @@
 		    position: absolute;
 		    z-index: 1000;
 		}
+		
+		.center-screen {
+ 			 display: flex;
+ 			 flex-direction: column;
+			 justify-content: center;
+ 			 align-items: center;
+  			 text-align: center;
+			}
 	
 	    </style>
 	    
@@ -123,7 +131,7 @@
 	<body>
 		<%@ include file="/header.jsp" %>
       	<div class="container">
-      		<form method="POST" action="/SistemaSube/CobrarViaje">
+      		<form method="POST" action="/SistemaSube/CobrarViaje" class="center-screen">
       		<div class="form-group" style="padding-top:50px;">
   				<label class="col-form-label" for="tarjetasube">Tarjeta Sube</label>
   				<input type="text" class="form-control" placeholder="Tarjeta Sube" name="tarjetasube" id="tarjetasube" style="width:200px"/>
@@ -133,29 +141,22 @@
 		          	<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 			</div>
 		    <div class="form-group">
-		    <div class="col-lg-3 opciones">
-		    	<label class="subtitle">¿En qué transporte público viajará?</label> <BR>
-    			<div class="custom-control custom-radio">
-      				<input type="radio" name="radio-transportes" id="radio-transportes" value="tren" class="custom-control-input" checked/>
-		              <label for="radio" class="custom-control-label">Tren</label>
-    			</div>
-    			<div class="custom-control custom-radio">
-      				<input type="radio" name="radio-transportes" id="radio-transportes" value="subte" class="custom-control-input"/>
-		              <label for="radio" class="custom-control-label">Subte</label>
-    			</div>
-    			<div class="custom-control custom-radio">
-      				<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo" class="custom-control-input"/>
-		              <label for="radio" class="custom-control-label">Colectivo</label>
-    			</div>
-    			</div>
-    			<div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
-	   	        <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
+		    <div class="row">
+		           <div class="col-lg-3 opciones">
+		              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
+		              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren" checked/>
+		              <label for="radio" >Tren</label>
+		              <input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
+		              <label for="radio">Subte</label>
+		              <input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
+		              <label for="radio">Colectivo</label>
+		          </div>
+	   	          <div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
+	   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
+	        	</div>
 	   	        <div class="row">
-	       			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
-		          		<button type="submit" name="boton-volver" value="Emitir boleto" class="btn btn-primary">Emitir boleto</button>
-		          	</div>
-    		</div>   
-		        
+	       			<button type="submit" name="boton-volver" value="Emitir boleto" class="btn btn-primary">Emitir boleto</button>     	
+    			</div>   		        
         	</form>
         </div>
 	</body>

@@ -63,7 +63,7 @@
     			<label for="password" style="padding:25px">Password: </label>
 				<input id="password" name="password" type="password" class="form-control" placeholder="Password" style="width:200px"> <p id="error" class="hidden">Documento o clave incorrecto, vuelva a intentar.</p>
    			</div>
-    		<button type="submit" id="login" class="btn btn-primary" value="Entrar">Entrar</button>
+   			<input type="submit" id="login" class="btn btn-primary" value="Entrar">
 		</form>
 	</body>
 </html>

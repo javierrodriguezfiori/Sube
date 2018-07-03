@@ -14,73 +14,30 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 		<style>
-	      body {
-	        background-color: white;
-	        font-family: 'Roboto';
-	      }
-	
-	      .formulario {
-	          background: gainsboro;
-	      }
-	
-	      .subtitle {
-	        font-size: 16px;
-	      }
-	
-	      .radio-option {
-	        padding-right: 10px;
-	      }
 	      
-	      .btn-link{
-			  border:none;
-			  outline:none;
-			  background:none;
-			  cursor:pointer;
-			  color:#0000EE;
-			  padding:0;
-			  text-decoration:underline;
-			  font-family:inherit;
-			  font-size:inherit;
-			}
-			
-		.button {
-		    background-color: #008CBA;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 12px;
-		    border-radius: 8px;
-		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-		    opacity: 0.6;
-		}
 		
-		.button:hover {opacity: 1}
 	    </style>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
 		
-		<div class= "container">
-			<div class="row">
-				<div class="col-lg-4">
-					<form action="/SistemaSube/index.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="Salir" class="button">Salir</button>
+		
+			<div style="margin-top:10%">
+				
+					<form action="/SistemaSube/index.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+						<button type="submit" name="boton-volver" value="Salir" class="btn btn-primary" style="display: inline-block">Salir</button>
 					</form>				
-				</div>
-				<div class="col-lg-4">
-					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="Reportes" class="button">Consultas</button>
+				
+				
+					<form action="/SistemaSube/consultarsaldo.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+						<button type="submit" name="boton-volver" value="Reportes" class="btn btn-primary" style="display: inline-block">Consultas</button>
 					</form>				
-				</div>
-				<div class="col-lg-4">
-					<form action="/SistemaSube/cobrarViajeLogeado.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="EmitirBoleto" class="button">Realizar viaje</button>
+				
+				
+					<form action="/SistemaSube/cobrarViajeLogeado.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+						<button type="submit" name="boton-volver" value="EmitirBoleto" class="btn btn-primary" style="display: inline-block">Realizar viaje</button>
 					</form>				
-				</div>
+				
 			</div>
-		</div>
 	</body>
 </html>
