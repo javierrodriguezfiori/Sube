@@ -5,6 +5,9 @@ import dao.TarjetaSubeDao;
 import datos.Sesion;
 import datos.TarjetaSube;
 import datos.Usuario;
+import utils.TarjetaSubeInexistenteException;
+import utils.UsuarioInvalidoException;
+
 import java.util.GregorianCalendar;
 
 public class TarjetaSubeABM {
@@ -28,11 +31,10 @@ public class TarjetaSubeABM {
 		return tarjetaSube;
 	}
 
-	public TarjetaSube traerTarjetaSube(long nroTarjeta) throws Exception{
+	public TarjetaSube traerTarjetaSube(long nroTarjeta) {
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
 
-		if(noExiste(t))
-			throw new Exception("La tarjeta no existe");
+		// Si la tarjeta no existe devuelve null
 		
 		return t;
 	}
@@ -52,27 +54,17 @@ public class TarjetaSubeABM {
 				TarjetaSubeDao.getInstance().eliminar(t);
 	}
 	
-	public void asociar(long nroTarjeta, String documento) throws Exception{ 
-		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
-		System.out.println(t);
-		Usuario u= UsuarioABM.getInstance().traerUsuario(documento);
-		System.out.println(u);
-		if(noExiste(t) || noExiste(u)) 
-			throw new Exception("Tarjeta o Usuario no encontrado");  
-		else
-			if(t.getUsuario()!=null)
-				throw new Exception("Tarjeta ya asociada a un usuario");  
-			else {
-				if(TarjetaSubeDao.getInstance().traerTarjetaSube(u)!=null) 
-					throw new Exception("El usuario ya tiene una tarjeta asociada");  
-				else {
-					t.setUsuario(u);
-					modificar(t);
-				}
-			}
+	public void asociarAUsuario(long nroTarjeta, String documento) throws Exception{ 
+		TarjetaSube tarjetaSube = TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
+		Usuario usuario = UsuarioABM.getInstance().traerUsuario(documento);
+
+		validarAsociacion(usuario, tarjetaSube);
+		
+		tarjetaSube.setUsuario(usuario);
+		modificar(tarjetaSube);
 	}
 	
-	public void desasociar(long nroTarjeta) throws Exception{ 
+	public void desasociarDeUsuario(long nroTarjeta) throws Exception{ 
 		TarjetaSube t= TarjetaSubeDao.getInstance().traerTarjetaSube(nroTarjeta);
 		if(noExiste(t))
 			throw new Exception("La tarjeta no existe");  
@@ -126,5 +118,20 @@ public class TarjetaSubeABM {
 	
 	private static <T> boolean noExiste(T obj) {
 		return (obj == null);
+	}
+	
+	private void validarAsociacion(Usuario usuario, TarjetaSube tarjetaSube) throws Exception {
+		
+		if (noExiste(usuario))
+			throw new UsuarioInvalidoException("No existe un usuario dado de alta con ese documento.");
+		
+		if(noExiste(tarjetaSube)) 
+			throw new TarjetaSubeInexistenteException("No existe una tarjeta sube asociada a ese numero.");  
+		
+		if(tarjetaSube.getUsuario()!=null)
+			throw new Exception("Tarjeta ya asociada a un usuario");  
+
+		if(TarjetaSubeDao.getInstance().traerTarjetaSube(usuario) != null) 
+			throw new Exception("El usuario ya tiene una tarjeta asociada"); 
 	}
 }

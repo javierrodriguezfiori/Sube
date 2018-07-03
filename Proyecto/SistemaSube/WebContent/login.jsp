@@ -52,7 +52,7 @@
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>	
-		<form class="center-screen">
+		<div class="center-screen">
 			<h4>Inicio</h4>
     		<div class="form-group">
      			<label for="documento" style="padding:35px">Documento: </label>
@@ -64,6 +64,6 @@
 				<input id="password" name="password" type="password" class="form-control" placeholder="Password" style="width:200px"> <p id="error" class="hidden">Documento o clave incorrecto, vuelva a intentar.</p>
    			</div>
     		<button type="submit" id="login" class="btn btn-primary" value="Entrar">Entrar</button>
-		</form>
+		</div>
 	</body>
 </html>

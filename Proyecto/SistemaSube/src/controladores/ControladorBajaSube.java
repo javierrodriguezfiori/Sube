@@ -25,7 +25,7 @@ public class ControladorBajaSube extends HttpServlet {
 		try {
 			long nroTarjeta = Integer.parseInt(request.getParameter("nroTarjeta"));	
 			TarjetaSube tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
-			TarjetaSubeABM.getInstance().desasociar(nroTarjeta);
+			TarjetaSubeABM.getInstance().desasociarDeUsuario(nroTarjeta);
 			tarjeta=TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
 			request.setAttribute("tarjeta", tarjeta);
 			request.getRequestDispatcher("ajaxBajaSube.jsp").forward(request, response);

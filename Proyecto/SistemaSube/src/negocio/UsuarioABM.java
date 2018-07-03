@@ -30,11 +30,10 @@ public class UsuarioABM {
 		return user;
 	}
 	
-	public Usuario traerUsuario(String documento) throws UsuarioInvalidoException{
+	public Usuario traerUsuario(String documento) {
 		Usuario user= UsuarioDAO.getInstance().traerUsuario(documento);
-		// Si el usuario no existe tirar error
-		if(user==null)
-			throw new UsuarioInvalidoException("El usuario no existe");
+		
+		// Si el usuario no existe retorna null.
 		return user;
 	}
 	

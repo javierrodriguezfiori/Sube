@@ -150,4 +150,12 @@
   	<servlet-name>ControladorLineas</servlet-name>
   	<url-pattern>/Lineas</url-pattern>
   </servlet-mapping>
+   <servlet>
+  	<servlet-name>ControladorRegistro</servlet-name>
+  	<servlet-class>controladores.ControladorRegistro</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorRegistro</servlet-name>
+  	<url-pattern>/Registro</url-pattern>
+  </servlet-mapping>
 </web-app>
