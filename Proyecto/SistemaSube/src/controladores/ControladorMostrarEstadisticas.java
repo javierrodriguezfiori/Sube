@@ -57,30 +57,30 @@ public class ControladorMostrarEstadisticas extends HttpServlet {
 			TransportePublico transportePublico = TransportePublicoABM.getInstance().traer(idTransporte);
 			
 			if(transportePublico instanceof Tren) {
-				List<Muestra> cant = ViajeABM.getInstance().estadisticaCantViajesTren(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
+				List<Muestra> estadistica = ViajeABM.getInstance().estadisticaViajesTren(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
 				
 
-				Gson gson = new Gson();
-				response.setContentType("application/json");
-				PrintWriter out = response.getWriter();
-				out.println(gson.toJson(cant));
+				request.setAttribute("estadistica", estadistica);
+				request.getRequestDispatcher("ajaxestadisticatren.jsp").forward(request, response);
 				
-				request.getRequestDispatcher("ajaxestadistica.jsp").forward(request, response);
 			}
 			
 			if(transportePublico instanceof Colectivo) {
-				List<Muestra> cant = ViajeABM.getInstance().estadisticaCantViajesColectivo(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
+				List<Muestra> estadistica = ViajeABM.getInstance().estadisticaViajesColectivo(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
+				request.setAttribute("estadistica", estadistica);
+				request.getRequestDispatcher("ajaxestadisticacolectivo.jsp").forward(request, response);
 				
-				request.getRequestDispatcher("ajaxestadistica.jsp").forward(request, response);
 				
 			}
 			
 			if(transportePublico instanceof Subte) {
-				List<Muestra> cant = ViajeABM.getInstance().estadisticaCantViajesSubte(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
+				List<Muestra> estadistica = ViajeABM.getInstance().estadisticaViajesSubte(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
+				request.setAttribute("estadistica", estadistica);
+				request.getRequestDispatcher("ajaxestadisticasubte.jsp").forward(request, response);
 				
-				request.getRequestDispatcher("ajaxestadistica.jsp").forward(request, response);
 			}
 		
+			
 			
 			
 
