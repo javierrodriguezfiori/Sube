@@ -89,6 +89,15 @@
    <url-pattern>/MostrarReportesPorColectivo</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+   <servlet-name>ControladorMostrarEstadisticas</servlet-name>
+   <servlet-class>controladores.ControladorMostrarEstadisticas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorMostrarEstadisticas</servlet-name>
+   <url-pattern>/MostrarEstadisticas</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
    <servlet-name>ControladorMostrarReportesSubte</servlet-name>
    <servlet-class>controladores.ControladorMostrarReportesSubte</servlet-class>
