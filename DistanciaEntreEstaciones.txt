@@ -14,3 +14,25 @@ idParada;Nombre;Distancia
 13;Glew;3,22
 14;Guernica;3,33
 15;Alejandro Korn;7,03
+24;Congreso de Tucumán;0
+25;Juramento;0
+25;José Hernández;0
+26;Olleris;0
+27;Ministro Carranza;0
+28;Palermo;0
+29;Plaza Italia;0
+30;Scalabrini Ortiz;0
+31;Bulnes;0
+32;Aguero;0
+33;Pueyrredón;0
+34;Facultad de Medicina;0
+35;Callao;0
+36;Tribunales;0
+37;9 de Julio;0
+38;Catedral;0
+39;Turdera;3
+40;Lavallol;1,96
+41;Guillón;1,91
+42;Monte Grande;2,32
+43;El jaguel;3,21
+44;Ezeiza;3,33

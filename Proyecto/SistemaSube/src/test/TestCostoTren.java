@@ -13,7 +13,7 @@ public class TestCostoTren {
 		
 		
 		
-		ViajeTren viaje = new ViajeTren((float)0,new GregorianCalendar(),new TarjetaSube(),TransportePublicoABM.getInstance().traerTrenYParadas((long)1),ParadaABM.getInstance().traer((long)5),ParadaABM.getInstance().traer((long)14));
+		ViajeTren viaje = new ViajeTren((float)0,new GregorianCalendar(),new TarjetaSube(),TransportePublicoABM.getInstance().traerTrenYParadas((long)6),ParadaABM.getInstance().traer((long)1),ParadaABM.getInstance().traer((long)45));
 		System.out.println(TransportePublicoABM.getInstance().calcularCostoDeViaje(viaje));
 		System.out.println(viaje);
 
