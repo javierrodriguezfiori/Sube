@@ -42,25 +42,28 @@ public class Muestra {
 	private int idMuestra2;
 	private String nombre;
 	private String nombre2;
-	private float muestra;
+	private float cant;
+	private float sum;
 	
 	
 	
-	public Muestra(int idMuestra, String nombre, float muestra) {
+	public Muestra(int idMuestra, String nombre, float cant,float sum) {
 		super();
 		this.idMuestra = idMuestra;
 		this.nombre = nombre;
-		this.muestra = muestra;
+		this.cant = cant;
+		this.sum = sum;
 	
 		
 	}
 	
-	public Muestra(int idMuestra,int idMuestra2, String nombre,String nombre2, float muestra) {
+	public Muestra(int idMuestra,int idMuestra2, String nombre,String nombre2, float cant,float sum) {
 		super();
 		this.idMuestra = idMuestra;
 		this.nombre = nombre;
 		this.nombre2=nombre2;
-		this.muestra = muestra;
+		this.cant = cant;
+		this.sum=sum;
 		this.idMuestra2=idMuestra2;
 	
 		
@@ -79,13 +82,7 @@ public class Muestra {
 	}
 
 	
-	public float getMuestra() {
-		return muestra;
-	}
 
-	public void setMuestra(float muestra) {
-		this.muestra = muestra;
-	}
 
 	public int getIdMuestra() {
 		return idMuestra;
@@ -115,14 +112,32 @@ public class Muestra {
 		this.nombre2 = nombre2;
 	}
 
+	
+
+	public float getCant() {
+		return cant;
+	}
+
+	public void setCant(float cant) {
+		this.cant = cant;
+	}
+
+	public float getSum() {
+		return sum;
+	}
+
+	public void setSum(float sum) {
+		this.sum = sum;
+	}
+
 	@Override
 	public String toString() {
 		return "Muestra [idMuestra=" + idMuestra + ", idMuestra2=" + idMuestra2 + ", nombre=" + nombre + ", nombre2="
-				+ nombre2 + ", muestra=" + muestra + "]";
+				+ nombre2 + ", cant=" + cant + ", sum=" + sum + "]";
 	}
 
      
-
+   
 	
 
 	

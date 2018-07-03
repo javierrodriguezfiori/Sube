@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Reportes</title>
+<title>Estadisticas</title>
 <link rel="stylesheet" href="js/datetimepicker-master/build/jquery.datetimepicker.min.css">
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		var transportePublico = $('#radio-transportes:checked').val();
 		$.ajax({
 			method: "POST",
-			url: "SeleccionarLineaTransporte",
+			url: "SeleccionarLineaTransporte2",
 			data: { transportePublico: transportePublico },
 			async: false,
 			statusCode: {
@@ -168,7 +168,7 @@ $(document).ready(function() {
 </head>
 <body>
 <%@include file="/header.jsp" %>
-<h1>Reportes</h1>
+<h1>Estadisticas</h1>
 <form class="navbar-form navbar-right">
 <div class="col-lg-6" style="padding-top:50px;">
 <p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
@@ -187,6 +187,8 @@ $(document).ready(function() {
 <input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
 <label for="radio">Colectivo</label>
 
+
+
 <INPUT id="estadistica"  type="button" class="btn btn-succes" value="Estadistica"/>
 </form>
 
@@ -196,13 +198,8 @@ $(document).ready(function() {
 
 
 
-<table class="columns">
-		<tr>
-			<td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
-			<td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
-		</tr>
-</table>
 
+<div id="responseestadistica"></div>
 <div id="response-lineas-de-transporte"></div>
 
 

@@ -144,6 +144,15 @@
   </servlet-mapping>
   
   <servlet>
+   <servlet-name>ControladorSeleccionarLineaDeTransporte2</servlet-name>
+   <servlet-class>controladores.ControladorSeleccionarLineaDeTransporte2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorSeleccionarLineaDeTransporte2</servlet-name>
+   <url-pattern>/SeleccionarLineaTransporte2</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>ControladorTramosYEstaciones</servlet-name>
   	<servlet-class>controladores.ControladorTramosYEstaciones</servlet-class>
   </servlet>
