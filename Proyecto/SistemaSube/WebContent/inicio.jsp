@@ -13,6 +13,7 @@
 	    <link rel="icon" type="image/png" href="http://lametro.edu.ec/wp-content/uploads/2017/03/favicon.png">
 	    <link rel="stylesheet" href="https://gla2imagenes.blob.core.windows.net/constanciadigitalresources/resources/js/plugins/bootstrap/dist/css/bootstrap.min.css?sv=2017-04-17&si=constanciadigitalresourcesro-1602180B752&sr=c&sig=I4p4EsqgDQCjnWb3e5TJDSaW5iBsit%2FwVoCr4lHZBpQ%3D">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 		<style>
 	      body {
@@ -32,36 +33,44 @@
 	        padding-right: 10px;
 	      }
 	      
-	      .btn-link{
-			  border:none;
-			  outline:none;
-			  background:none;
-			  cursor:pointer;
-			  color:#0000EE;
-			  padding:0;
-			  text-decoration:underline;
-			  font-family:inherit;
-			  font-size:inherit;
-			}
-			
-		.button {
-		    background-color: #008CBA;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 12px;
-		    border-radius: 8px;
-		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-		    opacity: 0.6;
+		.btn {
+		background:transparent;
+	    border: none; /* Remove borders */
+	    color: DodgerBlue; /* White text */
+	    padding: 12px 16px; /* Some padding */
+	    font-size: 500px; /* Set a font size */
+	    cursor: pointer; /* Mouse pointer on hover */
 		}
 		
-		.button:hover {opacity: 1}
+		.btn:hover {
+			background:transparent;
+		}
+	
+			.tool:hover .tooltiptext {
+			display:block;
+		}
+		
+		.tooltiptext {
+			background-color: DodgerBlue;
+			font-size:15px;
+			padding: 10px 0;
+			border-radius: 6px;
+			text-align: center;
+			width: 100px;
+			display:none;
+		    color: white;
+		    margin-left: 10px; /* moves the tooltip to the right */
+		    margin-top: 7px; /* moves it down */
+		    position: absolute;
+		    z-index: 1000;
+		}
 		
 		.hidden {
 			display:none;
+		}
+		
+		.col-lg-4 {
+			padding-top:20px;
 		}
 	    </style>
    		<script src="js/jquery-3.3.1.min.js"></script>
@@ -81,31 +90,36 @@
 		<%@ include file="/header.jsp" %>
 		<% boolean tienePrivilegios = Sesion.obtenerSesionActual().getUsuarioLogeado() != null && Sesion.obtenerSesionActual().tienePrivilegios(); %>
 		<input type="text" id="tienePrivilegios" style="display:none;" value=<%=tienePrivilegios%>/>
-		<div class= "container">
+		<div class= "container" style="margin-top:10%;">
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
-						<button type="submit" value="Reportes" class="button">Consultas</button>
+						<p class="tool"><button type="submit" value="Reportes" class="btn"><i class="fa fa-bars fa-5x" aria-hidden="true"></i></button>
+						<span class="tooltiptext">Reportes</span></p>
 					</form>				
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
-						<button type="submit" value="EmitirBoleto" class="button">Realizar viaje</button>
+						<p class="tool"><button type="submit" value="EmitirBoleto" class="btn"><i class="fa fa-train fa-5x" aria-hidden="true"></i></button>
+						<span class="tooltiptext">Realizar un viaje</span></p>
 					</form>				
 				</div>
-				<div class="col-lg-4 hidden" id="asignartarifa">
+				<div class="col-lg-3 hidden" id="asignartarifa">
 					<form action="/SistemaSube/asignartarifasocial.jsp" method="POST">
-						<button type="submit" value="AsignarTarifaSocial" class="button">Asignar Tarifa Social</button>
+						<p class="tool"><button type="submit" value="AsignarTarifaSocial" class="btn"><i class="fa fa-handshake-o fa-5x" aria-hidden="true"></i></button>
+						<span class="tooltiptext">Asignar tarifa social</span></p>
 					</form>				
 				</div>				
-				<div class="col-lg-4 hidden" id="bajarsube">
+				<div class="col-lg-3 hidden" id="bajarsube">
 					<form action="/SistemaSube/bajasube.jsp" method="POST">
-						<button type="submit" value="DeshabilitarTarjta" class="button">Deshabilitar tarjeta</button>
+						<p class="tool"><button type="submit" value="DeshabilitarTarjta" class="btn"><i class="fa fa-ban fa-5x" aria-hidden="true"></i></button>
+						<span class="tooltiptext">Deshabilitar tarjetas</span></p>
 					</form>				
 				</div>	
-				<div class="col-lg-4">
+				<div class="col-lg-3" style="padding-top:30px;">
 					<form action="/SistemaSube/LogOut" method="POST">
-						<button type="submit" value="Salir" class="button">Salir</button>
+						<p class="tool"><button type="submit" value="Salir" class="btn"><i class="fa fa-sign-out fa-5x" aria-hidden="true"></i></button>
+						<span class="tooltiptext">Salir</span></p>
 					</form>				
 				</div>									
 			</div>

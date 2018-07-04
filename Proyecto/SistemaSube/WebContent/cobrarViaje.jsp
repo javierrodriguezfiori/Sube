@@ -38,20 +38,7 @@
 	        padding-right: 10px;
 	      }
 	      
-      		.button {
-		   	background-color: #008CBA;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 12px;
-		    border-radius: 8px;
-		    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-		    opacity: 0.6;
-		}
-		
+      		
 		.opciones{
 			padding-top:50px;
 		}
@@ -87,6 +74,14 @@
 		.hidden {
 			display:none;
 		}
+		
+		.center-screen {
+ 			 display: flex;
+ 			 flex-direction: column;
+			 justify-content: center;
+ 			 align-items: center;
+  			 text-align: center;
+			}
 	
 	    </style>
 	    
@@ -220,7 +215,7 @@
 		</script>
 	    
 	</head>
-	<body>
+	<body class="center-screen">
 		<%@ include file="/header.jsp" %>
 		<%
 		String nroTarjetaSube = "";
@@ -241,23 +236,23 @@
 		<div class="container" id="formulario1">
 			<div class="row">
 	          	<div class="col-lg-4 hidden" id="nroTarjetaSube-Logeada" style="padding-top:30px;">
-	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=nroTarjetaSube%></label> <br>
+	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;"><h4>Tarjeta Sube > <%=nroTarjetaSube%></h4></label> <br>
 		         	<label id="error4001" class="hidden">No posee suficiente saldo en la tarjeta para realizar este viaje.</label>
 		         	<label id="error4041" class="hidden">La tarjeta sube ingresada no existe.</label>	           		
 	         	</div>
 	          	<div class="col-lg-4 hidden" id="nroTarjetaSube-NoLogeada" style="padding-top:30px;">
-	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > </label><input type="text" name="tarjetasube" id="tarjetasube"> <br>
+	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;"><h4>Tarjeta Sube > </h4></label><input type="text" name="tarjetasube" id="tarjetasube" class="form-control"> <br>
 	           		<label id="error4002" class="hidden">No posee suficiente saldo en la tarjeta para realizar este viaje.</label>
 	         		<label id="error4042" class="hidden">La tarjeta sube ingresada no existe.</label>
 	         	</div>
 			    <div class="col-lg-6" style="padding-top:50px;">
-		          	<p class="tool"> Fecha del viaje: <input id="datetime" name="fecha" type="text"> 
+		          	<p class="tool"> <h4>Fecha del viaje:</h4> <input id="datetime" name="fecha" type="text"  style="width:200px;padding-left:200px" align="center"> 
 		          	<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 	        	</div>
 			</div>
 			<div class="row">
 	           <div class="col-lg-3 opciones">
-	              <label class="subtitle">¿En qué transporte público viajará?</label> <BR>
+	              <label><h4>¿En qué transporte público viajará?</h4></label> <BR>
 	              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren" checked/>
 	              <label for="radio" >Tren</label>
 	              <input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
@@ -271,15 +266,15 @@
         	</div>
         </div>	
         	<div class="row">
-        		<div class="col-lg-12" id="response-viaje-cobrado"></div>
-        		<div class="col-lg-4" align="center" style="padding-top:50px;">
+        		<div id="response-viaje-cobrado"></div>
+        		<div class="col-lg-4" align="center" style="padding-top:50px;display:inline-block">
   						<form action="<%=retorno%>" method="POST">
-						<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
+						<button type="submit" name="boton-volver" value="Volver" class="btn btn-primary">Volver</button>
 					</form>
         		</div>  
 	        	<div id="formulario2">          	
-	       			<div class="col-lg-7" style="padding-top:50px; align:right;">
-		          		<input type="submit" value="Emitir boleto" id="emitirBoleto" class="button">
+	       			<div align="center" style="padding-top:50px;display:inline-block">
+		          		<input type="submit" value="Emitir boleto" id="emitirBoleto" class="btn btn-primary">
 		          	</div>        	    		
 	        	</div>
 		</div>

@@ -94,26 +94,26 @@
 		<div class="container">
 			<div class="row">
 	          	<div class="col-lg-4 hidden" id="nroTarjetaSube-Logeada" style="padding-top:30px;">
-	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=nroTarjetaSube%></label> <br>        		
+	           		<label style="margin-top:20px; padding-right:20px; color:#787878;"><h4>Tarjeta Sube > <%=nroTarjetaSube%></h4></label> <br>        		
 	         	</div>
 	          	<div class="col-lg-4 hidden" id="nroTarjetaSube-NoLogeada" style="padding-top:30px;">
 	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > </label><input type="text" name="tarjetasube" id="tarjetasube"> <br>
 	           		<label id="error404" class="hidden">La tarjeta sube ingresada no existe.</label>
 	         	</div>
 	     	</div>
-	     	<div class="row">
-	     		<div class="col-lg-4">
-	     			<INPUT id="consultartransacciones" type="button" class="btn btn-success" value="Consultar transacciones"/>
+	     	
+	     		<div style="padding-right: 200px;display:inline-block">
+	     			<INPUT id="consultartransacciones" type="button" class="btn btn-primary" value="Consultar transacciones" style="display:inline-block"/>
 	     		</div>
-	     		<div class="col-lg-4">
-	     			<INPUT id="consultarsaldo" type="button" class="btn btn-success" value="Consultar saldo"/>
+	     		<div style="padding-right: 200px;display:inline-block">
+	     			<INPUT id="consultarsaldo" type="button" class="btn btn-primary" value="Consultar saldo" style="display:inline-block"/>
 	     		</div>
-	     		<div class="col-lg-4">
+	     		<div style="padding-right: 200px;display:inline-block">
 					<form action="inicio.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
+						<button type="submit" name="boton-volver" value="Volver" class="btn btn-primary" style="display:inline-block">Volver</button>
 					</form>
 	     		</div>	     		
-	     	</div>
+	     	
 	     </div>		
 		<div id="responsesaldo"></div>
 		<div id="responsetransacciones"></div>
