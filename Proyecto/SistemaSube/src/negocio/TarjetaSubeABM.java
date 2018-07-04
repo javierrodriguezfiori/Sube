@@ -1,6 +1,7 @@
 package negocio;
 
 
+import dao.RolDao;
 import dao.TarjetaSubeDao;
 import datos.Sesion;
 import datos.TarjetaSube;
@@ -62,6 +63,8 @@ public class TarjetaSubeABM {
 		
 		tarjetaSube.setUsuario(usuario);
 		modificar(tarjetaSube);
+		usuario.setRol(new RolDao().traerRol());
+		new RolDao().actualizar(usuario);
 	}
 	
 	public void desasociarDeUsuario(long nroTarjeta) throws Exception{ 
