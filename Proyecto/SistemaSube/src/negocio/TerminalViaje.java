@@ -47,6 +47,7 @@ public class TerminalViaje extends Terminal{
 					System.out.println("Precio sin red sube " + precio);
 					double descuentoTarjetaSube = TarjetaSubeABM.getInstance().calcularDescuento(tarjeta);
 					System.out.println("DesciemtpTarketa:" + descuentoTarjetaSube);
+					((ViajeTren) viaje).setDestino(viajeT.getOrigen());
 					double descuentoRedSube = RedSubeABM.getInstance().calcularDescuento(viaje);
 					System.out.println("DesciemtpTarketa:" + descuentoRedSube);
 					precio=(float)(precio*descuentoTarjetaSube*descuentoRedSube);

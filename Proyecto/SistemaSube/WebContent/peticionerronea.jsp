@@ -70,12 +70,12 @@
 				motivoDeError = "Ocurrio un error interno en el servidor, vuelva a intentarlo más tarde.";
 		%>
 		<% 
-		String retorno = "home.jsp";
+		String retorno = "indice.jsp";
 		
 		if (Sesion.obtenerSesionActual().getUsuarioLogeado() != null)
 		{
 			if (Sesion.obtenerSesionActual().tienePrivilegios())
-				retorno = "homeAdmin.jsp";
+				retorno = "indice.jsp";
 		} else
 			retorno = "index.jsp";
 		%>

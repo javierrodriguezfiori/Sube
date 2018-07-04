@@ -42,12 +42,18 @@ public class RedSubeABM {
 		GregorianCalendar fechaHora= viaje.getFechaHora();
 		
 		RedSube redSube = RedSubeDao.getInstance().traerRedSube(nroTarjetaSube);
-//	    if(viaje instanceof ViajeTren ) {
-//	    	ViajeTren t = (ViajeTren)viaje;
-//	    	if(t.getDestino()!=null && t.getOrigen()!=null) {
-//	    		redSube.setContador(redSube.getContador() - 1);
-//	    	}
-//	    }
+	    if(viaje instanceof ViajeTren ) {
+        	ViajeTren t = (ViajeTren)viaje;
+        	System.out.println(t.getDestino());
+    		System.out.println(t.getOrigen());
+    		System.out.println("..........");
+    	if(t.getDestino()!=null && t.getOrigen()!=null) {
+    		redSube.setContador(redSube.getContador() - 1);
+    		System.out.println(t.getDestino());
+    		System.out.println(t.getOrigen());
+    		System.out.println("..........");
+    	  }
+	    }
 		boolean sinDescuento=false;
 		double descuento=1;
 		
