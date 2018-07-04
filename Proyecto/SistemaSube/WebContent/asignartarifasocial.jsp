@@ -23,20 +23,29 @@
 			});
 		});
 		</script>
+		<style>
+		.center-screen {
+ 			 display: flex;
+ 			 flex-direction: column;
+			 justify-content: center;
+ 			 align-items: center;
+  			 text-align: center;
+			}
+		</style>
 		<title>Asignar Tarifa Social</title>
 	</head>
 	
-	<body>
+	<body class="center-screen">
 		<%@include file="/header.jsp" %>
 		<h1>Asignar Tarifa Social</h1>
 		
 		<form class="navbar-form navbar-right">
 		
-		<label for="nroTarjeta">Numero Tarjeta:</label>
-		<INPUT id="nroTarjeta" name="nroTarjeta">
+		<label for="nroTarjeta"><h4>Numero Tarjeta:</h4></label>
+		<INPUT id="nroTarjeta" name="nroTarjeta" class="form-control" style="width: 300px">
 		
 		<div class="col-lg-4" style="padding-top:50px;">
-           <label class="subtitle">¿Qué tarifa desea tramitar?</label> <BR>
+           <label class="subtitle"><h4>¿Qué tarifa desea tramitar?</h4></label> <BR>
            <input type="radio" class="radio-option" name="tarifa" value="tarifasocial" checked/>
            <label for="radio" >Tarifa Social</label>
            <input type="radio" class="radio-option" name="tarifa" value="boletoestudiantil"/>
@@ -50,11 +59,12 @@
            
            </select>
 	    </div>
-		<INPUT id="asignartarifasocial" type="button" class="btn btn-success" value="AsignarTarifaSocial"/>
-		
+	    <div style="padding-top:30px">
+		<INPUT id="asignartarifasocial" type="button" class="btn btn-primary" value="AsignarTarifaSocial"/>
+		</div>
 		</form>
-				<form action="/SistemaSube/inicio.jsp" method="POST">
-					<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
+				<form action="/SistemaSube/inicio.jsp" method="POST" style="padding-top: 30px">
+					<button type="submit" name="boton-volver" value="Volver" class="btn btn-primary">Volver</button>
 				</form>
 		
 		<div id="responseAsignarTarifaSocial"></div>

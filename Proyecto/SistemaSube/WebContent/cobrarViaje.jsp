@@ -241,12 +241,12 @@
 		         	<label id="error4041" class="hidden">La tarjeta sube ingresada no existe.</label>	           		
 	         	</div>
 	          	<div class="col-lg-4 hidden" id="nroTarjetaSube-NoLogeada" style="padding-top:30px;">
-	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;"><h4>Tarjeta Sube > </h4></label><input type="text" name="tarjetasube" id="tarjetasube" class="form-control"> <br>
+	           		<label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;"><h4>Tarjeta Sube > </h4></label><input type="text" name="tarjetasube" id="tarjetasube" class="form-control" style="width: 300px;align:center"> <br>
 	           		<label id="error4002" class="hidden">No posee suficiente saldo en la tarjeta para realizar este viaje.</label>
 	         		<label id="error4042" class="hidden">La tarjeta sube ingresada no existe.</label>
 	         	</div>
 			    <div class="col-lg-6" style="padding-top:50px;">
-		          	<p class="tool"> <h4>Fecha del viaje:</h4> <input id="datetime" name="fecha" type="text"  style="width:200px;padding-left:200px" align="center"> 
+		          	<p class="tool"> <h4>Fecha del viaje:</h4> <input id="datetime" name="fecha" type="text" class="form-control" style="width: 300px;align:center"> 
 		          	<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 	        	</div>
 			</div>

@@ -6,25 +6,28 @@
 <%@page import="funciones.Funciones" %>
 
 
-<table border="1">
-<caption>Viajes de Colectivos</caption>
-<tr>
- <th>Fecha</th>
- <th>Hora</th>
- <th>Numero Tarjeta</th>
- <th>Monto</th>
-
-<% List<Viaje> viajesColectivo = (List)request.getAttribute("viajesColectivo");
-for(Viaje viaje : viajesColectivo){ %>
-<tr>
- <td><%= Funciones.traerFechaCorta(viaje.getFechaHora()) %> </td>
- <td><%=Funciones.traerHora(viaje.getFechaHora()) %>
- <td><%= viaje.getTarjetaSube().getNroTarjeta() %> </td>
- <td><%= viaje.getMonto() %> </td>
- </tr>
+<table class="table table-hover">
+  <thead>
+  <caption>Viajes de Colectivos</caption>
+    <tr>
+      <th scope="col">Fecha</th>
+ 	  <th scope="col">Hora</th>
+ 	  <th scope="col">Numero Tarjeta</th>
+ 	  <th scope="col">Monto</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% List<Viaje> viajesColectivo = (List)request.getAttribute("viajesColectivo");
+	for(Viaje viaje : viajesColectivo){ %>
+	<tr class="table-light">
+ 		<td><%= Funciones.traerFechaCorta(viaje.getFechaHora()) %> </td>
+ 		<td><%=Funciones.traerHora(viaje.getFechaHora()) %>
+ 		<td><%= viaje.getTarjetaSube().getNroTarjeta() %> </td>
+ 		<td><%= viaje.getMonto() %> </td>
+ 	</tr>
+ </tbody>
  <%} %>
 </table>
-
 
 
 
