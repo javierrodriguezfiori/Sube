@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 
 import datos.Contacto;
 import datos.DatosUsuario;
+import datos.Sesion;
+import datos.Usuario;
 import negocio.UsuarioABM;
 
 public class TestUsuario {
@@ -29,7 +31,9 @@ public class TestUsuario {
 		
 //		// Test traer por documento
 				try {
-					System.out.println(UsuarioABM.getInstance().traerUsuario("3180781"));
+					Usuario usuario = UsuarioABM.getInstance().traerUsuario("34180781");
+					Sesion.obtenerSesionActual().setUsuarioLogeado(usuario);
+					System.out.println(Sesion.obtenerSesionActual().tienePrivilegios());
 				} catch (Exception e){
 					System.out.println(e);
 				}

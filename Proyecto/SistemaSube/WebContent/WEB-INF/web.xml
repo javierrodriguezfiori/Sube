@@ -168,13 +168,22 @@
   	<servlet-name>ControladorLineas</servlet-name>
   	<url-pattern>/Lineas</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-  	<servlet-name>TraerEstadistica</servlet-name>
-  	<servlet-class>controladores.TraerEstadistica</servlet-class>
+
+   <servlet>
+  	<servlet-name>ControladorRegistro</servlet-name>
+  	<servlet-class>controladores.ControladorRegistro</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>TraerEstadistica</servlet-name>
-  	<url-pattern>/TraerEstadistica</url-pattern>
+  	<servlet-name>ControladorRegistro</servlet-name>
+  	<url-pattern>/Registro</url-pattern>
   </servlet-mapping>
+    <servlet>
+	<servlet-name>ControladorLogOut</servlet-name>
+  	<servlet-class>controladores.ControladorLogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorLogOut</servlet-name>
+  	<url-pattern>/LogOut</url-pattern>
+  </servlet-mapping> 
+
 </web-app>

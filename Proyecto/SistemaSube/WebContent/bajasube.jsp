@@ -37,9 +37,9 @@
 		<INPUT id="bajasube" type="button" class="btn btn-success" value="BajaSube"/>
 		
 		</form>
-		<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
-					<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
-				</form>
+		<form action="/SistemaSube/inicio.jsp" method="POST">
+			<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
+		</form>
 		
 		<div id="responseBajaSube"></div>
 	</body>

@@ -58,27 +58,22 @@
 		}
 		
 		.button:hover {opacity: 1}
+			
+	
 	    </style>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		
-		<div class= "container">
+		<% String mensaje = (String) request.getAttribute("mensaje"); %>
+		<div class="container">
 			<div class="row">
-				<div class="col-lg-4">
-					<form action="/SistemaSube/index.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="Salir" class="button">Salir</button>
-					</form>				
-				</div>
-				<div class="col-lg-4">
-					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="Reportes" class="button">Consultas</button>
-					</form>				
-				</div>
-				<div class="col-lg-4">
-					<form action="/SistemaSube/cobrarViajeLogeado.jsp" method="POST">
-						<button type="submit" name="boton-volver" value="EmitirBoleto" class="button">Realizar viaje</button>
-					</form>				
+				<div class="col-lg-12">
+					<h2 style="text-align:justify;">Operación correcta</h2>
+					<p>La operación se ha procesado correctamente.</p> <br>
+					
+					<form action="/SistemaSube/home.jsp" method="POST">
+						<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
+					</form>
 				</div>
 			</div>
 		</div>

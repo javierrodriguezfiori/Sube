@@ -53,7 +53,7 @@
 		<INPUT id="asignartarifasocial" type="button" class="btn btn-success" value="AsignarTarifaSocial"/>
 		
 		</form>
-		<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
+				<form action="/SistemaSube/inicio.jsp" method="POST">
 					<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
 				</form>
 		

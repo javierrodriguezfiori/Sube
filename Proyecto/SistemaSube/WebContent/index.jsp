@@ -25,12 +25,12 @@
 						<button type="submit" name="boton-volver" value="Logearse" class="btn btn-primary" style="display: inline-block">Entrar</button>
 					</form>				
 				
-					<form action="" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+					<form action="/SistemaSube/registrarse.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 						<button type="submit" name="boton-volver" value="Registrarse" class="btn btn-primary" style="display: inline-block">Registrarse</button>
 					</form>				
 				
 				
-					<form action="/SistemaSube/cobrarViajeNoLogeado.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+					<form action="/SistemaSube/cobrarViaje.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 						<button type="submit" name="boton-volver" value="EmitirBoleto" class="btn btn-primary" style="display: inline-block">Realizar viaje</button>
 					</form>				
 				</div>

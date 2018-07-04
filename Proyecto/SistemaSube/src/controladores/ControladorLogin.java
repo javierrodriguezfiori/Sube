@@ -28,8 +28,11 @@ public class ControladorLogin extends HttpServlet implements LoginValidable{
 			Usuario usuario = traerUsuario(request.getParameter("documento"));
 			String password = request.getParameter("password");
 			
+			if (usuario == null)
+				throw new UsuarioInvalidoException("Usuario o clave incorrecta.");
+			
 			if (!usuario.esClaveCorrecta(password))
-				throw new UsuarioInvalidoException("El usuario no existe.");
+				throw new UsuarioInvalidoException("Usuario o clave incorrecta.");
 			
 			setearUsuarioLogeado(usuario);
 			response.setStatus(200);
