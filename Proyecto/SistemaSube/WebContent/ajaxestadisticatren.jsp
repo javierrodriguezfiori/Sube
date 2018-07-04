@@ -19,15 +19,14 @@
  <th>Destino</th>
  <th>Cantidad de Viajes</th>
  <th>Total</th>
- 
 
 <% List<Muestra> cant = (List)request.getAttribute("estadistica");
 for(Muestra muestra : cant){ %>
 <tr>
  <td><%= muestra.getNombre() %> </td>
- <td><%=muestra.getNombre2() %>
+ <td><%= muestra.getNombre2() %>
  <td><%= muestra.getCant() %> </td>
- <td><%= muestra.getSum() %>
+ <td><%= muestra.getSum() %> 
  
  </tr>
  <%} %>
@@ -42,16 +41,17 @@ for(Muestra muestra : cant){ %>
 			var data= new google.visualization.DataTable();
 			data.addColumn('string', 'Nombre');
 			data.addColumn('number', 'Cantidad');
+			
 			var dataArray = [];
 			
-			 data.addRows([
+	 		data.addRows([
 		          ['Mushrooms', 3],
 		          ['Onions', 1],
 		          ['Olives', 1],
 		          ['Zucchini', 1],
 		          ['Pepperoni', 2]
-		        ]);
-			
+		    ]);
+	 		
 			data.addRows(dataArray);
 			
 			var piechart_options = {
