@@ -253,7 +253,7 @@
 			<div class="row">
 	           <div class="col-lg-3 opciones">
 	              <label><h4>¿En qué transporte público viajará?</h4></label> <BR>
-	              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren" checked/>
+	              <input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>
 	              <label for="radio" >Tren</label>
 	              <input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
 	              <label for="radio">Subte</label>
@@ -272,11 +272,13 @@
 						<button type="submit" name="boton-volver" value="Volver" class="btn btn-primary">Volver</button>
 					</form>
         		</div>  
-	        	<div id="formulario2">          	
-	       			<div align="center" style="padding-top:50px;display:inline-block">
-		          		<input type="submit" value="Emitir boleto" id="emitirBoleto" class="btn btn-primary">
-		          	</div>        	    		
-	        	</div>
+        		<div class="col-lg-4">
+		        	<div id="formulario2">          	
+		       			<div align="center" style="padding-top:50px;display:inline-block">
+			          		<input type="submit" value="Emitir boleto" id="emitirBoleto" class="btn btn-primary">
+			          	</div>        	    		
+		        	</div>
+		        </div>
 		</div>
 	</body>
 </html>
