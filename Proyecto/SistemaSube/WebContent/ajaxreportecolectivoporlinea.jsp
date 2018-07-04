@@ -7,19 +7,20 @@
 <%@page import="datos.Colectivo" %>
 <%@page import="datos.ViajeColectivo" %>
 
-<table border="1">
-<%Colectivo colectivo = (Colectivo)request.getAttribute("colectivo"); %>
-<caption>Viajes de la linea: <%=colectivo.getLinea() %></caption>
-<tr>
- <th>Fecha</th>
- <th>Hora</th>
- <th>Numero Tarjeta</th>
- <th>Tramo</th>
- <th>Monto</th>
-
-<% List<Viaje> viajesColectivo = (List)request.getAttribute("viajesColectivo");
+<table class="table table-hover">
+  <caption>Viajes de Colectivos</caption>
+  <thead>
+    <tr>
+      <th scope="col">Fecha</th>
+ 	  <th scope="col">Hora</th>
+ 	  <th scope="col">Numero Tarjeta</th>
+ 	  <th scope="col">Monto</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% List<Viaje> viajesColectivo = (List)request.getAttribute("viajesColectivo");
 for(Viaje viaje : viajesColectivo){ %>
-<tr>
+<tr class="table-light">
  <td><%= Funciones.traerFechaCorta(viaje.getFechaHora()) %> </td>
  <td><%=Funciones.traerHora(viaje.getFechaHora()) %>
  <td><%= viaje.getTarjetaSube().getNroTarjeta() %> </td>
@@ -27,5 +28,6 @@ for(Viaje viaje : viajesColectivo){ %>
  <td><%=viajeColectivo.getTramo().getDistancia() %> </td>
  <td><%= viaje.getMonto() %> </td>
  </tr>
+ </tbody>
  <%} %>
 </table>
