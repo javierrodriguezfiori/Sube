@@ -33,19 +33,16 @@ public class Tren extends TransportePublico {
 	
 	public float calcularDistanciaViaje(Parada origen,Parada destino)throws Exception {
 		float distancia = 0;
-		boolean encontrado1=false;
-		boolean encontrado2=false;
+		boolean comparten=false;
+		
 		List<Parada> listaParadas = new ArrayList<Parada>();
 		for(Parada parada : this.paradas) {
 			listaParadas.add(parada);
 			
 		}
+		if(compartenParadas(origen,destino))comparten=true;
 		
-		for(Parada parada : listaParadas) {
-			if(parada.equals(origen))encontrado1=true;
-			if(parada.equals(destino))encontrado2=true;
-		}
-		if(!encontrado1 || !encontrado2)throw new Exception("origen o destino no encontrado");
+		if(!comparten)throw new Exception("origen o destino no encontrado");
 		
 		int i=0;
 		boolean encontrado = false;
@@ -75,6 +72,19 @@ public class Tren extends TransportePublico {
 		if(distancia>27) seccion = 3;
 		
 		return seccion;
+	}
+	
+	public boolean compartenParadas(Parada origen,Parada destino) {
+		boolean resultado = false;
+		boolean encontrado1=false;
+		boolean encontrado2=false;
+		for(Parada parada : paradas) {
+			if(parada.equals(origen))encontrado1=true;
+			if(parada.equals(destino))encontrado2=true;
+		}
+		if(encontrado1 && encontrado2)resultado=true;
+		return resultado;
+			
 	}
 
 	@Override
