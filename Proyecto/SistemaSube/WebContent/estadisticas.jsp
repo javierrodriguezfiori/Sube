@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="js/datetimepicker-master/build/jquery.datetimepicker.min.css">
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <style>
 	      body {
@@ -169,7 +170,7 @@ $(document).ready(function() {
 <body>
 <%@include file="/header.jsp" %>
 <h1>Estadisticas</h1>
-<form class="navbar-form navbar-right">
+<form class="navbar-form navbar-center">
 <div class="col-lg-6" style="padding-top:50px;">
 <p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
 <span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
@@ -192,16 +193,8 @@ $(document).ready(function() {
 <INPUT id="estadistica"  type="button" class="btn btn-succes" value="Estadistica"/>
 </form>
 
-
-
-
-
-
-
-
-<div id="responseestadistica"></div>
 <div id="response-lineas-de-transporte"></div>
-
+<div id="responseestadistica"></div>
 
 </body>
 </html>
