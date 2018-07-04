@@ -30,7 +30,7 @@
 					</form>				
 				
 				
-					<form action="/SistemaSube/cobrarViajeNoLogeado.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
+					<form action="/SistemaSube/cobrarViaje.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 						<button type="submit" name="boton-volver" value="EmitirBoleto" class="btn btn-primary" style="display: inline-block">Realizar viaje</button>
 					</form>				
 				</div>

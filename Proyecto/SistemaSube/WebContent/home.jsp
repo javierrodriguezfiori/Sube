@@ -55,10 +55,17 @@
 					<form action="/SistemaSube/consultarsaldo.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 						<button type="submit" name="boton-volver" value="Reportes" class="btn btn-primary" style="display: inline-block">Consultas</button>
 					</form>				
+<<<<<<< HEAD
 				
 				
 					<form action="/SistemaSube/cobrarViajeLogeado.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 						<button type="submit" name="boton-volver" value="EmitirBoleto" class="btn btn-primary" style="display: inline-block">Realizar viaje</button>
+=======
+				</div>
+				<div class="col-lg-4">
+					<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
+						<button type="submit" name="boton-volver" value="EmitirBoleto" class="button">Realizar viaje</button>
+>>>>>>> master
 					</form>				
 				
 			</div>

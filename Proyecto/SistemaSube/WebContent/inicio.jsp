@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="datos.Sesion" %>
+<%@page import="datos.Sesion" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -59,37 +59,55 @@
 		}
 		
 		.button:hover {opacity: 1}
-			
-	
+		
+		.hidden {
+			display:none;
+		}
 	    </style>
+   		<script src="js/jquery-3.3.1.min.js"></script>
+	    <script type="text/javascript">
+  			$(document).ready(function(){
+  				var tienePrivilegios = $('#tienePrivilegios').val();
+
+  				if (tienePrivilegios == "true/")
+  				{
+  					$('#asignartarifa').removeClass("hidden");	
+  					$('#bajarsube').removeClass("hidden");	
+  				}
+  			})
+  		</script>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		<% String motivoDeError = (String) request.getAttribute("error"); 
-			if (motivoDeError == null)
-				motivoDeError = "Ocurrio un error interno en el servidor, vuelva a intentarlo más tarde.";
-		%>
-		<% 
-		String retorno = "home.jsp";
-		
-		if (Sesion.obtenerSesionActual().getUsuarioLogeado() != null)
-		{
-			if (Sesion.obtenerSesionActual().tienePrivilegios())
-				retorno = "homeAdmin.jsp";
-		} else
-			retorno = "index.jsp";
-		%>
-		<div class="container">
+		<% boolean tienePrivilegios = Sesion.obtenerSesionActual().getUsuarioLogeado() != null && Sesion.obtenerSesionActual().tienePrivilegios(); %>
+		<input type="text" id="tienePrivilegios" style="display:none;" value=<%=tienePrivilegios%>/>
+		<div class= "container">
 			<div class="row">
-				<div class="col-lg-12">
-					<h2 style="text-align:justify;">Petición errónea</h2>
-					<p>No se pudo procesar la petición, vuelva a intentarlo.</p> <br>
-					<p>Motivo: <%=motivoDeError%></p> <br>
-					
-					<form action="<%=retorno%>" method="POST">
-						<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
-					</form>
+				<div class="col-lg-4">
+					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
+						<button type="submit" value="Reportes" class="button">Consultas</button>
+					</form>				
 				</div>
+				<div class="col-lg-4">
+					<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
+						<button type="submit" value="EmitirBoleto" class="button">Realizar viaje</button>
+					</form>				
+				</div>
+				<div class="col-lg-4 hidden" id="asignartarifa">
+					<form action="/SistemaSube/asignartarifasocial.jsp" method="POST">
+						<button type="submit" value="AsignarTarifaSocial" class="button">Asignar Tarifa Social</button>
+					</form>				
+				</div>				
+				<div class="col-lg-4 hidden" id="bajarsube">
+					<form action="/SistemaSube/bajasube.jsp" method="POST">
+						<button type="submit" value="DeshabilitarTarjta" class="button">Deshabilitar tarjeta</button>
+					</form>				
+				</div>	
+				<div class="col-lg-4">
+					<form action="/SistemaSube/LogOut" method="POST">
+						<button type="submit" value="Salir" class="button">Salir</button>
+					</form>				
+				</div>									
 			</div>
 		</div>
 	</body>
