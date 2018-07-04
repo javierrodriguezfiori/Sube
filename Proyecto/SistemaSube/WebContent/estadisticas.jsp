@@ -98,7 +98,7 @@
 					dataType: "JSON",
 					success: function(result){
 						google.charts.load('current', {
-							'packages': ['corechart']
+							'packages': ['corechart','table']
 						});
 						google.charts.setOnLoadCallback(function() {
 							drawChart(result);
@@ -121,6 +121,7 @@
 						title : 'Grafico circular',
 						width : 500,
 						height : 300,
+						pieHole: 0.4,
 					};
 					
 					var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
@@ -135,6 +136,10 @@
 						
 					var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
 					barchart.draw(data, barchart_options);
+					
+					var table = new google.visualization.Table(document.getElementById('table_div'));
+
+			        table.draw(data, {showRowNumber: true, width: 500, height: 300});
 				}
 			});
 		});
@@ -195,33 +200,39 @@
 	</head>
 	<body>
 		<%@include file="/header.jsp" %>
-		<h1>Estadisticas</h1>
-		<form class="navbar-form navbar-center">
-			<div class="col-lg-6" style="padding-top:50px;">
-			<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
-			<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+		
+		<h1 align="center">Estadísticas</h1>
+		
+		<form class="navbar-form navbar-center" align="center">
+			<div class="col-lg-6" style="padding-top:50px" align="center">
+				<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
+				<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 			</div>
 			<div>
-			<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
-			<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+				<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
+				<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 			</div>
-			<label class="subtitle">Seleccione tipo de Transporte</label> <BR>
-			<label class="subtitle">Seleccione un Transporte Publico</label> <BR>
+			<label class="subtitle">Seleccione tipo de transporte</label> <BR>
 			<input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>
 			<label for="radio" >Tren</label>
 			<input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
 			<label for="radio">Subte</label>
 			<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
 			<label for="radio">Colectivo</label>
-		
-			<INPUT id="estadistica"  type="button" class="btn btn-succes" value="Estadistica"/>
+			<br>
 		</form>
 		
-		<div id="response-lineas-de-transporte"></div>
-		<table class="columns">
+		<div id="response-lineas-de-transporte" align="center"></div>
+		<br>
+		<div id="input" align="center">
+			<INPUT id="estadistica"  type="button" class="btn btn-succes" value="Generar estadística"/>
+		</div>
+		
+		<table class="columns" align="center">
 			<tr>
-				<td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
-				<td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
+				<td><div id="piechart_div" style="border: 0px solid #ccc"></div></td>
+				<td><div id="barchart_div" style="border: 0px solid #ccc"></div></td>
+				<td><div id="table_div" style="border: 0px solid #ccc"></div></td>
 			</tr>
 		</table>
 	</body>
