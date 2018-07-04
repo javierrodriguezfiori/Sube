@@ -91,7 +91,7 @@
 					</form>				
 				</div>
 				<div class="col-lg-4">
-					<form action="/SistemaSube/cobrarViajeLogeado.jsp" method="POST">
+					<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
 						<button type="submit" name="boton-volver" value="EmitirBoleto" class="button">Realizar viaje</button>
 					</form>				
 				</div>

@@ -70,13 +70,9 @@ public class ControladorCobrarViaje extends HttpServlet implements LoginValidabl
 			response.setStatus(200);
 			request.getRequestDispatcher("mostrarviajecobrado.jsp").forward(request, response);
 		} catch (TarjetaSubeInexistenteException ex) {
-			response.setStatus(404);
-			request.setAttribute("error", ex.getMessage());
-			request.getRequestDispatcher("/peticionerronea.jsp").forward(request, response);
+			response.sendError(404);
 		} catch (SaldoInsuficienteException ex) {
-			response.setStatus(400);
-			request.setAttribute("error", "Saldo insuficiente.");
-			request.getRequestDispatcher("/peticionerronea.jsp").forward(request, response);
+			response.sendError(400);
 		} catch (Exception ex) {
 			response.setStatus(500);
 			request.setAttribute("error", "Ocurrió un error interno en el sistema, por favor vuelva a intentarlo.");
