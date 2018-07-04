@@ -2,6 +2,7 @@
 pageEncoding="ISO-8859-1"%>
 <%@page import = "datos.TarjetaSube" %>
 <% TarjetaSube tarjeta = (TarjetaSube)request.getAttribute("tarjeta");%>
+<h3>Saldo</h3>
 <table class="table table-hover">
   <thead>
     <tr>
