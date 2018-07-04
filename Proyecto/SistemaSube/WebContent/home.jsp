@@ -32,14 +32,7 @@
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		
-<<<<<<< HEAD
-		
-			<div style="margin-top:10%">
-				
-					<form action="/SistemaSube/index.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
-						<button type="submit" name="boton-volver" value="Salir" class="btn btn-primary" style="display: inline-block">Salir</button>
-=======
+
 		<% boolean tienePrivilegios = Sesion.obtenerSesionActual().tienePrivilegios(); %>
 		<input type="text" id="privilegios" style="display:none;" value=<%=tienePrivilegios%>/>
 		
@@ -48,24 +41,18 @@
 				<div class="col-lg-4">
 					<form action="/SistemaSube/LogOut" method="POST">
 						<button type="submit" name="boton-volver" value="Salir" class="button">Salir</button>
->>>>>>> master
+
 					</form>				
 				
 				
 					<form action="/SistemaSube/consultarsaldo.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 						<button type="submit" name="boton-volver" value="Reportes" class="btn btn-primary" style="display: inline-block">Consultas</button>
 					</form>				
-<<<<<<< HEAD
-				
-				
-					<form action="/SistemaSube/cobrarViajeLogeado.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
-						<button type="submit" name="boton-volver" value="EmitirBoleto" class="btn btn-primary" style="display: inline-block">Realizar viaje</button>
-=======
 				</div>
 				<div class="col-lg-4">
 					<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
 						<button type="submit" name="boton-volver" value="EmitirBoleto" class="button">Realizar viaje</button>
->>>>>>> master
+
 					</form>				
 				
 			</div>

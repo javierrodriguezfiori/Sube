@@ -77,39 +77,6 @@
 <title>Consultar Saldo</title>
 </head>
 
-<<<<<<< HEAD
-<body>
-<%@include file="/header.jsp" %>
-<h1>Consultar Saldo</h1>
-
-<form class="navbar-form navbar-right">
-
-<label for="nroTarjeta">Numero Tarjeta:</label>
-<INPUT id="nroTarjeta" name="nroTarjeta">
-
-<INPUT id="consultarsaldo" type="button" class="btn btn-primary" value="ConsultarSaldo"/>
-</form>
-
-<form class="navbar-form navbar-right">
-
-<label for="nroTarjeta1">Historial de Transacciones:</label>
-<INPUT id="nroTarjeta1" name="nroTarjeta">
-
-<INPUT id="consultartransacciones" type="button" class="btn btn-primary" value="ConsultarTransacciones"/>
-</form>
-
-
-
-<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
-			<button type="submit" name="boton-volver" value="Volver" class="btn btn-primary" style="padding:20px; maring:30px;">Volver</button>
-		</form>
-
-<div id="responsesaldo"></div>
-
-<div id="responsetransacciones"></div>
-</body>
-
-=======
 	<body>
 		<%@include file="/header.jsp" %>
 		
@@ -151,5 +118,4 @@
 		<div id="responsesaldo"></div>
 		<div id="responsetransacciones"></div>
 	</body>
->>>>>>> master
 </html>
