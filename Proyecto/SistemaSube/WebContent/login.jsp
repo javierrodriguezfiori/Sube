@@ -34,7 +34,7 @@
 							}
 						}
 					}).done(function(data) {
-						window.location.href = "home.jsp";
+						window.location.href = "inicio.jsp";
 					})
 				});
 			});

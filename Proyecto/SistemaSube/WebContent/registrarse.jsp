@@ -127,7 +127,7 @@
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		<form>
+		
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3" style="padding-top:25px;">
@@ -155,7 +155,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12"> 
 		              	<label class="subtitle">Género</label> <BR>
 		              	<input type="radio" name="radio-genero" id="radio-genero" value="masculino" checked/>
 		              	<label for="radio" >Masculino</label>
@@ -174,9 +174,14 @@
 					</div>							
 				</div>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-6">
 						<input id="registrarse" type="button" align="right" class="btn btn-succes;" value="Registrarse"/>
 					</div>
+	     		<div class="col-lg-4">
+					<form action="/SistemaSube/index.jsp" method="POST">
+						<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
+					</form>
+	     		</div>	  					
 				</div>
 			</div>
 		</form>

@@ -230,14 +230,10 @@
 			nroTarjetaSube = String.valueOf(Sesion.obtenerSesionActual().getTarjetaSubeDelUsuario().getNroTarjeta());
 		%>
 		<% 
-		String retorno = "home.jsp";
+		String retorno = "inicio.jsp";
 		
-		if (Sesion.obtenerSesionActual().getUsuarioLogeado() != null) // Si, ya sé, pero bueno.
-		{
-			if (Sesion.obtenerSesionActual().tienePrivilegios())
-				retorno = "homeAdmin.jsp";
-		} else
-			retorno = "index.jsp";
+		if (Sesion.obtenerSesionActual().getUsuarioLogeado() == null) // Si, ya sé, pero bueno.
+			retorno = "index.jsp";			
 		%>
 		<input type="text" id="usuarioLogeado" style="display:none;" value=<%=usuarioLogeado%>/>
 		<input type="text" id="tienePrivilegios" style="display:none;" value=<%=tienePrivilegios%>/>

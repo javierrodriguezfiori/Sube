@@ -49,7 +49,6 @@
 
 	$(document).ready(function(){
 			var usuarioLogeado = $('#usuarioLogeado').val();
-			var retorno = $('#retorno').val();
 
 			if (usuarioLogeado == "true/")
 				$('#nroTarjetaSube-Logeada').removeClass("hidden");
@@ -110,7 +109,7 @@
 	     			<INPUT id="consultarsaldo" type="button" class="btn btn-success" value="Consultar saldo"/>
 	     		</div>
 	     		<div class="col-lg-4">
-					<form action="<%=retorno%>" method="POST">
+					<form action="inicio.jsp" method="POST">
 						<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
 					</form>
 	     		</div>	     		
