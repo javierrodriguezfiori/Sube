@@ -38,8 +38,8 @@
 		
 		</form>
 		<form action="/SistemaSube/inicio.jsp" method="POST">
-					<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
-				</form>
+			<button type="submit" name="boton-volver" value="Volver" class="button" style="padding:20px; maring:30px;">Volver</button>
+		</form>
 		
 		<div id="responseBajaSube"></div>
 	</body>
