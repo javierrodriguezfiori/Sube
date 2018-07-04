@@ -60,23 +60,20 @@
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		<div style="margin-top:10%">
+		<div style="margin-top:10%;">
 			<form action="/SistemaSube/login.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 				<p class="tool"><button type="submit" class="btn" style="display: inline-block;"><i class="fa fa-sign-in fa-5x" aria-hidden="true"></i></button>
 				<span class="tooltiptext">Entrar</span></p>
 			</form>				
-			
 		
 			<form action="/SistemaSube/registrarse.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
 				<p class="tool"><button type="submit" class="btn" style="display: inline-block"><i class="fa fa-registered fa-5x" aria-hidden="true"></i></button>
 				<span class="tooltiptext">Registrarse</span></p>
 			</form>				
 		
-		
 			<form action="/SistemaSube/cobrarViaje.jsp" method="POST" style="display: inline-block; align: center; padding-left: 20%">
-				<p class="tool"><button type="submit" class="btn" style="display: inline-block"><i class="fa fa-train fa-5x" aria-hidden="true"></i>
+				<p class="tool"><button type="submit" class="btn" style="display: inline-block"><i class="fa fa-train fa-5x" aria-hidden="true"></i></button>
 				<span class="tooltiptext" style="width: 120px;">Realizar un viaje</span></p>
-				</button>
 			</form>				
 		</div>
 	</body>
