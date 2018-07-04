@@ -170,11 +170,11 @@ $(document).ready(function() {
 <form class="navbar-form navbar-right">
 <div class="col-lg-6" style="padding-top:50px;">
 <p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
-<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+
 </div>
 <div>
 <p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
-<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+
 </div>
 <label class="subtitle">Seleccione tipo de Transporte</label> <BR>
 <label class="subtitle">Seleccione un Transporte Publico</label> <BR>

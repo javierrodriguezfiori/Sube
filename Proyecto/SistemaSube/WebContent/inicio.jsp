@@ -93,9 +93,15 @@
 		<div class= "container" style="margin-top:10%;">
 			<div class="row">
 				<div class="col-lg-3">
-					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
+					<form action="/SistemaSube/reportes.jsp" method="POST">
 						<p class="tool"><button type="submit" value="Reportes" class="btn"><i class="fa fa-bars fa-5x" aria-hidden="true"></i></button>
 						<span class="tooltiptext">Reportes</span></p>
+					</form>				
+				</div>
+				<div class="col-lg-3">
+					<form action="/SistemaSube/estadisticas.jsp" method="POST">
+						<p class="tool"><button type="submit" value="Reportes" class="btn"><i class="fa fa-pie-chart fa-5x" aria-hidden="true"></i></button>
+						<span class="tooltiptext">Estadisticas</span></p>
 					</form>				
 				</div>
 				<div class="col-lg-3">

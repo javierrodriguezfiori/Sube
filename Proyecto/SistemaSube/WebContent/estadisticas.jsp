@@ -206,11 +206,11 @@
 		<form class="navbar-form navbar-center" align="center">
 			<div class="col-lg-6" style="padding-top:50px" align="center">
 				<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
-				<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+				
 			</div>
 			<div>
 				<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
-				<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
+				
 			</div>
 			<label class="subtitle">Seleccione tipo de transporte</label> <BR>
 			<input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>

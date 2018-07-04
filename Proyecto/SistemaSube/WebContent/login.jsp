@@ -57,7 +57,7 @@
     		<div class="form-group">
      			<label for="documento" style="padding:35px">Documento: </label>
 				<input id="documento" name="documento" class="form-control" placeholder="Documento" style="width:200px">
-      			<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      			
     		</div>
     		<div class="form-group">
     			<label for="password" style="padding:25px">Password: </label>
