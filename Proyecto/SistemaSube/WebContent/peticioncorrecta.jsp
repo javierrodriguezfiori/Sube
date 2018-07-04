@@ -71,7 +71,7 @@
 					<h2 style="text-align:justify;">Operación correcta</h2>
 					<p>La operación se ha procesado correctamente.</p> <br>
 					
-					<form action="/SistemaSube/home.jsp" method="POST">
+					<form action="/SistemaSube/index.jsp" method="POST">
 						<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
 					</form>
 				</div>
