@@ -112,7 +112,7 @@
 					data.addColumn('number', 'Cantidad');
 					var dataArray = [];
 					$.each(result, function(i, obj){
-						dataArray.push([obj.nombre+"-"+obj.nombre2, obj.cant]);
+						dataArray.push([obj.nombre, obj.cant]);
 					});
 					
 					data.addRows(dataArray);
