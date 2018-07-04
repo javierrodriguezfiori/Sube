@@ -57,11 +57,11 @@ public class Muestra {
 		
 	}
 	
-	public Muestra(int idMuestra,int idMuestra2, String nombre,String nombre2, float cant,float sum) {
+	public Muestra(int idMuestra,int idMuestra2, String nombre, float cant,float sum) {
 		super();
 		this.idMuestra = idMuestra;
 		this.nombre = nombre;
-		this.nombre2=nombre2;
+		
 		this.cant = cant;
 		this.sum=sum;
 		this.idMuestra2=idMuestra2;

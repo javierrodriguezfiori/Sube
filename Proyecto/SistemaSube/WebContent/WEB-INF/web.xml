@@ -168,6 +168,7 @@
   	<servlet-name>ControladorLineas</servlet-name>
   	<url-pattern>/Lineas</url-pattern>
   </servlet-mapping>
+
    <servlet>
   	<servlet-name>ControladorRegistro</servlet-name>
   	<servlet-class>controladores.ControladorRegistro</servlet-class>
@@ -184,4 +185,5 @@
   	<servlet-name>ControladorLogOut</servlet-name>
   	<url-pattern>/LogOut</url-pattern>
   </servlet-mapping> 
+
 </web-app>

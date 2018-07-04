@@ -42,50 +42,31 @@ public class ControladorMostrarEstadisticas extends HttpServlet {
 			String fechaInicio = (String) request.getParameter("fechaInicio");
 			String fechaFin = (String) request.getParameter("fechaFin");
 			
-			
-			
 			GregorianCalendar fechaHoraInicio = parsearFechaEnTexto(fechaInicio);
 			GregorianCalendar fechaHoraFin = parsearFechaEnTexto(fechaFin);
 			
 			long idTransporte = Long.parseLong((String) request.getParameter("idLineaDeTransporte"));
-			
-			
-			
-				
-			
-			
+		
 			TransportePublico transportePublico = TransportePublicoABM.getInstance().traer(idTransporte);
 			
+			List<Muestra> estadistica = null;
+			
 			if(transportePublico instanceof Tren) {
-				List<Muestra> estadistica = ViajeABM.getInstance().estadisticaViajesTren(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
-				
-				request.setAttribute("tren", (Tren)transportePublico);
-				request.setAttribute("estadistica", estadistica);
-				request.getRequestDispatcher("ajaxestadisticatren.jsp").forward(request, response);
-				
+				estadistica = ViajeABM.getInstance().estadisticaViajesTren(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();			
 			}
 			
 			if(transportePublico instanceof Colectivo) {
-				List<Muestra> estadistica = ViajeABM.getInstance().estadisticaViajesColectivo(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
-				request.setAttribute("colectivo", (Colectivo)transportePublico);
-				request.setAttribute("estadistica", estadistica);
-				request.getRequestDispatcher("ajaxestadisticacolectivo.jsp").forward(request, response);
-				
-				
+				estadistica = ViajeABM.getInstance().estadisticaViajesColectivo(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();			
 			}
 			
 			if(transportePublico instanceof Subte) {
-				List<Muestra> estadistica = ViajeABM.getInstance().estadisticaViajesSubte(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
-				request.setAttribute("subte", (Subte)transportePublico);
-				request.setAttribute("estadistica", estadistica);
-				request.getRequestDispatcher("ajaxestadisticasubte.jsp").forward(request, response);
-				
+				estadistica = ViajeABM.getInstance().estadisticaViajesSubte(fechaHoraInicio, fechaHoraFin, transportePublico.getIdTransporte()).getMuestras();
 			}
 		
-			
-			
-			
-
+		Gson gson = new Gson();
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.println(gson.toJson(estadistica));
 			
 		}catch(Exception e) {
 			response.sendError(500,"Fecha Incorrecta");
