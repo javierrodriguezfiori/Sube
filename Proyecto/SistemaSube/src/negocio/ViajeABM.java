@@ -104,7 +104,7 @@ public class ViajeABM {
 		
 			
 			if(muestra==null) {
-				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),(int) viaje.getDestino().getIdParada(),viaje.getOrigen().getNombre(),viaje.getDestino().getNombre(),1,viaje.getMonto()));
+				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),(int) viaje.getDestino().getIdParada(),viaje.getOrigen().getNombre() + "-"+ viaje.getDestino().getNombre(),1,viaje.getMonto()));
 			}else {
 				muestra.setCant(muestra.getCant()+1);
 				muestra.setSum(muestra.getSum() + viaje.getMonto());
