@@ -202,32 +202,36 @@
 		<%@include file="/header.jsp" %>
 		
 		<h1 align="center">Estadísticas</h1>
-		
-		<form class="navbar-form navbar-center" align="center">
-			<div class="col-lg-6" style="padding-top:50px" align="center">
-				<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
-				
+		<div class="row">
+			<div class="col-lg-3" style="padding-top:50px">
+				<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> </p> 
 			</div>
-			<div>
-				<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
-				
+			<div class="col-lg-3" style="padding-top:50px">
+				<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> </p>
 			</div>
-			<label class="subtitle">Seleccione tipo de transporte</label> <BR>
-			<input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>
-			<label for="radio" >Tren</label>
-			<input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
-			<label for="radio">Subte</label>
-			<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
-			<label for="radio">Colectivo</label>
-			<br>
-		</form>
-		
-		<div id="response-lineas-de-transporte" align="center"></div>
-		<br>
-		<div id="input" align="center">
-			<INPUT id="estadistica"  type="button" class="btn btn-succes" value="Generar estadística"/>
+			<div class="col-lg-3" style="padding-top:50px;">
+				<label class="subtitle">Seleccione tipo de transporte</label> <BR>
+				<input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>
+				<label for="radio" >Tren</label>
+				<input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
+				<label for="radio">Subte</label>
+				<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
+				<label for="radio">Colectivo</label>
+			</div>	
+			<div class="col-lg-3" style="padding-top:50px;">
+				<div id="response-lineas-de-transporte"></div>
+			</div>		
 		</div>
-		
+		<div class="row">
+			<div class="col-lg-6" style="padding-top:50px;">
+				<INPUT id="estadistica"  type="button" class="btn btn-succes" value="Generar estadística"/>
+			</div>
+			<div class="col-lg-6" style="padding-top:50px;">
+				<form action="inicio.jsp" method="POST">
+					<button type="submit" name="boton-volver" value="Volver" class="btn btn-primary">Volver</button>
+				</form>
+			</div>			
+		</div>
 		<table class="columns" align="center">
 			<tr>
 				<td><div id="piechart_div" style="border: 0px solid #ccc"></div></td>

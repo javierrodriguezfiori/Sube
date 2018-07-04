@@ -82,6 +82,8 @@
   				{
   					$('#asignartarifa').removeClass("hidden");	
   					$('#bajarsube').removeClass("hidden");	
+  					$('#estadisticas').removeClass("hidden");	
+  					$('#reportes').removeClass("hidden");	
   				}
   			})
   		</script>
@@ -92,18 +94,24 @@
 		<input type="text" id="tienePrivilegios" style="display:none;" value=<%=tienePrivilegios%>/>
 		<div class= "container" style="margin-top:10%;">
 			<div class="row">
-				<div class="col-lg-3">
+				<div class="col-lg-3 hidden" id="reportes">
 					<form action="/SistemaSube/reportes.jsp" method="POST">
 						<p class="tool"><button type="submit" value="Reportes" class="btn"><i class="fa fa-bars fa-5x" aria-hidden="true"></i></button>
 						<span class="tooltiptext">Reportes</span></p>
 					</form>				
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-3 hidden" id="estadisticas">
 					<form action="/SistemaSube/estadisticas.jsp" method="POST">
 						<p class="tool"><button type="submit" value="Reportes" class="btn"><i class="fa fa-pie-chart fa-5x" aria-hidden="true"></i></button>
 						<span class="tooltiptext">Estadisticas</span></p>
 					</form>				
 				</div>
+				<div class="col-lg-3">
+					<form action="/SistemaSube/consultarsaldo.jsp" method="POST">
+						<p class="tool"><button type="submit" value="EmitirBoleto" class="btn"><i class="fa fa-calculator fa-5x" aria-hidden="true"></i></button>
+						<span class="tooltiptext">Consultas</span></p>
+					</form>				
+				</div>				
 				<div class="col-lg-3">
 					<form action="/SistemaSube/cobrarViaje.jsp" method="POST">
 						<p class="tool"><button type="submit" value="EmitirBoleto" class="btn"><i class="fa fa-train fa-5x" aria-hidden="true"></i></button>
@@ -122,7 +130,7 @@
 						<span class="tooltiptext">Deshabilitar tarjetas</span></p>
 					</form>				
 				</div>	
-				<div class="col-lg-3" style="padding-top:30px;">
+				<div class="col-lg-3">
 					<form action="/SistemaSube/LogOut" method="POST">
 						<p class="tool"><button type="submit" value="Salir" class="btn"><i class="fa fa-sign-out fa-5x" aria-hidden="true"></i></button>
 						<span class="tooltiptext">Salir</span></p>

@@ -167,38 +167,41 @@ $(document).ready(function() {
 <body>
 <%@include file="/header.jsp" %>
 <h1>Reportes</h1>
-<form class="navbar-form navbar-right">
-<div class="col-lg-6" style="padding-top:50px;">
-<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
 
-</div>
-<div>
-<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
-
-</div>
-<label class="subtitle">Seleccione tipo de Transporte</label> <BR>
-<label class="subtitle">Seleccione un Transporte Publico</label> <BR>
-<input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>
-<label for="radio" >Tren</label>
-<input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
-<label for="radio">Subte</label>
-<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
-<label for="radio">Colectivo</label>
-
-<INPUT id="reporte"  type="button" class="btn btn-succes" value="Reporte"/>
-</form>
-
-
-
-
-
-
-
-
-
-
-<div id="responsereporte"></div>
-<div id="response-lineas-de-transporte"></div>
-
+	<div class="row">
+		<div class="col-lg-3">
+			<p class="tool"> Fecha de Inicio: <input id="datetimeInicio" name="fecha" type="text"> 
+		</div>
+		<div class="col-lg-3">
+			<p class="tool"> Fecha de Fin: <input id="datetimeFin" name="fecha" type="text"> 
+		</div>
+		<div class="col-lg-3">
+			<label class="subtitle">Seleccione un Transporte Publico</label> <BR>
+			<input type="radio" name="radio-transportes" id="radio-transportes" value="tren"/>
+			<label for="radio" >Tren</label>
+			<input type="radio" name="radio-transportes" id="radio-transportes" value="subte"/>
+			<label for="radio">Subte</label>
+			<input type="radio" name="radio-transportes" id="radio-transportes" value="colectivo"/>
+			<label for="radio">Colectivo</label>
+		</div>
+		<div class="col-lg-3">
+			<div id="response-lineas-de-transporte"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="responsereporte"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-6">
+			<INPUT id="reporte"  type="button" class="btn btn-succes" value="Reporte"/>
+		</div>
+		<div class="col-lg-6" style="padding-top:50px;">
+			<form action="inicio.jsp" method="POST">
+				<button type="submit" name="boton-volver" value="Volver" class="btn btn-primary">Volver</button>
+			</form>
+		</div>	
+	</div>
 </body>
 </html>
