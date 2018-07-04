@@ -29,7 +29,7 @@ public class ControladorSeleccionarTarifa extends HttpServlet {
 			if(Sesion.obtenerSesionActual().getUsuarioLogeado()==null){
 				throw new Exception("ERROR: El usuario no esta logeado.");
 			}
-			TarjetaSube sube=TarjetaSubeABM.getInstance().traerTarjetaSube(Sesion.obtenerSesionActual().getUsuarioLogeado());
+			TarjetaSube sube = Sesion.obtenerSesionActual().getTarjetaSubeDelUsuario();
 			String tarifa = request.getParameter("tarifa");
 			switch (tarifa) {
 			case "tarifasocial":

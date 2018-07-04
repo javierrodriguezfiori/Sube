@@ -72,7 +72,7 @@ public class TransportePublicoABM  {
 		return TransportePublicoDao.getInstance().traerTrenYParadas(idTren);
 	}
     
-    public double calcularCostoDeViaje(Viaje viaje) {
+    public double calcularCostoDeViaje(Viaje viaje) throws Exception {
     	double costoViaje=0;
     	if(viaje instanceof ViajeColectivo) 
     		costoViaje = ((ViajeColectivo) viaje).getTramo().getCosto();

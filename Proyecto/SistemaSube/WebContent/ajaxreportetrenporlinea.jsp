@@ -26,7 +26,7 @@ for(Viaje viaje : viajesTren){ %>
  <td><%= viaje.getTarjetaSube().getNroTarjeta() %> </td>
  <% ViajeTren viajeTren = (ViajeTren)viaje; %>
  <td><%=viajeTren.getOrigen().getNombre() %></td>
- <td><%=viajeTren.getDestino().getNombre() %></td>
+ <td><%if(viajeTren.getDestino()!=null)%><%=viajeTren.getDestino().getNombre() %></td>
  <td><%= viaje.getMonto() %> </td>
  </tr>
  <%} %>

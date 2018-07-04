@@ -89,6 +89,15 @@
    <url-pattern>/MostrarReportesPorColectivo</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+   <servlet-name>ControladorMostrarEstadisticas</servlet-name>
+   <servlet-class>controladores.ControladorMostrarEstadisticas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorMostrarEstadisticas</servlet-name>
+   <url-pattern>/MostrarEstadisticas</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
    <servlet-name>ControladorMostrarReportesSubte</servlet-name>
    <servlet-class>controladores.ControladorMostrarReportesSubte</servlet-class>
@@ -135,6 +144,15 @@
   </servlet-mapping>
   
   <servlet>
+   <servlet-name>ControladorSeleccionarLineaDeTransporte2</servlet-name>
+   <servlet-class>controladores.ControladorSeleccionarLineaDeTransporte2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ControladorSeleccionarLineaDeTransporte2</servlet-name>
+   <url-pattern>/SeleccionarLineaTransporte2</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>ControladorTramosYEstaciones</servlet-name>
   	<servlet-class>controladores.ControladorTramosYEstaciones</servlet-class>
   </servlet>
@@ -150,4 +168,20 @@
   	<servlet-name>ControladorLineas</servlet-name>
   	<url-pattern>/Lineas</url-pattern>
   </servlet-mapping>
+   <servlet>
+  	<servlet-name>ControladorRegistro</servlet-name>
+  	<servlet-class>controladores.ControladorRegistro</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorRegistro</servlet-name>
+  	<url-pattern>/Registro</url-pattern>
+  </servlet-mapping>
+    <servlet>
+	<servlet-name>ControladorLogOut</servlet-name>
+  	<servlet-class>controladores.ControladorLogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControladorLogOut</servlet-name>
+  	<url-pattern>/LogOut</url-pattern>
+  </servlet-mapping> 
 </web-app>

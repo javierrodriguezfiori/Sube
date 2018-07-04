@@ -150,15 +150,13 @@
 	<body>
 		<%@ include file="/header.jsp" %>
 		<% 
-			TarjetaSubeABM abmSube = TarjetaSubeABM.getInstance();
-			Usuario usuarioLogeado = Sesion.obtenerSesionActual().getUsuarioLogeado();
-			TarjetaSube tarjetaDeUsuario = abmSube.traerTarjetaSube(usuarioLogeado);
+			TarjetaSube tarjetaSube = Sesion.obtenerSesionActual().getTarjetaSubeDelUsuario();
 		%>
       	<div class="container">
-      		<form method="POST" action="/SistemaSube/CobrarViaje">
+      		
 		        <div class="row">
 		          <div class="col-lg-6" style="padding-top:30px;">
-		            <label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=tarjetaDeUsuario.getNroTarjeta() %></label> <br>
+		            <label class="subtitle" style="margin-top:20px; padding-right:20px; color:#787878;">Tarjeta Sube > <%=tarjetaSube.getNroTarjeta() %></label> <br>
 		          </div>
 		          <div class="col-lg-6" style="padding-top:50px;">
 		          	<p class="tool"> Fecha del viaje: <input id="datetime" name="fecha" type="text"> 
@@ -179,11 +177,17 @@
 	   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
 	        	</div>
 	        	<div class="row">
-	       			<div class="col-lg-12" style="padding-top:50px; padding-left:1000px; align:right;">
+	        		<div class="col-lg-6" style="padding-top:50px; align:right;">
+   						<form action="/SistemaSube/home.jsp" method="POST">
+							<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
+						</form>
+	        		</div>	   
+	        		<form method="POST" action="/SistemaSube/CobrarViaje">     	
+	       			<div class="col-lg-6" style="padding-top:50px; align:right;">
 		          		<input type="submit" value="Emitir boleto" class="button">
 		          	</div>
+       	        	</form>
 	        	</div>
-        	</form>
         </div>
 	</body>
 </html>

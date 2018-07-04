@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<%@page import="datos.Viaje" %>
-<%@page import="datos.Sesion" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -34,6 +30,18 @@
 	      .radio-option {
 	        padding-right: 10px;
 	      }
+	      
+	      .btn-link{
+			  border:none;
+			  outline:none;
+			  background:none;
+			  cursor:pointer;
+			  color:#0000EE;
+			  padding:0;
+			  text-decoration:underline;
+			  font-family:inherit;
+			  font-size:inherit;
+			}
 			
 		.button {
 		    background-color: #008CBA;
@@ -51,35 +59,22 @@
 		
 		.button:hover {opacity: 1}
 			
+	
 	    </style>
 	</head>
 	<body>
 		<%@ include file="/header.jsp" %>
-		<div class="container" style="padding-top:30px; margin-top:60px; border:1px solid black; width:700px; height:150px; background-color:Gainsboro;">
-			<div class="row">
-				<h4 style="margin:10px;">Viaje realizado - Boleto</h4>
-				<div class="col-lg-6" ">
-					Monto: ${monto} <br>
-					Transporte: ${linea} <br>
-				</div>
-				<div class="col-lg-6" ">
-					Fecha y hora: ${fechaYHora} <br>
-					Nuevo saldo de la tarjeta: ${saldo} <br>
-				</div>
-			</div>
-		</div>
+		<% String mensaje = (String) request.getAttribute("mensaje"); %>
 		<div class="container">
-		<% 
-		String retorno = "/SistemaSube/home.jsp";
-		if (Sesion.obtenerSesionActual().getUsuarioLogeado() == null)
-			retorno = "/SistemaSube/index.jsp";
-		else if (Sesion.obtenerSesionActual().tienePrivilegios())
-			retorno = "/SistemaSube/homeAdmin.jsp";
-		%>
-			<div style="align:right">
-				<form action="<%=retorno%>" method="POST">
-					<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
-				</form>
+			<div class="row">
+				<div class="col-lg-12">
+					<h2 style="text-align:justify;">Operación correcta</h2>
+					<p>La operación se ha procesado correctamente.</p> <br>
+					
+					<form action="/SistemaSube/home.jsp" method="POST">
+						<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</body>

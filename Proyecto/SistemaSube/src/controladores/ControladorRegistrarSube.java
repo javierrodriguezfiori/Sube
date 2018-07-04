@@ -26,7 +26,7 @@ public class ControladorRegistrarSube extends HttpServlet {
 			
 			long nroTarjeta = Integer.parseInt(request.getParameter("nroTarjeta"));
 			String documento = request.getParameter("documento");		
-			TarjetaSubeABM.getInstance().asociar(nroTarjeta, documento);
+			TarjetaSubeABM.getInstance().asociarAUsuario(nroTarjeta, documento);
 			TarjetaSube tarjeta = TarjetaSubeABM.getInstance().traerTarjetaSube(nroTarjeta);
 			request.setAttribute("tarjeta", tarjeta);
 			request.getRequestDispatcher("ajaxRegistrarSube.jsp").forward(request, response);

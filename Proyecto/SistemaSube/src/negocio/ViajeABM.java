@@ -61,15 +61,16 @@ public class ViajeABM {
 		return ViajeTrenDao.getInstance().traerViajesTren(ini, fin, idTransporte);
 	}
 	
-	public Estadistica estadisticaCantViajesColectivo(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
+	public Estadistica estadisticaViajesColectivo(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
 		Estadistica estadistica = new Estadistica();
 		List<ViajeColectivo> viajesColectivos = ViajeColectivoDao.getInstance().traerViajesColectivo(ini, fin, idTransporte);
 		for(ViajeColectivo viaje : viajesColectivos) {
 			Muestra muestra = estadistica.traerMuestra((int) viaje.getTramo().getIdTramo());
 			if(muestra==null) {
-				estadistica.add(new Muestra((int)viaje.getTramo().getIdTramo(),viaje.getTramo().getDistancia(),1));
+				estadistica.add(new Muestra((int)viaje.getTramo().getIdTramo(),viaje.getTramo().getDistancia(),1,viaje.getMonto()));
 			}else {
-				muestra.setMuestra(muestra.getMuestra()+1);
+				muestra.setCant(muestra.getCant()+1);
+				muestra.setSum(muestra.getSum() + viaje.getMonto());
 			}
 		}
 		
@@ -77,15 +78,16 @@ public class ViajeABM {
 		
 	}
 	
-	public Estadistica estadisticaCantViajesSubte(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
+	public Estadistica estadisticaViajesSubte(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
 		Estadistica estadistica = new Estadistica();
 		List<ViajeSubte> viajeSubte = ViajeSubteDao.getInstance().traerViajesSubte(ini, fin, idTransporte);
 		for(ViajeSubte viaje : viajeSubte) {
 			Muestra muestra = estadistica.traerMuestra((int) viaje.getOrigen().getIdParada());
 			if(muestra==null) {
-				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),viaje.getOrigen().getNombre(),1));
+				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),viaje.getOrigen().getNombre(),1,viaje.getMonto()));
 			}else {
-				muestra.setMuestra(muestra.getMuestra()+1);
+				muestra.setCant(muestra.getCant()+1);
+				muestra.setSum(muestra.getSum() + viaje.getMonto());
 			}
 		}
 		
@@ -93,69 +95,28 @@ public class ViajeABM {
 		
 	}
 	
-	public Estadistica estadisticaCantViajesTren(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
+	public Estadistica estadisticaViajesTren(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
 		Estadistica estadistica = new Estadistica();
 		List<ViajeTren> viajeTren = ViajeTrenDao.getInstance().traerViajesTren(ini, fin, idTransporte);
 		for(ViajeTren viaje : viajeTren) {
+			if(viaje.getDestino()!=null) {
 			Muestra muestra = estadistica.traerMuestra((int) viaje.getOrigen().getIdParada(),(int) viaje.getDestino().getIdParada());
+		
+			
 			if(muestra==null) {
-				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),(int) viaje.getDestino().getIdParada(),viaje.getOrigen().getNombre(),viaje.getDestino().getNombre(),1));
+				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),(int) viaje.getDestino().getIdParada(),viaje.getOrigen().getNombre(),viaje.getDestino().getNombre(),1,viaje.getMonto()));
 			}else {
-				muestra.setMuestra(muestra.getMuestra()+1);
+				muestra.setCant(muestra.getCant()+1);
+				muestra.setSum(muestra.getSum() + viaje.getMonto());
 			}
+		  }
 		}
 		
 		return estadistica;
 		
 	}
 	
-	public Estadistica estadisticaSumMontosViajesColectivo(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
-		Estadistica estadistica = new Estadistica();
-		List<ViajeColectivo> viajesColectivos = ViajeColectivoDao.getInstance().traerViajesColectivo(ini, fin, idTransporte);
-		for(ViajeColectivo viaje : viajesColectivos) {
-			Muestra muestra = estadistica.traerMuestra((int) viaje.getTramo().getIdTramo());
-			if(muestra==null) {
-				estadistica.add(new Muestra((int)viaje.getTramo().getIdTramo(),viaje.getTramo().getDistancia(),viaje.getMonto()));
-			}else {
-				muestra.setMuestra(muestra.getMuestra() + viaje.getMonto());
-			}
-		}
-		
-		return estadistica;
-		
-	}
 	
-	public Estadistica estadisticaSumMontosViajesSubte(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
-		Estadistica estadistica = new Estadistica();
-		List<ViajeSubte> viajeSubte = ViajeSubteDao.getInstance().traerViajesSubte(ini, fin, idTransporte);
-		for(ViajeSubte viaje : viajeSubte) {
-			Muestra muestra = estadistica.traerMuestra((int) viaje.getOrigen().getIdParada());
-			if(muestra==null) {
-				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),viaje.getOrigen().getNombre(),viaje.getMonto()));
-			}else {
-				muestra.setMuestra(muestra.getMuestra() + viaje.getMonto());
-			}
-		}
-		
-		return estadistica;
-		
-	}
-	
-	public Estadistica estadisticaSumMontosViajesTren(GregorianCalendar ini,GregorianCalendar fin,long idTransporte){
-		Estadistica estadistica = new Estadistica();
-		List<ViajeTren> viajeTren = ViajeTrenDao.getInstance().traerViajesTren(ini, fin, idTransporte);
-		for(ViajeTren viaje : viajeTren) {
-			Muestra muestra = estadistica.traerMuestra((int) viaje.getOrigen().getIdParada(),(int) viaje.getDestino().getIdParada());
-			if(muestra==null) {
-				estadistica.add(new Muestra((int)viaje.getOrigen().getIdParada(),(int) viaje.getDestino().getIdParada(),viaje.getOrigen().getNombre(),viaje.getDestino().getNombre(),viaje.getMonto()));
-			}else {
-				muestra.setMuestra(muestra.getMuestra() + viaje.getMonto());
-			}
-		}
-		
-		return estadistica;
-		
-	}
 	
 	
 	

@@ -11,6 +11,7 @@ public class Usuario {
 	private String clave;
 	private GregorianCalendar fechaAlta;
 	private DatosUsuario datosUsuario;
+	private Rol rol;
 	
 	public Usuario() { }
 	
@@ -22,7 +23,7 @@ public class Usuario {
 		this.fechaAlta = fechaAlta;
 		this.datosUsuario = datosUsuario;
 	}
-
+	
 	public long getIdUsuario() {
 		return idUsuario;
 	}
@@ -74,6 +75,14 @@ public class Usuario {
 	
 	public boolean esClaveCorrecta(String clave) {
 		return this.getClave().equals(clave);
+	}
+	
+	public Rol getRol() {
+		return rol;
+	}
+	
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	@Override

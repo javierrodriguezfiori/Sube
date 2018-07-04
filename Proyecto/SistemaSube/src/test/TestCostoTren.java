@@ -9,11 +9,11 @@ import negocio.TransportePublicoABM;
 
 public class TestCostoTren {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		
 		
-		ViajeTren viaje = new ViajeTren((float)0,new GregorianCalendar(),new TarjetaSube(),TransportePublicoABM.getInstance().traerTrenYParadas((long)6),ParadaABM.getInstance().traer((long)1),ParadaABM.getInstance().traer((long)45));
+		ViajeTren viaje = new ViajeTren((float)0,new GregorianCalendar(),new TarjetaSube(),TransportePublicoABM.getInstance().traerTrenYParadas((long)6),ParadaABM.getInstance().traer((long)15),ParadaABM.getInstance().traer((long)1));
 		System.out.println(TransportePublicoABM.getInstance().calcularCostoDeViaje(viaje));
 		System.out.println(viaje);
 

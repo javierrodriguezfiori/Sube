@@ -131,6 +131,7 @@
 	<body>
 		<%@ include file="/header.jsp" %>
       	<div class="container">
+<<<<<<< HEAD
       		<form method="POST" action="/SistemaSube/CobrarViaje" class="center-screen">
       		<div class="form-group" style="padding-top:50px;">
   				<label class="col-form-label" for="tarjetasube">Tarjeta Sube</label>
@@ -138,6 +139,14 @@
 			</div>
 			<div class="form-group" style="padding-top:50px;">
   				<p class="tool"> Fecha del viaje: <input id="datetime" name="fecha" type="text" class="form-control" style="width:200px"> 
+=======
+		        <div class="row">
+		          <div class="col-lg-6" style="padding-top:50px;">
+		           	Tarjeta Sube >  <input type="text" name="tarjetasube" id="tarjetasube"/>
+		          </div>
+		          <div class="col-lg-6" style="padding-top:50px;">
+		          	<p class="tool"> Fecha del viaje: <input id="datetime" name="fecha" type="text"> 
+>>>>>>> master
 		          	<span class="tooltiptext">Si no se elige una fecha, se tendrá en cuenta la actual.</span></p>
 			</div>
 		    <div class="form-group">
@@ -154,10 +163,32 @@
 	   	          <div class="col-lg-5 opciones" id="response-lineas-de-transporte"></div>
 	   	          <div class="col-lg-4 opciones" id="response-tramos-o-estaciones"></div>
 	        	</div>
+<<<<<<< HEAD
 	   	        <div class="row">
 	       			<button type="submit" name="boton-volver" value="Emitir boleto" class="btn btn-primary">Emitir boleto</button>     	
     			</div>   		        
         	</form>
+=======
+	        	<div class="row">
+        			<% 
+					String retorno = "/SistemaSube/index.jsp";
+					if (Sesion.obtenerSesionActual().getUsuarioLogeado() != null)
+								retorno = "/SistemaSube/homeAdmin.jsp";
+					%>
+					<form method="POST" action="/SistemaSube/CobrarViaje">		
+	       			<div class="col-lg-7" style="padding-top:50px; align:right;">
+		          		<input type="submit" value="Emitir boleto" class="button">
+		          	</div>
+		     		</form>     	
+	        		<div class="col-lg-5" style="padding-top:50px; align:right;">
+   						<form action="<%=retorno%>" method="POST">
+							<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
+						</form>
+	        		</div>
+	        	</div>
+			</div>
+        	
+>>>>>>> master
         </div>
 	</body>
 </html>

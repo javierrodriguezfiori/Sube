@@ -75,7 +75,7 @@
 					<p>No se pudo procesar la petición, vuelva a intentarlo.</p> <br>
 					<p>Motivo: <%=motivoDeError%></p> <br>
 					
-					<form action="/SistemaSube/seleccionartarjetaytransporte.jsp" method="POST">
+					<form action="/SistemaSube/index.jsp" method="POST">
 						<button type="submit" name="boton-volver" value="Volver" class="button">Volver</button>
 					</form>
 				</div>
