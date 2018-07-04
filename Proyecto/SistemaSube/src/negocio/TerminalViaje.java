@@ -40,10 +40,20 @@ public class TerminalViaje extends Terminal{
 				// Si el origen del ultimo viaje es distinto al origen del actual, se procede a devolver el dinero. Sino se cierra el ultimo viaje sin devolucion
 				if(ultimoT.getOrigen().getIdParada() != ultimoT.getDestino().getIdParada()) {
 					
-					precio = (float) TransportePublicoABM.getInstance().calcularCostoDeViaje(ultimoT);
-				    precio=(float)(precio*TarjetaSubeABM.getInstance().calcularDescuento(tarjeta)*RedSubeABM.getInstance().calcularDescuento(viaje));
+					String linea = viaje.getTransporte().getLinea();
+					viaje.getTransporte().setLinea("");
+					
+					precio = (float) TransportePublicoABM.getInstance().calcularCostoDeViaje(ultimoT) ;
+					System.out.println("Precio sin red sube " + precio);
+					double descuentoTarjetaSube = TarjetaSubeABM.getInstance().calcularDescuento(tarjeta);
+					System.out.println("DesciemtpTarketa:" + descuentoTarjetaSube);
+					double descuentoRedSube = RedSubeABM.getInstance().calcularDescuento(viaje);
+					System.out.println("DesciemtpTarketa:" + descuentoRedSube);
+					precio=(float)(precio*descuentoTarjetaSube*descuentoRedSube);
+				    
 				    diferencia=ultimoT.getMonto()-precio;
 					viaje.setMonto(precio);
+					viaje.getTransporte().setLinea(linea);
 				    Devolucion devolucion=new Devolucion(diferencia,viaje.getFechaHora(),tarjeta);
 				    TransaccionABM.getInstance().modificarViajeTren(ultimoT);
 				    cobrado=DevolucionABM.getInstance().registrarDevolucion(tarjeta,devolucion);
@@ -78,6 +88,7 @@ public class TerminalViaje extends Terminal{
 			// Cobrar viaje
 			cobrado=registrarViaje(tarjeta,viaje);
 			// Resetear RedSube si no hubo descuento
+			
 			if(descuentoRedSube==1) {
 				RedSubeABM.getInstance().resetearRedSube(viaje);
 			}	

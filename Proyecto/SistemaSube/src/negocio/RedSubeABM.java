@@ -6,6 +6,7 @@ import dao.RedSubeDao;
 import datos.RedSube;
 import datos.TarjetaSube;
 import datos.Viaje;
+import datos.ViajeTren;
 
 public class RedSubeABM {
 	public static RedSubeABM instance = null;
@@ -41,7 +42,12 @@ public class RedSubeABM {
 		GregorianCalendar fechaHora= viaje.getFechaHora();
 		
 		RedSube redSube = RedSubeDao.getInstance().traerRedSube(nroTarjetaSube);
-	
+//	    if(viaje instanceof ViajeTren ) {
+//	    	ViajeTren t = (ViajeTren)viaje;
+//	    	if(t.getDestino()!=null && t.getOrigen()!=null) {
+//	    		redSube.setContador(redSube.getContador() - 1);
+//	    	}
+//	    }
 		boolean sinDescuento=false;
 		double descuento=1;
 		
